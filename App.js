@@ -6,16 +6,26 @@ import { RadioButton } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 
+function EnterMedicationsScreen({navigation}) {
+  return (
+    <View style={styles.explainText}>
+      <Text>Enter Medications Screen</Text>
+    </View>
+  );
+}
+
 const Stack = createStackNavigator();
 
-function HomeScreen() {
+
+
+function HomeScreen({navigation}) {
   return (
     <View style = {styles.view}>
       <Text style = {styles.title}>Welcome to SideEffects2</Text>
 
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
-      <Button mode="contained" onPress={() => console.log('Pressed')}>
+      <Button mode="contained" onPress={() => navigation.navigate('EnterMedications')}>
           Find out!
       </Button>
 
@@ -24,16 +34,15 @@ function HomeScreen() {
 }
 
 function SideEffects2() {
-  const [checked, setChecked] = React.useState('male');
-
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="EnterMedications" component={EnterMedicationsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default SideEffects2;
 
