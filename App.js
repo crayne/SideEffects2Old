@@ -1,22 +1,30 @@
+import 'react-native-gesture-handler';
 import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { Button } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const  SideEffects2 = () => {
+const Stack = createStackNavigator();
+
+
+function SideEffects2() {
   const [checked, setChecked] = React.useState('male');
 
   return (
-    <View style = {styles.view}>
-    <Text style = {styles.title}>Welcome to SideEffects2</Text>
+    <NavigationContainer>{
+        <View style = {styles.view}>
+          <Text style = {styles.title}>Welcome to SideEffects2</Text>
 
-      <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
+          <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
-      <Button mode="contained" onPress={() => console.log('Pressed')}>
-        Find out!
-        </Button>
+          <Button mode="contained" onPress={() => console.log('Pressed')}>
+              Find out!
+          </Button>
 
-    </View>
+        </View>
+    }</NavigationContainer>
   );
 };
 
