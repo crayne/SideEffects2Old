@@ -8,23 +8,30 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
+function HomeScreen() {
+  return (
+    <View style = {styles.view}>
+      <Text style = {styles.title}>Welcome to SideEffects2</Text>
+
+      <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
+
+      <Button mode="contained" onPress={() => console.log('Pressed')}>
+          Find out!
+      </Button>
+
+    </View>
+  );
+}
 
 function SideEffects2() {
   const [checked, setChecked] = React.useState('male');
 
   return (
-    <NavigationContainer>{
-        <View style = {styles.view}>
-          <Text style = {styles.title}>Welcome to SideEffects2</Text>
-
-          <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
-
-          <Button mode="contained" onPress={() => console.log('Pressed')}>
-              Find out!
-          </Button>
-
-        </View>
-    }</NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
