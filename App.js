@@ -13,7 +13,7 @@ const  SideEffects2 = () => {
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
       <Button mode="contained" onPress={() => console.log('Pressed')}>
-        Find out
+        Find out!
         </Button>
 
     </View>
