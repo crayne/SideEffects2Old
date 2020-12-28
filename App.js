@@ -5,7 +5,9 @@ import { View, StyleSheet, Text } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
+import EnterMedicationsScreen from './components/AddMedications.js'
 
+/*
 function EnterMedicationsScreen({navigation}) {
   return (
     <View style={styles.explainText}>
@@ -13,6 +15,7 @@ function EnterMedicationsScreen({navigation}) {
     </View>
   );
 }
+*/
 
 const Stack = createStackNavigator();
 
