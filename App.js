@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text } from 'react-native';
-import { RadioButton } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { RadioButton, Text } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
