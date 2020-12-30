@@ -71,50 +71,37 @@ function AddMedicationsDropdown(){
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
-  //function onChangeSearch(char){
-  //  alert("char = " + char);
-  //}
+
+  //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query){
     setSearchQuery(query);
-    alert("text = " + query);
+    //alert("text = " + query);
+    //Show menu with all medications that start with the letters in "query"
+    //Get these medications from the database
+    openMenu();
     return query;
   }
 
   return (
 
 
-<View>
-      <Searchbar style={{maxHeight: 50, width: '80%', marginBottom: 0, backgroundColor: 'red'}}
-        placeholder="Search"
-        onChangeText={onChangeSearch}
+  <View>
+    <Searchbar style={{maxHeight: 50, width: '80%', marginBottom: 0}}
+      placeholder="Search"
+      onChangeText={onChangeSearch}
+      value={searchQuery}
+    />
 
-        value={searchQuery}
-      />
-
-
-
-        <View
-          style={{
-            paddingTop: 10,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginTop: 20,
-            backgroundColor: 'blue',
-            paddingBottom: 0
-          }}>
-          <Menu
-            style = {{backgroundColor: 'green'}}
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={<Button onPress={openMenu}>Show menu</Button>}>
-            <Menu.Item onPress={() => {}} title="Item 1" />
-            <Menu.Item onPress={() => {}} title="Item 2" />
-            <Menu.Item onPress={() => {}} title="Item 3" />
-          </Menu>
-        </View>
-      </View>
-
-
+    <Menu
+      style={{justifyContent: 'center'}}
+      visible={visible}
+      onDismiss={closeMenu}
+      anchor={<Button style={{height: 1, color: "white"}}></Button>}>
+      <Menu.Item onPress={() => {}} title="Item 1" />
+      <Menu.Item onPress={() => {}} title="Item 2" />
+      <Menu.Item onPress={() => {}} title="Item 3" />
+    </Menu>
+  </View>
 
   );
 
