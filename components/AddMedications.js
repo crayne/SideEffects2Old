@@ -1,23 +1,15 @@
 import 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, SafeAreaView } from 'react-native';
-import { Button, TextInput, Text, Provider as PaperProvider, Menu } from 'react-native-paper';
+import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
+import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 
 
-function EnterMedicationsScreen() {
-    return (
-      <PaperProvider>
-        <View style={styles.view}>
-          <Text style={styles.enterText}>Enter your medications</Text>
-          {AddMedicationsDropdown()}
-        </View>
-      </PaperProvider>
-    );
-}
 
-var  items  = [
+
+state = {
+  items: [
 	{
 		id: 1,
 		name: 'Javascript'
@@ -49,8 +41,20 @@ var  items  = [
 	{
 		id: 8,
 		name: 'Swift'
-	},
-];
+	}
+]
+}
+
+function EnterMedicationsScreen() {
+    return (
+      <PaperProvider>
+        <View style={styles.view}>
+          <Text style={styles.enterText}>Enter your medications</Text>
+          {AddMedicationsDropdown()}
+        </View>
+      </PaperProvider>
+    );
+}
 
 /*
 to add menu items dynamically:
@@ -72,6 +76,7 @@ function AddMedicationsDropdown(){
   const closeMenu = () => setVisible(false);
 
 
+
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query){
     setSearchQuery(query);
@@ -84,8 +89,9 @@ function AddMedicationsDropdown(){
 
   return (
 
-
   <View>
+
+
     <Searchbar style={{maxHeight: 50, width: '80%', marginBottom: 0}}
       placeholder="Search"
       onChangeText={onChangeSearch}
@@ -97,9 +103,12 @@ function AddMedicationsDropdown(){
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
-      <Menu.Item onPress={() => {}} title="Item 1" />
-      <Menu.Item onPress={() => {}} title="Item 2" />
-      <Menu.Item onPress={() => {}} title="Item 3" />
+
+      {state.items.map((row, index) => (
+        <Menu.Item key={index} title={row.name} />
+      ))}
+
+
     </Menu>
   </View>
 
