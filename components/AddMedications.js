@@ -62,8 +62,24 @@ function AddMedicationsDropdown(){
     setSearchQuery(query);
     //alert("text = " + query);
     //Show menu with all medications that start with the letters in "query"
-    //Get these medications from the database
-    openMenu();
+    if (query.length < 3) return;
+    //Get these medications from the database - for now, just look in "items"
+    var menuItems = Array();
+    var i = 0;
+    console.log("starting to make menu");
+    for (i=0; i<state.items.length; i++){
+        var itemName = state.items[i].name;
+        if (itemName.indexOf(query) != -1){
+          menuItems.push(itemName);
+        }
+    }
+
+    for (i=0; i<menuItems.length; i++){
+      console.log("i = " + i +". menuItems[i] = " + menuItems[i]);
+    }
+    console.log("Menu making ended\n\n")
+
+    //openMenu();
     return query;
   }
 
