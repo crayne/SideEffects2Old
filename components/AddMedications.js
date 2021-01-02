@@ -22,7 +22,8 @@ state = {
 		id: 3,
 		name: 'abcyz'
 	}
-]
+],
+  menuItems: Array()
 }
 
 function EnterMedicationsScreen() {
@@ -64,18 +65,18 @@ function AddMedicationsDropdown(){
     //Show menu with all medications that start with the letters in "query"
     if (query.length < 3) return;
     //Get these medications from the database - for now, just look in "items"
-    var menuItems = Array();
+    //TODO: include ids - make menuItems an array of objects
     var i = 0;
     console.log("starting to make menu");
+    state.menuItems.length = 0;
     for (i=0; i<state.items.length; i++){
         var itemName = state.items[i].name;
         if (itemName.indexOf(query) != -1){
-          menuItems.push(itemName);
+          state.menuItems.push(itemName);
         }
     }
-
-    for (i=0; i<menuItems.length; i++){
-      console.log("i = " + i +". menuItems[i] = " + menuItems[i]);
+    for (i=0; i<state.menuItems.length; i++){
+      console.log("i = " + i +". menuItems[i] = " + state.menuItems[i]);
     }
     console.log("Menu making ended\n\n")
 
