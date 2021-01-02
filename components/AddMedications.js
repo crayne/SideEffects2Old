@@ -79,8 +79,9 @@ function AddMedicationsDropdown(){
       console.log("i = " + i +". menuItems[i] = " + state.menuItems[i]);
     }
     console.log("Menu making ended\n\n")
-
-    //openMenu();
+    if (state.menuItems.length != 0){
+      openMenu();
+    }
     return query;
   }
 
@@ -101,8 +102,8 @@ function AddMedicationsDropdown(){
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
 
-      {state.items.map((row, index) => (
-        <Menu.Item key={index} title={row.name} />
+      {state.menuItems.map((row, index) => (
+        <Menu.Item key={index} title={row} />
       ))}
 
 
