@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
+import GetAllMedicationNames from './Mode.js';
 
 
 
@@ -47,6 +48,8 @@ Use react-native-paper Menu
 instead of react-native-searchable-SearchableDropDown
 */
 
+
+
 function AddMedicationsDropdown(){
 
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -64,10 +67,10 @@ function AddMedicationsDropdown(){
     //alert("text = " + query);
     //Show menu with all medications that start with the letters in "query"
     if (query.length < 3) return;
-    //Get these medications from the database - for now, just look in "items"
+    //TODO: if query.length == 3, get all medications from database that start with the 3 letters of the query, and
+    //   put them into the "items" array, clearing the array first
     //TODO: include ids - make menuItems an array of objects
     var i = 0;
-    console.log("starting to make menu");
     state.menuItems.length = 0;
     for (i=0; i<state.items.length; i++){
         var itemName = state.items[i].name;
@@ -76,14 +79,18 @@ function AddMedicationsDropdown(){
         }
     }
     for (i=0; i<state.menuItems.length; i++){
-      console.log("i = " + i +". menuItems[i] = " + state.menuItems[i]);
     }
-    console.log("Menu making ended\n\n")
     if (state.menuItems.length != 0){
       openMenu();
     }
     return query;
   }
+
+  const onPressItemHandler = (value) => {
+      console.log("Medication chosen = " + value);
+      closeMenu();
+      GetAllMedicationNames();
+  };
 
   return (
 
@@ -102,8 +109,13 @@ function AddMedicationsDropdown(){
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
 
+
       {state.menuItems.map((row, index) => (
-        <Menu.Item key={index} title={row} />
+        <Menu.Item
+          key={index}
+          title={row}
+          onPress={() => onPressItemHandler(row)}
+        />
       ))}
 
 
