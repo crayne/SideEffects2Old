@@ -7,7 +7,7 @@ import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
 
 
-
+var filterInterval;
 
 state = {
   items: [
@@ -64,8 +64,10 @@ function AddMedicationsDropdown(){
     if (query.length == 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
       console.log("Search string is = " + query);
-      let response = GetAllMedicationNames(query);
-      console.log("response from GetAllMedicationNames is: " + response);
+      global.filteredMedicationList = "";
+      GetAllMedicationNames(query);
+      filterInterval = setInterval(CheckFilteredMedicationList, 1000);
+
     }
     var i = 0;
     state.menuItems.length = 0;
@@ -81,6 +83,14 @@ function AddMedicationsDropdown(){
       openMenu();
     }
     return query;
+  }
+
+  function CheckFilteredMedicationList(){
+    if (global.filteredMedicationList == ""){
+      return;
+    }
+    clearInterval(filterInterval);
+    console.log("Filtered Medication List =  " + global.filteredMedicationList);
   }
 
   const onPressItemHandler = (value) => {

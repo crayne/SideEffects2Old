@@ -13,12 +13,12 @@ import { Searchbar } from 'react-native-paper';
 
  //const urlBase =  serverHost;
  const urlBase =  localHost;
+ var outsideResponse;
 
 function GetAllMedicationNames(query) {
-
-  query = "alb";
-  const searchUrl = urlBase + "/autoCompleteRN.php?searchValue=" + query;
+  const searchUrl = urlBase + "/autoComplete.php?searchValue=" + query;
   console.log("In GetAllMedicationNames, searchUrl = " + searchUrl);
+
   var request = new XMLHttpRequest();
   request.onreadystatechange = (e) => {
     if (request.readyState !== 4) {
@@ -27,14 +27,16 @@ function GetAllMedicationNames(query) {
 
     if (request.status === 200) {
       console.log('success', request.responseText);
-      return (request.responseText);
+      global.filteredMedicationList = request.responseText;
+      console.log ("global.filteredMedicationList = " + global.filteredMedicationList);
     } else {
       console.warn('error');
     }
-  };
+  }
 
   request.open('GET', searchUrl);
   request.send();
+
 
 
 
