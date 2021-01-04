@@ -24,7 +24,8 @@ state = {
 		name: 'abcyz'
 	}
 ],
-  menuItems: Array()
+  menuItems: Array(),
+  serverItems: Array()
 }
 
 function EnterMedicationsScreen() {
@@ -37,16 +38,6 @@ function EnterMedicationsScreen() {
       </PaperProvider>
     );
 }
-
-/*
-to add menu items dynamically:
-<Menu>{this.generateMenuItems()</Menu>
-  */
-/*
-Use react-native-paper Searchbar
-Use react-native-paper Menu
-instead of react-native-searchable-SearchableDropDown
-*/
 
 
 
@@ -73,7 +64,8 @@ function AddMedicationsDropdown(){
     if (query.length == 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
       console.log("Search string is = " + query);
-      GetAllMedicationNames();
+      let response = GetAllMedicationNames(query);
+      console.log("response from GetAllMedicationNames is: " + response);
     }
     var i = 0;
     state.menuItems.length = 0;

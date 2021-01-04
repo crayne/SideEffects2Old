@@ -5,19 +5,43 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 
- const localHost =  "http://192.168.1.170:8888/sideEffectsNewRxnav";
+ const localHost =  "http://192.168.1.161:8888/sideEffectsNewRxnav";
+
  const serverHost = "http://www.oryxtech.net/sideEffectsNewRxnav";
  const nuiUrl =  "http://rxnav.nlm.nih.gov/REST/search?conceptName=";
  const getInteractionsPhpUrl = "/interactions.php";
 
- const urlBase =  serverHost;
- //const urlBase =  localHost;
+ //const urlBase =  serverHost;
+ const urlBase =  localHost;
+
+function GetAllMedicationNames(query) {
+
+  query = "alb";
+  const searchUrl = urlBase + "/autoCompleteRN.php?searchValue=" + query;
+  console.log("In GetAllMedicationNames, searchUrl = " + searchUrl);
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = (e) => {
+    if (request.readyState !== 4) {
+      return;
+    }
+
+    if (request.status === 200) {
+      console.log('success', request.responseText);
+      return (request.responseText);
+    } else {
+      console.warn('error');
+    }
+  };
+
+  request.open('GET', searchUrl);
+  request.send();
 
 
-function GetAllMedicationNames() {
-  console.log("In GetAllMedicationNames");
+
 
 }
+
+
 
 
 
