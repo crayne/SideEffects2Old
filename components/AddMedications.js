@@ -5,11 +5,14 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
+import {Keyboard} from 'react-native';
+
 
 
 var filterInterval;
 
 state = {
+  /*
   items: [
 	{
 		id: 1,
@@ -24,8 +27,9 @@ state = {
 		name: 'abcyz'
 	}
 ],
+*/
+  items: Array(),
   menuItems: Array(),
-  serverItems: Array()
 }
 
 function EnterMedicationsScreen() {
@@ -70,14 +74,13 @@ function AddMedicationsDropdown(){
 
     }
     var i = 0;
+    console.log("Putting items from server into menu");
     state.menuItems.length = 0;
     for (i=0; i<state.items.length; i++){
-        var itemName = state.items[i].name;
+        var itemName = state.items[i];
         if (itemName.indexOf(query) != -1){
           state.menuItems.push(itemName);
         }
-    }
-    for (i=0; i<state.menuItems.length; i++){
     }
     if (state.menuItems.length != 0){
       openMenu();
@@ -91,6 +94,13 @@ function AddMedicationsDropdown(){
     }
     clearInterval(filterInterval);
     console.log("Filtered Medication List =  " + global.filteredMedicationList);
+    state.items = global.filteredMedicationList.split(",");
+    console.log("last item is: " + state.items[state.items.length - 1]);
+    if (state.items.length != 0){
+      state.items.pop();
+      openMenu();
+
+    }
   }
 
   const onPressItemHandler = (value) => {
@@ -115,7 +125,7 @@ function AddMedicationsDropdown(){
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
 
 
-      {state.menuItems.map((row, index) => (
+      {state.items.map((row, index) => (
         <Menu.Item
           key={index}
           title={row}
