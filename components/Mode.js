@@ -12,7 +12,7 @@ import { Searchbar } from 'react-native-paper';
  const getInteractionsPhpUrl = "/interactions.php";
 
  //const urlBase =  serverHost;
- const urlBase =  localHost;
+ const urlBase =  serverHost;
  var outsideResponse;
 
 function GetAllMedicationNames(query) {
