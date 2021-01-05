@@ -119,7 +119,6 @@ function AddMedicationsDropdown(){
     />
 
     <Menu
-      style={{justifyContent: 'center'}}
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
