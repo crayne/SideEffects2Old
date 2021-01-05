@@ -133,7 +133,6 @@ function AddMedicationsDropdown(){
         />
       ))}
 
-
     </Menu>
   </View>
 
