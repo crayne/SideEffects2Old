@@ -109,7 +109,11 @@ function AddMedicationsDropdown(){
 
   return (
 
-  <View>
+  <View
+    style = {{
+      flexDirection: 'column',
+      justifyContent: 'flex-start'
+    }}>
 
     <Searchbar style={{maxHeight: 50, width: '80%', marginBottom: 0}}
       placeholder="Search"
