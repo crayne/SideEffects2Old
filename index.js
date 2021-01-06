@@ -17,4 +17,6 @@ if (window.FETCH_SUPPORT) {
   global.FileReader = global.originalFileReader || global.FileReader;
 }
 
+global.filteredMedicationList;
+
 AppRegistry.registerComponent(appName, () => App);

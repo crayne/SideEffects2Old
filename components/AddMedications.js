@@ -9,6 +9,7 @@ import {Keyboard} from 'react-native';
 
 
 
+
 var filterInterval;
 
 state = {
