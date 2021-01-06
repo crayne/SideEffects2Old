@@ -122,7 +122,7 @@ function AddMedicationsDropdown(){
 
     />
 
-    <Menu
+    <Menu style={styles.menu}
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
@@ -153,6 +153,9 @@ const styles = StyleSheet.create ({
       marginLeft: 16,
       marginRight: 16,
       marginBottom: 100
+   },
+   menu: {
+     marginTop: -54
    },
    title: {
       fontSize : 24,
