@@ -84,6 +84,7 @@ function AddMedicationsDropdown(){
         }
     }
     if (state.menuItems.length != 0){
+      closeMenu();
       openMenu();
     }
     return query;
@@ -99,9 +100,11 @@ function AddMedicationsDropdown(){
     console.log("last item is: " + state.items[state.items.length - 1]);
     if (state.items.length != 0){
       state.items.pop();
+      closeMenu();
       openMenu();
 
     }
+    global.filteredMedicationList = "";
   }
 
   const onPressItemHandler = (value) => {
@@ -130,6 +133,7 @@ function AddMedicationsDropdown(){
 
 
       {state.items.map((row, index) => (
+        console.log("menu item is: " + row),
         <Menu.Item
           key={index}
           title={row}
