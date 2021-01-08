@@ -45,11 +45,14 @@ function AddMedicationsDropdown(){
     setSearchQuery(query);
     //alert("text = " + query);
     //Show menu with all medications that start with the letters in "query"
-    if (query.length < 3) return;
+    if (query.length < 3){
+      closeMenu(); 
+      return;
+    }
     //TODO: if query.length == 3, get all medications from database that start with the 3 letters of the query, and
     //   put them into the "items" array, clearing the array first
     //TODO: include ids - make menuItems an array of objects
-    if (query.length == 3){
+    if (query.length >= 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
       console.log("Search string is = " + query);
       global.filteredMedicationList = "";
