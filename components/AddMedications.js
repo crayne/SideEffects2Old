@@ -5,7 +5,6 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
-import {Keyboard} from 'react-native';
 
 
 
@@ -119,18 +118,16 @@ function AddMedicationsDropdown(){
       justifyContent: 'flex-start'
     }}>
 
-    <Searchbar style={{maxHeight: 50, width: '80%', marginBottom: 0}}
+    <Searchbar style={styles.searchbar}
       placeholder="Search"
       onChangeText={onChangeSearch}
       value={searchQuery}
-
     />
 
     <Menu style={styles.menu}
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
-
 
       {state.items.map((row, index) => (
         console.log("menu item is: " + row),
@@ -161,6 +158,13 @@ const styles = StyleSheet.create ({
    },
    menu: {
      marginTop: -54
+   },
+   menuItem: {
+
+   },
+   searchbar: {
+     width: '80%',
+     marginBottom: 0,
    },
    title: {
       fontSize : 24,
