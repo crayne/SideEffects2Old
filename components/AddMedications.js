@@ -12,22 +12,6 @@ import GetAllMedicationNames from './Mode.js';
 var filterInterval;
 
 state = {
-  /*
-  items: [
-	{
-		id: 1,
-		name: 'abcxy'
-	},
-	{
-		id: 2,
-		name: 'abcxz'
-	},
-	{
-		id: 3,
-		name: 'abcyz'
-	}
-],
-*/
   items: Array(),
   menuItems: Array(),
 }
@@ -124,14 +108,14 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    <Menu style={styles.menu}
+    <Menu
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
 
       {state.items.map((row, index) => (
         console.log("menu item is: " + row),
-        <Menu.Item
+        <Menu.Item style={styles.menuItem}
           key={index}
           title={row}
           onPress={() => onPressItemHandler(row)}
@@ -160,11 +144,10 @@ const styles = StyleSheet.create ({
      marginTop: -54
    },
    menuItem: {
-
    },
    searchbar: {
      width: '80%',
-     marginBottom: 0,
+     marginBottom: 0
    },
    title: {
       fontSize : 24,
