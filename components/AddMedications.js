@@ -108,7 +108,7 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    <Menu
+    <Menu style={styles.menu}
       visible={visible}
       onDismiss={closeMenu}
       anchor={<Button style={{height: 1, color: "white"}}></Button>}>
