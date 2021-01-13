@@ -20,7 +20,7 @@ function EnterMedicationsScreen() {
     return (
       <PaperProvider>
         <View style={styles.view}>
-          <Text style={styles.enterText}>Enter your medications</Text>
+          <Text style={styles.enterText}>Enter your medications:</Text>
           {AddMedicationsDropdown()}
         </View>
       </PaperProvider>
@@ -160,6 +160,7 @@ const styles = StyleSheet.create ({
    },
    enterText: {
       fontSize :26,
+      marginTop:80,
       marginBottom: 20
     },
     containerStyle: {
