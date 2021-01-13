@@ -157,7 +157,7 @@ const styles = StyleSheet.create ({
       marginBottom: 10
    },
    enterText: {
-      fontSize :24,
+      fontSize :26,
       marginBottom: 20
     },
     containerStyle: {
