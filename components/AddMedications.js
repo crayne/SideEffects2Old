@@ -81,6 +81,7 @@ function AddMedicationsDropdown(){
       return;
     }
     clearInterval(filterInterval);
+    global.filteredMedicationList = global.filteredMedicationList.toLowerCase();
     console.log("Filtered Medication List =  " + global.filteredMedicationList);
     state.items = global.filteredMedicationList.split(",");
     console.log("last item is: " + state.items[state.items.length - 1]);
