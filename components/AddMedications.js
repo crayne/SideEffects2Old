@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
@@ -112,21 +112,22 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    <Menu style={styles.menu}
-      visible={visible}
-      onDismiss={closeMenu}
-      anchor={<Button style={{height: 1, color: "white"}}></Button>}>
+    <ScrollView>
+      <Menu style={styles.menu}
+        visible={visible}
+        onDismiss={closeMenu}
+        anchor={<Button style={{height: 1, color: "white"}}></Button>}>
+        {state.items.map((row, index) => (
+          console.log("menu item is: " + row),
+          <Menu.Item style={styles.menuItem}
+            key={index}
+            title={row}
+            onPress={() => onPressItemHandler(row)}
+          />
+        ))}
 
-      {state.items.map((row, index) => (
-        console.log("menu item is: " + row),
-        <Menu.Item style={styles.menuItem}
-          key={index}
-          title={row}
-          onPress={() => onPressItemHandler(row)}
-        />
-      ))}
-
-    </Menu>
+      </Menu>
+    </ScrollView>
   </View>
 
   );
