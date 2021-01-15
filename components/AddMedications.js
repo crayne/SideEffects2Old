@@ -1,8 +1,8 @@
 import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, SafeAreaView, Text, ScrollView} from 'react-native';
-import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList} from 'react-native';
+import { Button, TextInput, Provider as PaperProvider, Menu, List } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
 
@@ -15,6 +15,36 @@ state = {
   items: Array(),
   menuItems: Array(),
 }
+
+const MedicationListData = [
+  {
+    title: "Main dishes",
+    data: ["Pizza", "Burger", "Risotto"],
+    id: "1"
+  },
+  {
+    title: "Sides",
+    data: ["French Fries", "Onion Rings", "Fried Shrimps"],
+    id: "2"
+  },
+  {
+    title: "Drinks",
+    data: ["Water", "Coke", "Beer"],
+    id: "3"
+  },
+  {
+    title: "Desserts",
+    data: ["Cheese Cake", "Ice Cream"],
+    id: "4"
+  }
+];
+
+const Item = ({ title }) => (
+  <View style={styles.medicationListItem}>
+    <Text style={styles.medicationListTitle}>{title}</Text>
+  </View>
+);
+
 
 function EnterMedicationsScreen() {
     return (
@@ -37,7 +67,9 @@ function AddMedicationsDropdown(){
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-
+  const renderMedicationListItem = ({ item }) => (
+    <Item title={item.title} />
+  );
 
 
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
@@ -128,6 +160,14 @@ function AddMedicationsDropdown(){
 
       </Menu>
     </ScrollView>
+    <SafeAreaView style={styles.container}>
+       <FlatList
+         data={MedicationListData}
+         renderItem={renderMedicationListItem}
+         keyExtractor={item => item.id}
+       />
+     </SafeAreaView>
+
   </View>
 
   );
@@ -167,6 +207,15 @@ const styles = StyleSheet.create ({
       flex: 1,
       marginHorizontal: 20,
       justifyContent: 'center'
+    },
+    medicationList: {
+
+    },
+    medicationListItem: {
+
+    },
+    medicationListTitle: {
+
     }
 })
 
