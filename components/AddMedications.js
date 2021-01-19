@@ -160,10 +160,11 @@ function AddMedicationsDropdown(){
 
       </Menu>
     </ScrollView>
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.medicationListContainer}>
        <FlatList
          data={MedicationListData}
          renderItem={renderMedicationListItem}
+         contentContainerStyle={styles.medicationListContentContainer}
          keyExtractor={item => item.id}
        />
      </SafeAreaView>
@@ -208,7 +209,10 @@ const styles = StyleSheet.create ({
       marginHorizontal: 20,
       justifyContent: 'center'
     },
-    medicationList: {
+    medicationListContainer: {
+      marginTop: 20,
+      fontSize: 24,
+      alignItems: 'center'
 
     },
     medicationListItem: {
@@ -216,6 +220,10 @@ const styles = StyleSheet.create ({
     },
     medicationListTitle: {
 
+    },
+
+    medicationListContentContainer: {
+      flex: 1,
     }
 })
 
