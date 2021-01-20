@@ -41,7 +41,7 @@ const MedicationListData = [
 
 const Item = ({ title }) => (
   <View style={styles.medicationListItem}>
-    <Text style={styles.medicationListTitle}>{title}</Text>
+    <Text style={styles.medicationListItem}>{title}</Text>
   </View>
 );
 
@@ -127,7 +127,9 @@ function AddMedicationsDropdown(){
   }
 
   const onPressItemHandler = (value) => {
-    //Put the value into the medication list
+    //Put the value chosen from the medication menu into the medication list
+    const medicationObject = (value, "xxx", "5");
+    medicationListData.push(medicationObject);
   };
 
   return (
@@ -216,6 +218,7 @@ const styles = StyleSheet.create ({
 
     },
     medicationListItem: {
+      fontSize: 24
 
     },
     medicationListTitle: {
