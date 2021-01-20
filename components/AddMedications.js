@@ -128,8 +128,11 @@ function AddMedicationsDropdown(){
 
   const onPressItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
-    const medicationObject = (value, "xxx", "5");
-    medicationListData.push(medicationObject);
+    console.log("In onPressItemHandler, value = " + value);
+    const medicationObject = {title:value, data:"xxx", id:"5"};
+    MedicationListData.push(medicationObject);
+    const item = MedicationListData[4];
+    console.log(item.title + ", " + item.data + ", " + item.id);
   };
 
   return (
