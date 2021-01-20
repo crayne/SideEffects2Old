@@ -16,28 +16,8 @@ state = {
   menuItems: Array(),
 }
 
-const MedicationListData = [
-  {
-    title: "Main dishes",
-    data: ["Pizza", "Burger", "Risotto"],
-    id: "1"
-  },
-  {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"],
-    id: "2"
-  },
-  {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"],
-    id: "3"
-  },
-  {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"],
-    id: "4"
-  }
-];
+const MedicationListData = Array();
+
 
 const Item = ({ title }) => (
   <View style={styles.medicationListItem}>
@@ -129,10 +109,18 @@ function AddMedicationsDropdown(){
   const onPressItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
     console.log("In onPressItemHandler, value = " + value);
-    const medicationObject = {title:value, data:"xxx", id:"5"};
+    var newId;
+    if (MedicationListData.length == 0) newId = "1";
+    else {
+      var lastId = MedicationListData[MedicationListData.length-1].id;
+      newId = Number(lastId) + 1;
+    }
+    const medicationObject = {title:value, id:newId};
     MedicationListData.push(medicationObject);
-    const item = MedicationListData[4];
-    console.log(item.title + ", " + item.data + ", " + item.id);
+    for (var i=0; i<MedicationListData.length; i++){
+      const item = MedicationListData[i];
+      console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
+    }
   };
 
   return (
