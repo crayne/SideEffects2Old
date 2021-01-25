@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList} from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
@@ -106,9 +106,9 @@ function AddMedicationsDropdown(){
     global.filteredMedicationList = "";
   }
 
-  const onPressItemHandler = (value) => {
+  const onPressDropdownItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
-    console.log("In onPressItemHandler, value = " + value);
+    console.log("In onPressDropdownItemHandler, value = " + value);
     var newId;
     if (MedicationListData.length == 0) newId = "1";
     else {
@@ -144,21 +144,21 @@ function AddMedicationsDropdown(){
         anchor={<Button style={{height: 1, color: "white"}}></Button>}>
         {state.items.map((row, index) => (
           console.log("menu item is: " + row),
-          <Menu.Item style={styles.menuItem}
+            <Menu.Item style={styles.menuItem}
             key={index}
             title={row}
-            onPress={() => onPressItemHandler(row)}
+            onPress={() => onPressDropdownItemHandler(row)}
           />
         ))}
 
       </Menu>
     </ScrollView>
     <SafeAreaView style={styles.medicationListContainer}>
-       <FlatList
+       <FlatList style={styles.medicationList}
          data={MedicationListData}
          renderItem={renderMedicationListItem}
          contentContainerStyle={styles.medicationListContentContainer}
-         keyExtractor={item => item.id}
+         keyExtractor={item => item.id.toString()}
        />
      </SafeAreaView>
 
@@ -204,8 +204,15 @@ const styles = StyleSheet.create ({
     },
     medicationListContainer: {
       marginTop: 20,
+      marginBottom: 200,
       fontSize: 24,
-      alignItems: 'center'
+      alignItems: 'center',
+      borderWidth: 1,
+      borderColor: 'gray',
+      height: 300,
+      flexGrow: 0
+    },
+    medicationList: {
 
     },
     medicationListItem: {
@@ -217,7 +224,9 @@ const styles = StyleSheet.create ({
     },
 
     medicationListContentContainer: {
-      flex: 1,
+      flex: 0,
+      height: 300,
+      marginTop: 0
     }
 })
 
