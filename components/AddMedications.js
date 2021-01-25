@@ -137,6 +137,14 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
+    <SafeAreaView style={styles.medicationListContainer}>
+       <FlatList style={styles.medicationList}
+         data={MedicationListData}
+         renderItem={renderMedicationListItem}
+         keyExtractor={item => item.id.toString()}
+       />
+     </SafeAreaView>
+
     <ScrollView>
       <Menu style={styles.menu}
         visible={visible}
@@ -153,14 +161,7 @@ function AddMedicationsDropdown(){
 
       </Menu>
     </ScrollView>
-    <SafeAreaView style={styles.medicationListContainer}>
-       <FlatList style={styles.medicationList}
-         data={MedicationListData}
-         renderItem={renderMedicationListItem}
-         contentContainerStyle={styles.medicationListContentContainer}
-         keyExtractor={item => item.id.toString()}
-       />
-     </SafeAreaView>
+
 
   </View>
 
@@ -177,10 +178,10 @@ const styles = StyleSheet.create ({
       paddingTop: 20,
       marginLeft: 16,
       marginRight: 16,
-      marginBottom: 100
+      marginBottom: 100,
    },
    menu: {
-     marginTop: -54
+     marginTop: -320
    },
    menuItem: {
    },
@@ -204,9 +205,8 @@ const styles = StyleSheet.create ({
     },
     medicationListContainer: {
       marginTop: 20,
-      marginBottom: 200,
       fontSize: 24,
-      alignItems: 'center',
+      alignItems: 'flex-start',
       borderWidth: 1,
       borderColor: 'gray',
       height: 300,
@@ -216,17 +216,16 @@ const styles = StyleSheet.create ({
 
     },
     medicationListItem: {
-      fontSize: 24
-
+      fontSize: 24,
+      marginLeft: 10,
+      marginTop: 10
     },
     medicationListTitle: {
 
     },
 
     medicationListContentContainer: {
-      flex: 0,
-      height: 300,
-      marginTop: 0
+      flexGrow: 0,
     }
 })
 
