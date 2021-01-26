@@ -124,6 +124,7 @@ function AddMedicationsDropdown(){
       const item = MedicationListData[i];
       console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
     }
+    closeMenu();
     medicationListVisibility = 1;
   };
 
