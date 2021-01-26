@@ -16,6 +16,9 @@ state = {
   menuItems: Array(),
 }
 
+var medicationListVisibility = 0;
+
+
 const MedicationListData = Array();
 
 
@@ -121,7 +124,22 @@ function AddMedicationsDropdown(){
       const item = MedicationListData[i];
       console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
     }
+    medicationListVisibility = 1;
   };
+
+  const medicationListStyle = function(medicationListVisibility) {
+   return {
+     marginTop: 20,
+     fontSize: 24,
+     alignItems: 'flex-start',
+     borderWidth: 1,
+     borderColor: 'gray',
+     height: 300,
+     flexGrow: 0,
+     opacity: medicationListVisibility
+
+   }
+ }
 
   return (
 
@@ -137,7 +155,7 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    <SafeAreaView style={styles.medicationListContainer}>
+    <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
        <FlatList style={styles.medicationList}
          data={MedicationListData}
          renderItem={renderMedicationListItem}
