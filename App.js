@@ -61,12 +61,13 @@ const styles = StyleSheet.create ({
       marginRight: 16
    },
    title: {
-      fontSize : 24,
+      fontSize : 30,
       marginBottom: 10
    },
    explainText: {
-      fontSize :18,
-      marginBottom: 20
+      fontSize : 24,
+      marginBottom: 20,
+      textAlign: "center"
     },
     outerButtonStyle: {
       borderRadius: 20,
