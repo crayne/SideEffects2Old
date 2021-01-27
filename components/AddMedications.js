@@ -133,12 +133,19 @@ function AddMedicationsDropdown(){
      marginTop: 20,
      fontSize: 24,
      alignItems: 'flex-start',
-     borderWidth: 1,
-     borderColor: 'gray',
      height: 300,
      flexGrow: 0,
-     opacity: medicationListVisibility
-
+     opacity: medicationListVisibility,
+     borderRadius: 4,
+     backgroundColor: 'transparent',
+     shadowColor: '#000',
+     shadowOffset: {
+       width: 0,
+       height: 1,
+     },
+     shadowOpacity: 0.22,
+     shadowRadius: 2.22,
+     elevation: 3,
    }
  }
 
@@ -228,11 +235,12 @@ const styles = StyleSheet.create ({
       borderWidth: 1,
       borderColor: 'gray',
       height: 300,
-      flexGrow: 0
+      flexGrow: 0,
     },
     medicationList: {
       width: '100%',
-      backgroundColor: 'white'
+      backgroundColor: 'white',
+      borderRadius: 4,
     },
     medicationListItem: {
       fontSize: 24,
