@@ -231,7 +231,8 @@ const styles = StyleSheet.create ({
       flexGrow: 0
     },
     medicationList: {
-
+      width: '100%',
+      backgroundColor: 'white'
     },
     medicationListItem: {
       fontSize: 24,
