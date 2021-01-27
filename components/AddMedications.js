@@ -193,7 +193,6 @@ const styles = StyleSheet.create ({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '80%',
       paddingTop: 20,
       marginLeft: 16,
       marginRight: 16,
