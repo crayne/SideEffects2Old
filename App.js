@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { RadioButton, Text } from 'react-native-paper';
-import { Button } from 'react-native-paper';
+import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
 
@@ -28,9 +28,11 @@ function HomeScreen({navigation}) {
 
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
-      <Button mode="contained" onPress={() => navigation.navigate('EnterMedications')}>
-          Find out!
-      </Button>
+      <TouchableOpacity style={styles.outerButtonStyle}>
+      <Text style = {styles.buttonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+          Find Out!
+      </Text>
+      </TouchableOpacity>
 
     </View>
   );
@@ -65,5 +67,28 @@ const styles = StyleSheet.create ({
    explainText: {
       fontSize :18,
       marginBottom: 20
+    },
+    outerButtonStyle: {
+      borderRadius: 20,
+      backgroundColor: 'transparent',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+    },
+
+    buttonStyle: {
+      backgroundColor: 'purple',
+      color: "white",
+      fontSize: 24,
+      borderRadius: 20,
+      paddingTop: 10,
+      paddingBottom: 10,
+      paddingLeft: 20,
+      paddingRight: 20,
     }
 })
