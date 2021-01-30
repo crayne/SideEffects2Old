@@ -51,16 +51,8 @@ function AddMedicationsDropdown(){
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const renderMedicationListItem = ({ item, index, separators }) => (
-    <TouchableHighlight
-          key={item.key}
-          onPress={() => this._onPress(item)}
-          onShowUnderlay={separators.highlight}
-          onHideUnderlay={separators.unhighlight}>
-          <View style={{ backgroundColor: 'white' }}>
-            <Item title={item.title} />
-          </View>
-    </TouchableHighlight>
+  const renderMedicationListItem = ({ item }) => (
+      <Item title={item.title} />
   );
 
 
@@ -176,7 +168,6 @@ function AddMedicationsDropdown(){
        <FlatList style={styles.medicationList}
          ItemSeparatorComponent={
            (({ highlighted }) => (
-           console.log("In ItemSeparatorComponent"),
            <View
             style={[
             styles.separator,
