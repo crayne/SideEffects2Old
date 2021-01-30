@@ -70,6 +70,10 @@ const styles = StyleSheet.create ({
       textAlign: "center"
     },
     outerButtonStyle: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      width: 200,
+      height: 40,
       borderRadius: 20,
       backgroundColor: 'transparent',
       shadowColor: '#000',
@@ -85,11 +89,10 @@ const styles = StyleSheet.create ({
     buttonStyle: {
       backgroundColor: 'purple',
       color: "white",
+      width: 200,
+      height: 40,
       fontSize: 24,
       borderRadius: 20,
-      paddingTop: 10,
-      paddingBottom: 10,
-      paddingLeft: 20,
-      paddingRight: 20,
+      textAlign: 'center'
     }
 })

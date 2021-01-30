@@ -205,55 +205,36 @@ const styles = StyleSheet.create ({
       marginRight: 16,
       marginBottom: 100,
    },
+
    menu: {
      marginTop: -320
    },
+
    menuItem: {
    },
+
    searchbar: {
      width: '80%',
      marginBottom: 0
    },
-   title: {
-      fontSize : 24,
-      marginBottom: 10
-   },
+
    enterText: {
       fontSize :26,
       marginTop:80,
       marginBottom: 20
     },
-    containerStyle: {
-      flex: 1,
-      marginHorizontal: 20,
-      justifyContent: 'center'
-    },
-    medicationListContainer: {
-      marginTop: 20,
-      fontSize: 24,
-      alignItems: 'flex-start',
-      borderWidth: 1,
-      borderColor: 'gray',
-      height: 300,
-      flexGrow: 0,
-    },
+
     medicationList: {
       width: '100%',
       backgroundColor: 'white',
       borderRadius: 4,
     },
+    
     medicationListItem: {
       fontSize: 24,
       marginLeft: 10,
       marginTop: 10
     },
-    medicationListTitle: {
-
-    },
-
-    medicationListContentContainer: {
-      flexGrow: 0,
-    }
 })
 
 
