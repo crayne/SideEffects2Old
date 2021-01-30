@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
+import {TouchableHighlight} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import GetAllMedicationNames from './Mode.js';
@@ -50,8 +51,16 @@ function AddMedicationsDropdown(){
   const [visible, setVisible] = React.useState(false);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
-  const renderMedicationListItem = ({ item }) => (
-    <Item title={item.title} />
+  const renderMedicationListItem = ({ item, index, separators }) => (
+    <TouchableHighlight
+          key={item.key}
+          onPress={() => this._onPress(item)}
+          onShowUnderlay={separators.highlight}
+          onHideUnderlay={separators.unhighlight}>
+          <View style={{ backgroundColor: 'white' }}>
+            <Item title={item.title} />
+          </View>
+    </TouchableHighlight>
   );
 
 
@@ -165,6 +174,17 @@ function AddMedicationsDropdown(){
 
     <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
        <FlatList style={styles.medicationList}
+         ItemSeparatorComponent={
+           (({ highlighted }) => (
+           console.log("In ItemSeparatorComponent"),
+           <View
+            style={[
+            styles.separator,
+            highlighted && { marginLeft: 0 }
+            ]}
+           />
+          ))
+         }
          data={MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
@@ -229,12 +249,18 @@ const styles = StyleSheet.create ({
       backgroundColor: 'white',
       borderRadius: 4,
     },
-    
+
     medicationListItem: {
       fontSize: 24,
       marginLeft: 10,
-      marginTop: 10
+      marginTop: 5
     },
+
+    separator: {
+      color: 'red',
+      borderWidth: 1,
+      backgroundColor: 'blue'
+    }
 })
 
 
