@@ -73,8 +73,8 @@ const styles = StyleSheet.create ({
       flexDirection: 'row',
       alignItems: 'center',
       width: 200,
-      height: 40,
-      borderRadius: 20,
+      height: 50,
+      borderRadius: 40,
       backgroundColor: 'transparent',
       shadowColor: '#000',
       shadowOffset: {
@@ -90,9 +90,10 @@ const styles = StyleSheet.create ({
       backgroundColor: 'purple',
       color: "white",
       width: 200,
-      height: 40,
+      height: 50,
       fontSize: 24,
-      borderRadius: 20,
-      textAlign: 'center'
+      borderRadius: 40,
+      textAlign: 'center',
+      textAlignVertical: 'center'
     }
 })
