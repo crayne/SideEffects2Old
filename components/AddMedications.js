@@ -243,8 +243,8 @@ const styles = StyleSheet.create ({
 
     medicationListItem: {
       fontSize: 24,
-      marginLeft: 10,
-      marginTop: 5
+      marginLeft: 5,
+      marginRight: 5
     },
 
     separator: {
