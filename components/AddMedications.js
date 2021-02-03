@@ -3,8 +3,9 @@ import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import {TouchableHighlight} from 'react-native';
-import { Button, TextInput, Provider as PaperProvider, Menu, List } from 'react-native-paper';
+import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './Mode.js';
 
 
@@ -22,10 +23,15 @@ var medicationListVisibility = 0;
 
 const MedicationListData = Array();
 
+function handleMedicationListItemDelete(){
+  console.log("In handleMedicationListItemDelete");
+}
 
 const Item = ({ title }) => (
   <View style={styles.medicationListItem}>
-    <Text style={styles.medicationListItem}>{title}</Text>
+    <Text style={styles.medicationListItemText}>{title}</Text>
+
+    <Icon style={styles.deleteIcon} name="trash-can-outline" size={24} color="#000"/>
   </View>
 );
 
@@ -242,8 +248,18 @@ const styles = StyleSheet.create ({
     },
 
     medicationListItem: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginLeft: 5,
+      marginRight: 5
+    },
+
+    medicationListItemText: {
       fontSize: 24,
       marginLeft: 5,
+    },
+
+    medicationListItemIcon: {
       marginRight: 5
     },
 
@@ -251,7 +267,8 @@ const styles = StyleSheet.create ({
       color: 'red',
       borderWidth: 1,
       backgroundColor: 'blue'
-    }
+    },
+
 })
 
 
