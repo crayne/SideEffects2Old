@@ -31,7 +31,7 @@ const Item = ({ title }) => (
   <View style={styles.medicationListItem}>
     <Text style={styles.medicationListItemText}>{title}</Text>
 
-    <Icon style={styles.deleteIcon} name="trash-can-outline" size={24} color="#000"/>
+    <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"/>
   </View>
 );
 
@@ -224,7 +224,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -320
+     marginTop: -150
    },
 
    menuItem: {
@@ -260,7 +260,8 @@ const styles = StyleSheet.create ({
     },
 
     medicationListItemIcon: {
-      marginRight: 5
+      marginRight: 5,
+      marginTop: 2
     },
 
     separator: {
