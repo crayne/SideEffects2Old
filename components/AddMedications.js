@@ -14,8 +14,7 @@ var filterInterval;
 state = {
   items: Array(),
   menuItems: Array(),
-  deletedItemName: "",
-  refresh: 0
+  doMedListRefresh: false
 }
 
 
@@ -130,7 +129,8 @@ function AddMedicationsDropdown(){
     var index = findItemInMedicationList(medName);
     if (index == -1) return;
     MedicationListData.splice(index, 1);
-    state.refresh = 5;
+    //This actually makes the medication list refresh!
+    setSearchQuery("");
     saveMedicationData();
   }
 
@@ -222,7 +222,6 @@ function AddMedicationsDropdown(){
          data={MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
-         extraData = {state.refresh}
        />
      </SafeAreaView>
 
