@@ -23,15 +23,19 @@ var medicationListVisibility = 0;
 
 const MedicationListData = Array();
 
-function handleMedicationListItemDelete(){
-  console.log("In handleMedicationListItemDelete");
+function handleMedicationListItemDelete(medName){
+  console.log("In handleMedicationListItemDelete, title = " + medName);
+  //delete medName from list
 }
 
 const Item = ({ title }) => (
   <View style={styles.medicationListItem}>
     <Text style={styles.medicationListItemText}>{title}</Text>
 
-    <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"/>
+    <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+      onPress={() => handleMedicationListItemDelete(title)}
+
+    />
   </View>
 );
 
@@ -116,10 +120,27 @@ function AddMedicationsDropdown(){
     global.filteredMedicationList = "";
   }
 
+  // returns the index of the item in the list -- else returns -1
+  function findItemInMedicationList(medName){
+    for (var i=0; i<MedicationListData.length; i++){
+      if (medName == MedicationListData[i].title){
+        return i;
+      }
+    }
+    return -1;
+  }
+
   const onPressDropdownItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
     console.log("In onPressDropdownItemHandler, value = " + value);
     var newId;
+    //Check for duplicates
+    var index = findItemInMedicationList(value);
+    console.log("item is: " + value + ". index is: " + index);
+    if (index != -1) {
+      closeMenu();
+      return;
+    }
     if (MedicationListData.length == 0) newId = "1";
     else {
       var lastId = MedicationListData[MedicationListData.length-1].id;
@@ -194,7 +215,6 @@ function AddMedicationsDropdown(){
         onDismiss={closeMenu}
         anchor={<Button style={{height: 1, color: "white"}}></Button>}>
         {state.items.map((row, index) => (
-          console.log("menu item is: " + row),
             <Menu.Item style={styles.menuItem}
             key={index}
             title={row}
