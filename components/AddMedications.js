@@ -9,35 +9,40 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './Mode.js';
 
 
-
-
 var filterInterval;
 
 state = {
   items: Array(),
   menuItems: Array(),
+  deletedItemName: "",
+  refresh: 0
 }
+
 
 var medicationListVisibility = 0;
 
 
 const MedicationListData = Array();
 
-function handleMedicationListItemDelete(medName){
-  console.log("In handleMedicationListItemDelete, title = " + medName);
-  //delete medName from list
+//Save medication list to persistent storage
+function saveMedicationData(){
+
 }
 
-const Item = ({ title }) => (
-  <View style={styles.medicationListItem}>
-    <Text style={styles.medicationListItemText}>{title}</Text>
+// returns the index of the item in the list -- else returns -1
+function findItemInMedicationList(medName){
+  for (var i=0; i<MedicationListData.length; i++){
+    if (medName == MedicationListData[i].title){
+      return i;
+    }
+  }
+  return -1;
+}
 
-    <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
-      onPress={() => handleMedicationListItemDelete(title)}
 
-    />
-  </View>
-);
+
+
+
 
 
 function EnterMedicationsScreen() {
@@ -120,15 +125,25 @@ function AddMedicationsDropdown(){
     global.filteredMedicationList = "";
   }
 
-  // returns the index of the item in the list -- else returns -1
-  function findItemInMedicationList(medName){
-    for (var i=0; i<MedicationListData.length; i++){
-      if (medName == MedicationListData[i].title){
-        return i;
-      }
-    }
-    return -1;
+  const handleMedicationListItemDelete = (medName) => {
+    console.log("In handleMedicationListItemDelete, title = " + medName);
+    var index = findItemInMedicationList(medName);
+    if (index == -1) return;
+    MedicationListData.splice(index, 1);
+    state.refresh = 5;
+    saveMedicationData();
   }
+
+  const Item = ({ title }) => (
+    <View style={styles.medicationListItem}>
+      <Text style={styles.medicationListItemText}>{title}</Text>
+      <TouchableHighlight>
+        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+          onPress={() => handleMedicationListItemDelete(title)}
+        />
+      </TouchableHighlight>
+    </View>
+  );
 
   const onPressDropdownItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
@@ -148,6 +163,7 @@ function AddMedicationsDropdown(){
     }
     const medicationObject = {title:value, id:newId};
     MedicationListData.push(medicationObject);
+    saveMedicationData();
     for (var i=0; i<MedicationListData.length; i++){
       const item = MedicationListData[i];
       console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
@@ -206,6 +222,7 @@ function AddMedicationsDropdown(){
          data={MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
+         extraData = {state.refresh}
        />
      </SafeAreaView>
 
