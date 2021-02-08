@@ -7,6 +7,7 @@ import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-n
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './Mode.js';
+import {se2MainButton} from './SE2Styles.js'
 
 
 var filterInterval;
@@ -177,7 +178,7 @@ function AddMedicationsDropdown(){
      marginTop: 20,
      fontSize: 24,
      alignItems: 'flex-start',
-     height: 300,
+     height: 200,
      flexGrow: 0,
      opacity: medicationListVisibility,
      borderRadius: 4,
@@ -225,6 +226,22 @@ function AddMedicationsDropdown(){
        />
      </SafeAreaView>
 
+     <View style={se2MainButton.buttonView} >
+       <TouchableOpacity style={se2MainButton.outerButtonStyle}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+             Reverse Search
+         </Text>
+       </TouchableOpacity>
+     </View>
+
+     <View style={se2MainButton.buttonView} >
+       <TouchableOpacity style={se2MainButton.outerButtonStyle}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+             Interactions
+         </Text>
+       </TouchableOpacity>
+     </View>
+
     <ScrollView>
       <Menu style={styles.menu}
         visible={visible}
@@ -260,7 +277,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -150
+     marginTop: -190
    },
 
    menuItem: {
