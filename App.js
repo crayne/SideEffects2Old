@@ -6,6 +6,8 @@ import { RadioButton, Text } from 'react-native-paper';
 import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
+import ReverseSearchScreen from './components/ReverseSearch.js'
+
 
 /*
 function EnterMedicationsScreen({navigation}) {
@@ -44,6 +46,7 @@ function SideEffects2() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="EnterMedications" component={EnterMedicationsScreen} />
+        <Stack.Screen name="ReverseSearch" component={ReverseSearchScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,6 +8,8 @@ import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './Mode.js';
 import {se2MainButton} from './SE2Styles.js'
+import ReverseSearchScreen from './ReverseSearch.js'
+
 
 
 var filterInterval;
@@ -15,7 +17,8 @@ var filterInterval;
 state = {
   items: Array(),
   menuItems: Array(),
-  doMedListRefresh: false
+  doMedListRefresh: false,
+  navigate: null
 }
 
 
@@ -45,7 +48,9 @@ function findItemInMedicationList(medName){
 
 
 
-function EnterMedicationsScreen() {
+function EnterMedicationsScreen(props) {
+  state.navigate = props.navigation.navigate;
+  console.log("In EnterMedicationsScreen, state.navigate = " + state.navigate);
     return (
       <PaperProvider>
         <View style={styles.view}>
@@ -228,7 +233,7 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.outerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('ReverseSearch')}>
              Reverse Search
          </Text>
        </TouchableOpacity>
@@ -236,7 +241,7 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.outerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
              Interactions
          </Text>
        </TouchableOpacity>
@@ -277,7 +282,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -190
+     marginTop: -150
    },
 
    menuItem: {
