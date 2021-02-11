@@ -50,7 +50,6 @@ function findItemInMedicationList(medName){
 
 function EnterMedicationsScreen(props) {
   state.navigate = props.navigation.navigate;
-  console.log("In EnterMedicationsScreen, state.navigate = " + state.navigate);
     return (
       <PaperProvider>
         <View style={styles.view}>
