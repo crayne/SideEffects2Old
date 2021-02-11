@@ -6,7 +6,7 @@ import {TouchableHighlight} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import GetAllMedicationNames from './Mode.js';
+import GetAllMedicationNames from './ModelMeds.js';
 import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
 
