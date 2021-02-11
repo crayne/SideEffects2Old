@@ -282,7 +282,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -150
+     marginTop: -278
    },
 
    menuItem: {
@@ -302,7 +302,6 @@ const styles = StyleSheet.create ({
     listTitleText: {
        fontSize :26,
        marginTop:20,
-       marginBottom: 20,
        textAlign: 'center'
      },
 
