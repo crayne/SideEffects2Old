@@ -6,7 +6,7 @@ import {TouchableHighlight} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import GetAllMedicationNames from './ModelMeds.js';
+import GetAllSymptomNames from './ModelSymptoms.js';
 import {se2MainButton} from './SE2Styles.js'
 
 
@@ -89,8 +89,8 @@ function AddMedicationsDropdown(){
     if (query.length >= 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
       console.log("Search string is = " + query);
-      global.filteredMedicationList = "";
-      GetAllMedicationNames(query);
+      global.filteredSymptomList = "";
+      GetAllSymptomNames(query);
       filterInterval = setInterval(CheckFilteredMedicationList, 1000);
 
     }
@@ -111,13 +111,13 @@ function AddMedicationsDropdown(){
   }
 
   function CheckFilteredMedicationList(){
-    if (global.filteredMedicationList == ""){
+    if (global.filteredSymptomList == ""){
       return;
     }
     clearInterval(filterInterval);
-    global.filteredMedicationList = global.filteredMedicationList.toLowerCase();
-    console.log("Filtered Medication List =  " + global.filteredMedicationList);
-    state.items = global.filteredMedicationList.split(",");
+    global.filteredSymptomList = global.filteredSymptomList.toLowerCase();
+    console.log("Filtered Medication List =  " + global.filteredSymptomList);
+    state.items = global.filteredSymptomList.split(",");
     console.log("last item is: " + state.items[state.items.length - 1]);
     if (state.items.length != 0){
       state.items.pop();
@@ -125,7 +125,7 @@ function AddMedicationsDropdown(){
       openMenu();
 
     }
-    global.filteredMedicationList = "";
+    global.filteredSymptomList = "";
   }
 
   const handleMedicationListItemDelete = (medName) => {

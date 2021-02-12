@@ -16,8 +16,8 @@ import { Searchbar } from 'react-native-paper';
  var outsideResponse;
 
 function GetAllSymptomNames(query) {
-  const searchUrl = urlBase + "/autoComplete.php?searchValue=" + query;
-  console.log("In GetAllMedicationNames, searchUrl = " + searchUrl);
+  const searchUrl = urlBase + "/autoCompleteSymptoms.php?searchValue=" + query;
+  console.log("In GetAllSymptomNames, searchUrl = " + searchUrl);
 
   var request = new XMLHttpRequest();
   request.onreadystatechange = (e) => {
