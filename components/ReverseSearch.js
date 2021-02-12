@@ -145,11 +145,6 @@ function AddMedicationsDropdown(){
   const Item = ({ title }) => (
     <View style={styles.medicationListItem}>
       <Text style={styles.medicationListItemText}>{title}</Text>
-      <TouchableHighlight>
-        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
-          onPress={() => handleMedicationListItemDelete(title)}
-        />
-      </TouchableHighlight>
     </View>
   );
 
