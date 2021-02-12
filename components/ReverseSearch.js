@@ -132,16 +132,6 @@ function AddMedicationsDropdown(){
     global.filteredSymptomList = "";
   }
 
-  const handleMedicationListItemDelete = (medName) => {
-    console.log("In handleMedicationListItemDelete, title = " + medName);
-    var index = findItemInMedicationList(medName);
-    if (index == -1) return;
-    MedicationsForSymptom.splice(index, 1);
-    //This actually makes the medication list refresh!
-    setSearchQuery("");
-    saveMedicationData();
-  }
-
   const Item = ({ title }) => (
     <View style={styles.medicationListItem}>
       <Text style={styles.medicationListItemText}>{title}</Text>
