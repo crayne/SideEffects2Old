@@ -25,6 +25,8 @@ var medicationListVisibility = 0;
 
 //List of medications which might cause this symptom
 const MedicationsForSymptom = Array();
+//List of all user Medications
+const AllUserMedications = Array();
 
 //Save medication list to persistent storage
 function saveMedicationData(){
@@ -50,8 +52,8 @@ function findItemInMedicationList(medName){
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
-  var MedicationsForSymptom = props.route.params.MedicationListData;
-  console.log("First medication for symptom is: " + MedicationsForSymptom[0].title);
+  var AllUserMedications = props.route.params.MedicationListData;
+  console.log("First medication for symptom is: " + AllUserMedications[0].title);
 
     return (
       <PaperProvider>
@@ -138,11 +140,11 @@ function AddMedicationsDropdown(){
     </View>
   );
 
-  const onPressDropdownItemHandler = (value) => {
-    //Put the value chosen from the medication menu into the medication list
-    console.log("In onPressDropdownItemHandler, value = " + value);
+  const onPressDropdownItemHandler = (symptom) => {
+    console.log("In onPressDropdownItemHandler, symptom = " + symptom);
     var newId;
     //Check for duplicates
+    /*
     var index = findItemInMedicationList(value);
     console.log("item is: " + value + ". index is: " + index);
     if (index != -1) {
@@ -160,6 +162,13 @@ function AddMedicationsDropdown(){
     for (var i=0; i<MedicationsForSymptom.length; i++){
       const item = MedicationsForSymptom[i];
       console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
+    }
+    */
+    /*
+    Check in database to see if value (symptom) occurs with any of the user's medications
+    */
+    for (var i=0; i<AllUserMedications.length; i++){
+      var medication = AllUserMedications[i].title;
     }
     closeMenu();
     medicationListVisibility = 1;
