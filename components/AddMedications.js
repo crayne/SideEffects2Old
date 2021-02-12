@@ -232,7 +232,7 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.outerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('ReverseSearch')}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('ReverseSearch',{MedicationListData})}>
              Reverse Search
          </Text>
        </TouchableOpacity>

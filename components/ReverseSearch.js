@@ -23,8 +23,8 @@ state = {
 
 var medicationListVisibility = 0;
 
-
-const MedicationListData = Array();
+//List of medications which might cause this symptom
+const MedicationsForSymptom = Array();
 
 //Save medication list to persistent storage
 function saveMedicationData(){
@@ -33,8 +33,8 @@ function saveMedicationData(){
 
 // returns the index of the item in the list -- else returns -1
 function findItemInMedicationList(medName){
-  for (var i=0; i<MedicationListData.length; i++){
-    if (medName == MedicationListData[i].title){
+  for (var i=0; i<MedicationsForSymptom.length; i++){
+    if (medName == MedicationsForSymptom[i].title){
       return i;
     }
   }
@@ -49,6 +49,10 @@ function findItemInMedicationList(medName){
 
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
+  const { navigation } = props;
+  var MedicationsForSymptom = props.route.params.MedicationListData;
+  console.log("First medication for symptom is: " + MedicationsForSymptom[0].title);
+
     return (
       <PaperProvider>
         <View style={styles.view}>
@@ -132,7 +136,7 @@ function AddMedicationsDropdown(){
     console.log("In handleMedicationListItemDelete, title = " + medName);
     var index = findItemInMedicationList(medName);
     if (index == -1) return;
-    MedicationListData.splice(index, 1);
+    MedicationsForSymptom.splice(index, 1);
     //This actually makes the medication list refresh!
     setSearchQuery("");
     saveMedicationData();
@@ -160,16 +164,16 @@ function AddMedicationsDropdown(){
       closeMenu();
       return;
     }
-    if (MedicationListData.length == 0) newId = "1";
+    if (MedicationsForSymptom.length == 0) newId = "1";
     else {
-      var lastId = MedicationListData[MedicationListData.length-1].id;
+      var lastId = MedicationsForSymptom[MedicationsForSymptom.length-1].id;
       newId = Number(lastId) + 1;
     }
     const medicationObject = {title:value, id:newId};
-    MedicationListData.push(medicationObject);
+    MedicationsForSymptom.push(medicationObject);
     saveMedicationData();
-    for (var i=0; i<MedicationListData.length; i++){
-      const item = MedicationListData[i];
+    for (var i=0; i<MedicationsForSymptom.length; i++){
+      const item = MedicationsForSymptom[i];
       console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
     }
     closeMenu();
@@ -225,7 +229,7 @@ function AddMedicationsDropdown(){
            />
           ))
          }
-         data={MedicationListData}
+         data={MedicationsForSymptom}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
        />
@@ -233,19 +237,13 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.outerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('ReverseSearch')}>
-             Reverse Search
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
+             Home
          </Text>
        </TouchableOpacity>
      </View>
 
-     <View style={se2MainButton.buttonView} >
-       <TouchableOpacity style={se2MainButton.outerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
-             Interactions
-         </Text>
-       </TouchableOpacity>
-     </View>
+
 
     <ScrollView>
       <Menu style={styles.menu}
