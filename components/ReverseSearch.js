@@ -19,7 +19,7 @@ state = {
   items: Array(),
   menuItems: Array(),
   doMedListRefresh: false,
-  navigate: null
+  navigate: null,
 }
 
 
@@ -28,7 +28,7 @@ var medicationListVisibility = 0;
 //List of medications which might cause this symptom
 const MedicationsForSymptom = Array();
 //List of all user Medications
-const AllUserMedications = Array();
+var AllUserMedications = Array();
 
 //Save medication list to persistent storage
 function saveMedicationData(){
@@ -54,7 +54,8 @@ function findItemInMedicationList(medName){
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
-  var AllUserMedications = props.route.params.MedicationListData;
+  AllUserMedications = props.route.params.MedicationListData;
+  console.log("In ReverseSearchScreen, AllUserMedications length is: " + AllUserMedications.length);
   console.log("AllUserMedications item is: " + AllUserMedications[0].title);
 
     return (
@@ -168,11 +169,14 @@ function AddMedicationsDropdown(){
     /*
     Check in database to see if value (symptom) occurs with any of the user's medications
     */
-    console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + length);
+    console.log("in onPressDropdownItemHandlerReverse, AllUserMedications = " + AllUserMedications);
+
+    console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + AllUserMedications.length);
     for (var i=0; i<AllUserMedications.length; i++){
       var medication = AllUserMedications[i].title;
       global.filteredReverseSearchResultList = "";
-      /* call 'medicationhassideeffect' here */
+      console.log("Call MedicationHasSideEffect, symptom = " + value);
+      MedicationHasSideEffect(medication[i], value);
     }
     filterIntervalMedications = setInterval(CheckFilteredMedicationList, 1000);
 
