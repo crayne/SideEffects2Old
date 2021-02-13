@@ -2,5 +2,4 @@ Zhè jiāng shì nín shìyè de liánghǎo kāiduān
 
 wǒ háishì duì zhōngguó chuántǒng gē bù liǎojiě
 
-    <Text style={styles.listTitle}>These medications may be causing your symptom:</Text>
-
+http://192.168.1.161:8888//sideEffectsNewRxnav/searchSideEffect.php?symptom=nausea&medication=wellbutrin

@@ -172,11 +172,11 @@ function AddMedicationsDropdown(){
     console.log("in onPressDropdownItemHandlerReverse, AllUserMedications = " + AllUserMedications);
 
     console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + AllUserMedications.length);
+    global.filteredReverseSearchResultList = "";
     for (var i=0; i<AllUserMedications.length; i++){
       var medication = AllUserMedications[i].title;
-      global.filteredReverseSearchResultList = "";
       console.log("Call MedicationHasSideEffect, symptom = " + value);
-      MedicationHasSideEffect(medication[i], value);
+      MedicationHasSideEffect(medication, value);
     }
     filterIntervalMedications = setInterval(CheckFilteredMedicationList, 1000);
 
