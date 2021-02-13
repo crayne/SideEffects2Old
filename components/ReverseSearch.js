@@ -26,7 +26,7 @@ state = {
 var medicationListVisibility = 0;
 
 //List of medications which might cause this symptom
-const MedicationsForSymptom = Array();
+var MedicationsForSymptom = Array();
 //List of all user Medications
 var AllUserMedications = Array();
 
@@ -79,7 +79,7 @@ function AddMedicationsDropdown(){
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({ item }) => (
-      <Item title={item.title} />
+      <Item title={item} />
   );
 
 
@@ -192,8 +192,9 @@ function AddMedicationsDropdown(){
     clearInterval(filterIntervalMedications);
     global.filteredReverseSearchResultList = global.filteredReverseSearchResultList.toLowerCase();
     console.log("Filtered Medication List =  " + global.filteredReverseSearchResultList);
-    var tempMedicationNameArray = global.filteredReverseSearchResultList.split(",");
-    console.log("last item is: " + tempMedicationNameArray[tempMedicationNameArray.length - 1]);
+    MedicationsForSymptom = global.filteredReverseSearchResultList.split(",");
+    console.log("MedicationsForSymptom length = " + MedicationsForSymptom.length);
+    console.log("First item of Medications for Symptom = " + MedicationsForSymptom[0]);
     /*
     if (state.items.length != 0){
       state.items.pop();
