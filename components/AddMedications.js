@@ -333,5 +333,4 @@ const styles = StyleSheet.create ({
 
 
 
-
 module.exports = EnterMedicationsScreen;

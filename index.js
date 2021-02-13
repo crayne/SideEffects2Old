@@ -19,6 +19,7 @@ if (window.FETCH_SUPPORT) {
 
 global.filteredMedicationList;
 global.filteredSymptomList;
+global.filteredMedicationsForSymptoms;
 
 
 AppRegistry.registerComponent(appName, () => App);

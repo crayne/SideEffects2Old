@@ -6,12 +6,14 @@ import {TouchableHighlight} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import GetAllSymptomNames from './ModelSymptoms.js';
+import GetAllSymptomNames from './ModelReverseSearchMenu.js';
+import MedicationHasSideEffect from './ModelReverseSearchResult.js';
 import {se2MainButton} from './SE2Styles.js'
 
 
 
-var filterInterval;
+var filterIntervalSymptoms;
+var filterIntervalMedications;
 
 state = {
   items: Array(),
@@ -53,7 +55,7 @@ function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
   var AllUserMedications = props.route.params.MedicationListData;
-  console.log("First medication for symptom is: " + AllUserMedications[0].title);
+  console.log("AllUserMedications item is: " + AllUserMedications[0].title);
 
     return (
       <PaperProvider>
@@ -83,8 +85,7 @@ function AddMedicationsDropdown(){
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query){
     setSearchQuery(query);
-    //alert("text = " + query);
-    //Show menu with all medications that start with the letters in "query"
+    //Show menu with all symptoms that start with the letters in "query"
     if (query.length < 3){
       closeMenu();
       return;
@@ -97,11 +98,11 @@ function AddMedicationsDropdown(){
       console.log("Search string is = " + query);
       global.filteredSymptomList = "";
       GetAllSymptomNames(query);
-      filterInterval = setInterval(CheckFilteredMedicationList, 1000);
+      filterIntervalSymptoms = setInterval(CheckFilteredSymptomList, 1000);
 
     }
     var i = 0;
-    console.log("Putting items from server into menu");
+    console.log("Putting items from server into menu, number of items = " + state.items.length);
     state.menuItems.length = 0;
     for (i=0; i<state.items.length; i++){
         var itemName = state.items[i];
@@ -116,13 +117,13 @@ function AddMedicationsDropdown(){
     return query;
   }
 
-  function CheckFilteredMedicationList(){
+  function CheckFilteredSymptomList(){
     if (global.filteredSymptomList == ""){
       return;
     }
-    clearInterval(filterInterval);
+    clearInterval(filterIntervalSymptoms);
     global.filteredSymptomList = global.filteredSymptomList.toLowerCase();
-    console.log("Filtered Medication List =  " + global.filteredSymptomList);
+    console.log("Filtered Symptom List =  " + global.filteredSymptomList);
     state.items = global.filteredSymptomList.split(",");
     console.log("last item is: " + state.items[state.items.length - 1]);
     if (state.items.length != 0){
@@ -140,8 +141,8 @@ function AddMedicationsDropdown(){
     </View>
   );
 
-  const onPressDropdownItemHandler = (symptom) => {
-    console.log("In onPressDropdownItemHandler, symptom = " + symptom);
+  const onPressDropdownItemHandlerReverse = (value) => {
+    console.log("In ReverseSearch onPressDropdownItemHandlerReverse, symptom = " + value);
     var newId;
     //Check for duplicates
     /*
@@ -167,12 +168,38 @@ function AddMedicationsDropdown(){
     /*
     Check in database to see if value (symptom) occurs with any of the user's medications
     */
+    console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + length);
     for (var i=0; i<AllUserMedications.length; i++){
       var medication = AllUserMedications[i].title;
+      global.filteredMedicationsForSymptoms = "";
+      /* call 'medicationhassideeffect' here */
     }
+    filterIntervalMedications = setInterval(CheckFilteredMedicationList, 1000);
+
+    /* console.log("MedicationHasSideEffect returned: " + global.filteredMedicationsForSymptoms); */
     closeMenu();
     medicationListVisibility = 1;
   };
+
+  function CheckFilteredMedicationList(){
+    if (global.filteredMedicationsForSymptoms == ""){
+      return;
+    }
+    clearInterval(filterIntervalMedications);
+    global.filteredMedicationsForSymptoms = global.filteredMedicationsForSymptoms.toLowerCase();
+    console.log("Filtered Medication List =  " + global.filteredMedicationsForSymptoms);
+    var tempMedicationNameArray = global.filteredMedicationsForSymptoms.split(",");
+    console.log("last item is: " + tempMedicationNameArray[tempMedicationNameArray.length - 1]);
+    /*
+    if (state.items.length != 0){
+      state.items.pop();
+      closeMenu();
+      openMenu();
+
+    }
+    */
+    global.filteredMedicationsForSymptoms = "";
+  }
 
   const medicationListStyle = function(medicationListVisibility) {
    return {
@@ -248,7 +275,7 @@ function AddMedicationsDropdown(){
             <Menu.Item style={styles.menuItem}
             key={index}
             title={row}
-            onPress={() => onPressDropdownItemHandler(row)}
+            onPress={() => onPressDropdownItemHandlerReverse(row)}
           />
         ))}
 
