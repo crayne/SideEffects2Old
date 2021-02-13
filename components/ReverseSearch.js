@@ -96,7 +96,7 @@ function AddMedicationsDropdown(){
     if (query.length >= 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
       console.log("Search string is = " + query);
-      global.filteredSymptomList = "";
+      global.filteredReverseSearchMenuList = "";
       GetAllSymptomNames(query);
       filterIntervalSymptoms = setInterval(CheckFilteredSymptomList, 1000);
 
@@ -118,13 +118,13 @@ function AddMedicationsDropdown(){
   }
 
   function CheckFilteredSymptomList(){
-    if (global.filteredSymptomList == ""){
+    if (global.filteredReverseSearchMenuList == ""){
       return;
     }
     clearInterval(filterIntervalSymptoms);
-    global.filteredSymptomList = global.filteredSymptomList.toLowerCase();
-    console.log("Filtered Symptom List =  " + global.filteredSymptomList);
-    state.items = global.filteredSymptomList.split(",");
+    global.filteredReverseSearchMenuList = global.filteredReverseSearchMenuList.toLowerCase();
+    console.log("Filtered Symptom List =  " + global.filteredReverseSearchMenuList);
+    state.items = global.filteredReverseSearchMenuList.split(",");
     console.log("last item is: " + state.items[state.items.length - 1]);
     if (state.items.length != 0){
       state.items.pop();
@@ -132,7 +132,7 @@ function AddMedicationsDropdown(){
       openMenu();
 
     }
-    global.filteredSymptomList = "";
+    global.filteredReverseSearchMenuList = "";
   }
 
   const Item = ({ title }) => (
@@ -171,24 +171,24 @@ function AddMedicationsDropdown(){
     console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + length);
     for (var i=0; i<AllUserMedications.length; i++){
       var medication = AllUserMedications[i].title;
-      global.filteredMedicationsForSymptoms = "";
+      global.filteredReverseSearchResultList = "";
       /* call 'medicationhassideeffect' here */
     }
     filterIntervalMedications = setInterval(CheckFilteredMedicationList, 1000);
 
-    /* console.log("MedicationHasSideEffect returned: " + global.filteredMedicationsForSymptoms); */
+    /* console.log("MedicationHasSideEffect returned: " + global.filteredReverseSearchResultList); */
     closeMenu();
     medicationListVisibility = 1;
   };
 
   function CheckFilteredMedicationList(){
-    if (global.filteredMedicationsForSymptoms == ""){
+    if (global.filteredReverseSearchResultList == ""){
       return;
     }
     clearInterval(filterIntervalMedications);
-    global.filteredMedicationsForSymptoms = global.filteredMedicationsForSymptoms.toLowerCase();
-    console.log("Filtered Medication List =  " + global.filteredMedicationsForSymptoms);
-    var tempMedicationNameArray = global.filteredMedicationsForSymptoms.split(",");
+    global.filteredReverseSearchResultList = global.filteredReverseSearchResultList.toLowerCase();
+    console.log("Filtered Medication List =  " + global.filteredReverseSearchResultList);
+    var tempMedicationNameArray = global.filteredReverseSearchResultList.split(",");
     console.log("last item is: " + tempMedicationNameArray[tempMedicationNameArray.length - 1]);
     /*
     if (state.items.length != 0){
@@ -198,7 +198,7 @@ function AddMedicationsDropdown(){
 
     }
     */
-    global.filteredMedicationsForSymptoms = "";
+    global.filteredReverseSearchResultList = "";
   }
 
   const medicationListStyle = function(medicationListVisibility) {

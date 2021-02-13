@@ -18,8 +18,8 @@ if (window.FETCH_SUPPORT) {
 }
 
 global.filteredMedicationList;
-global.filteredSymptomList;
-global.filteredMedicationsForSymptoms;
+global.filteredReverseSearchMenuList;
+global.filteredReverseSearchResultList;
 
 
 AppRegistry.registerComponent(appName, () => App);
