@@ -139,14 +139,8 @@ function AddMedicationsDropdown(){
   }
 
   const Item = ({ title }) => (
-    console.log("In Item definition, title = " + title),
     <View style={styles.medicationListItem}>
       <Text style={styles.medicationListItemText}>{title}</Text>
-      <TouchableHighlight>
-        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
-          onPress={() => handleMedicationListItemDelete(title)}
-        />
-      </TouchableHighlight>
     </View>
   );
 
@@ -197,6 +191,7 @@ function AddMedicationsDropdown(){
     console.log("state.refresh = " + state.refresh);
     global.filteredReverseSearchResultList = "";
     setSearchQuery("");
+
   }
 
   const medicationListStyle = function(medicationListVisibility) {
