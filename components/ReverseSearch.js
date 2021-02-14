@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllSymptomNames from './ModelReverseSearchMenu.js';
 import MedicationHasSideEffect from './ModelReverseSearchResult.js';
 import {se2MainButton} from './SE2Styles.js'
+import { useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -56,6 +57,9 @@ function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
   AllUserMedications = props.route.params.MedicationListData;
+  const unsubscribe = navigation.addListener('beforeRemove', e => {
+    MedicationsForSymptom.length = 0;
+  });
   console.log("In ReverseSearchScreen, AllUserMedications length is: " + AllUserMedications.length);
   console.log("AllUserMedications item is: " + AllUserMedications[0].title);
 
@@ -68,7 +72,6 @@ function ReverseSearchScreen(props) {
       </PaperProvider>
     );
 }
-
 
 
 function AddMedicationsDropdown(){
@@ -154,6 +157,7 @@ function AddMedicationsDropdown(){
 
     console.log("in onPressDropdownItemHandlerReverse, AllUserMedications.length = " + AllUserMedications.length);
     global.filteredReverseSearchResultList = "";
+    MedicationsForSymptom.length = 0;
     for (var i=0; i<AllUserMedications.length; i++){
       var medication = AllUserMedications[i].title;
       console.log("Call MedicationHasSideEffect, symptom = " + value);
