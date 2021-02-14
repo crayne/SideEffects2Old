@@ -26,7 +26,7 @@ state = {
 var medicationListVisibility = 0;
 
 //List of medications which might cause this symptom
-var MedicationsForSymptom = Array();
+const MedicationsForSymptom = Array();
 //List of all user Medications
 var AllUserMedications = Array();
 
@@ -79,7 +79,8 @@ function AddMedicationsDropdown(){
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({ item }) => (
-      <Item title={item} />
+      console.log("In Item declaration, item.title = " + item.title),
+      <Item title={item.title} />
   );
 
 
@@ -137,35 +138,21 @@ function AddMedicationsDropdown(){
   }
 
   const Item = ({ title }) => (
+    console.log("In Item definition, title = " + title),
     <View style={styles.medicationListItem}>
       <Text style={styles.medicationListItemText}>{title}</Text>
+      <TouchableHighlight>
+        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+          onPress={() => handleMedicationListItemDelete(title)}
+        />
+      </TouchableHighlight>
     </View>
   );
 
   const onPressDropdownItemHandlerReverse = (value) => {
     console.log("In ReverseSearch onPressDropdownItemHandlerReverse, symptom = " + value);
-    var newId;
-    //Check for duplicates
-    /*
-    var index = findItemInMedicationList(value);
-    console.log("item is: " + value + ". index is: " + index);
-    if (index != -1) {
-      closeMenu();
-      return;
-    }
-    if (MedicationsForSymptom.length == 0) newId = "1";
-    else {
-      var lastId = MedicationsForSymptom[MedicationsForSymptom.length-1].id;
-      newId = Number(lastId) + 1;
-    }
-    const medicationObject = {title:value, id:newId};
-    MedicationsForSymptom.push(medicationObject);
-    saveMedicationData();
-    for (var i=0; i<MedicationsForSymptom.length; i++){
-      const item = MedicationsForSymptom[i];
-      console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
-    }
-    */
+
+
     /*
     Check in database to see if value (symptom) occurs with any of the user's medications
     */
@@ -192,9 +179,22 @@ function AddMedicationsDropdown(){
     clearInterval(filterIntervalMedications);
     global.filteredReverseSearchResultList = global.filteredReverseSearchResultList.toLowerCase();
     console.log("Filtered Medication List =  " + global.filteredReverseSearchResultList);
-    MedicationsForSymptom = global.filteredReverseSearchResultList.split(",");
-    console.log("MedicationsForSymptom length = " + MedicationsForSymptom.length);
-    console.log("First item of Medications for Symptom = " + MedicationsForSymptom[0]);
+    var resultArray = global.filteredReverseSearchResultList.split(",");
+    var newId;
+    for (var i=0; i<resultArray.length-1; i++) {
+      if (MedicationsForSymptom.length == 0) newId = "1";
+      else {
+        var lastId = MedicationsForSymptom[MedicationsForSymptom.length-1].id;
+        newId = Number(lastId) + 1;
+      }
+      const medicationObject = {title:resultArray[i], id:newId};
+      console.log("pushing object to MedicationsForSymptom: " + medicationObject.title + ", " + medicationObject.id);
+      MedicationsForSymptom.push(medicationObject);
+    }
+    console.log("last item in MedicationsForSymptom is: " + MedicationsForSymptom[MedicationsForSymptom.length - 1]);
+    // 2/13/2021
+    //last item is null - pop interval
+    //Put split list into temp array, and make MedicationsForSymptom an array of objects, like in AddMedications
     /*
     if (state.items.length != 0){
       state.items.pop();
