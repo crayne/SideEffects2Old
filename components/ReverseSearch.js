@@ -18,7 +18,7 @@ var filterIntervalMedications;
 state = {
   items: Array(),
   menuItems: Array(),
-  doMedListRefresh: false,
+  refresh: false,
   navigate: null,
 }
 
@@ -29,6 +29,8 @@ var medicationListVisibility = 0;
 const MedicationsForSymptom = Array();
 //List of all user Medications
 var AllUserMedications = Array();
+
+var testTitle = "glurb";
 
 //Save medication list to persistent storage
 function saveMedicationData(){
@@ -79,7 +81,6 @@ function AddMedicationsDropdown(){
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({ item }) => (
-      console.log("In Item declaration, item.title = " + item.title),
       <Item title={item.title} />
   );
 
@@ -190,20 +191,12 @@ function AddMedicationsDropdown(){
       const medicationObject = {title:resultArray[i], id:newId};
       console.log("pushing object to MedicationsForSymptom: " + medicationObject.title + ", " + medicationObject.id);
       MedicationsForSymptom.push(medicationObject);
-    }
-    console.log("last item in MedicationsForSymptom is: " + MedicationsForSymptom[MedicationsForSymptom.length - 1]);
-    // 2/13/2021
-    //last item is null - pop interval
-    //Put split list into temp array, and make MedicationsForSymptom an array of objects, like in AddMedications
-    /*
-    if (state.items.length != 0){
-      state.items.pop();
-      closeMenu();
-      openMenu();
 
     }
-    */
+    state.refresh = !state.refresh;
+    console.log("state.refresh = " + state.refresh);
     global.filteredReverseSearchResultList = "";
+    setSearchQuery("");
   }
 
   const medicationListStyle = function(medicationListVisibility) {
@@ -258,6 +251,7 @@ function AddMedicationsDropdown(){
          data={MedicationsForSymptom}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
+         extraData = {state.refresh}
        />
      </SafeAreaView>
 
