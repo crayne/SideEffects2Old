@@ -18,7 +18,6 @@ var filterIntervalMedications;
 state = {
   items: Array(),
   menuItems: Array(),
-  refresh: false,
   navigate: null,
 }
 
@@ -187,8 +186,6 @@ function AddMedicationsDropdown(){
       MedicationsForSymptom.push(medicationObject);
 
     }
-    state.refresh = !state.refresh;
-    console.log("state.refresh = " + state.refresh);
     global.filteredReverseSearchResultList = "";
     setSearchQuery("");
 
@@ -246,7 +243,6 @@ function AddMedicationsDropdown(){
          data={MedicationsForSymptom}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
-         extraData = {state.refresh}
        />
      </SafeAreaView>
 
