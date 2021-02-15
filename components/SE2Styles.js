@@ -3,35 +3,33 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 
 const se2MainButton = StyleSheet.create({
   buttonView: {
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20
   },
 
-  outerButtonStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 200,
-    height: 50,
-    borderRadius: 40,
-    backgroundColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    marginTop: 20
+  homeButtonStyle: {
+    backgroundColor: 'purple',
+    color: "white",
+    fontSize: 24,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
 
   innerButtonStyle: {
     backgroundColor: 'purple',
     color: "white",
-    width: 200,
-    height: 50,
     fontSize: 24,
     textAlign: 'center',
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
   }
 
 })

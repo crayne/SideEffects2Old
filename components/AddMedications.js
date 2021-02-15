@@ -239,7 +239,7 @@ function AddMedicationsDropdown(){
      </View>
 
      <View style={se2MainButton.buttonView} >
-       <TouchableOpacity style={se2MainButton.outerButtonStyle}>
+       <TouchableOpacity style={se2MainButton.innerButtonStyle}>
          <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
              Interactions
          </Text>
@@ -281,7 +281,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -191
+     marginTop: -195
    },
 
    menuItem: {

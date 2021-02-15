@@ -31,8 +31,8 @@ function HomeScreen({navigation}) {
 
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
-      <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-      <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+      <TouchableOpacity style={se2MainButton.buttonView}>
+      <Text style = {se2MainButton.homeButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
           Find Out!
       </Text>
       </TouchableOpacity>
