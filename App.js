@@ -73,31 +73,5 @@ const styles = StyleSheet.create ({
       marginBottom: 20,
       textAlign: "center"
     },
-    outerButtonStyle: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      width: 200,
-      height: 50,
-      borderRadius: 40,
-      backgroundColor: 'transparent',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2.22,
-      elevation: 3,
-    },
 
-    buttonStyle: {
-      backgroundColor: 'purple',
-      color: "white",
-      width: 200,
-      height: 50,
-      fontSize: 24,
-      borderRadius: 40,
-      textAlign: 'center',
-      textAlignVertical: 'center'
-    }
 })
