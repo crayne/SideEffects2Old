@@ -5,7 +5,7 @@ const se2MainButton = StyleSheet.create({
   buttonView: {
     alignItems: 'center'
   },
-  
+
   outerButtonStyle: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -30,7 +30,6 @@ const se2MainButton = StyleSheet.create({
     width: 200,
     height: 50,
     fontSize: 24,
-    borderRadius: 40,
     textAlign: 'center',
     textAlignVertical: 'center'
   }

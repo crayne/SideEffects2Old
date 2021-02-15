@@ -7,6 +7,7 @@ import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
 import ReverseSearchScreen from './components/ReverseSearch.js'
+import {se2MainButton} from './components/SE2Styles.js'
 
 
 /*
@@ -30,8 +31,8 @@ function HomeScreen({navigation}) {
 
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
-      <TouchableOpacity style={styles.outerButtonStyle}>
-      <Text style = {styles.buttonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+      <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+      <Text style = {se2MainButton.innerButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
           Find Out!
       </Text>
       </TouchableOpacity>
