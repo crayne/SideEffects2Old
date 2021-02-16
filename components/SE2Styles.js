@@ -18,6 +18,7 @@ const se2MainButton = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 15,
     paddingRight: 15,
+    borderRadius: 5
   },
 
   innerButtonStyle: {
@@ -30,6 +31,7 @@ const se2MainButton = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
+    borderRadius: 5
   }
 
 })
