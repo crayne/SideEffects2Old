@@ -198,6 +198,14 @@ function AddMedicationsDropdown(){
    }
  }
 
+  const verifyBeforeReverseSearch = () => {
+    if (MedicationListData.length==0){
+      alert("The medication list contains no medications.");
+      return;
+    }
+    state.navigate('ReverseSearch',{MedicationListData});
+  }
+
   return (
 
   <View
@@ -232,7 +240,7 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('ReverseSearch',{MedicationListData})}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => verifyBeforeReverseSearch()}>
              Reverse Search
          </Text>
        </TouchableOpacity>
