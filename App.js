@@ -60,18 +60,21 @@ const styles = StyleSheet.create ({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: 200,
+      paddingTop: 100,
       marginLeft: 16,
       marginRight: 16
    },
    title: {
       fontSize : 30,
-      marginBottom: 10
+      marginBottom: 10,
+      fontWeight: 'bold'
    },
    explainText: {
-      fontSize : 24,
-      marginBottom: 20,
-      textAlign: "center"
+      fontSize : 26,
+      marginTop: 40,
+      marginBottom: 160,
+      textAlign: "center",
+      fontWeight: 'bold'
     },
 
 })
