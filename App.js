@@ -2,27 +2,14 @@ import 'react-native-gesture-handler';
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { RadioButton, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
 import ReverseSearchScreen from './components/ReverseSearch.js'
 import {se2MainButton} from './components/SE2Styles.js'
 
-
-/*
-function EnterMedicationsScreen({navigation}) {
-  return (
-    <View style={styles.explainText}>
-      <Text>Enter Medications Screen</Text>
-    </View>
-  );
-}
-*/
-
 const Stack = createStackNavigator();
-
-
 
 function HomeScreen({navigation}) {
   return (

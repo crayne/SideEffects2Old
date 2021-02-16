@@ -3,7 +3,7 @@ import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import {TouchableHighlight} from 'react-native';
-import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
+import { Button, TextInput, Provider as PaperProvider, Menu} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './ModelMeds.js';
