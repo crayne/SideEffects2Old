@@ -20,6 +20,7 @@ if (window.FETCH_SUPPORT) {
 global.filteredMedicationList;
 global.filteredReverseSearchMenuList;
 global.filteredReverseSearchResultList;
+global.interactionsList;
 
 
 AppRegistry.registerComponent(appName, () => App);
