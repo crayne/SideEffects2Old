@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllMedicationNames from './ModelMeds.js';
 import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
+import InteractionsScreen from './Interactions.js'
 
 
 
@@ -198,12 +199,12 @@ function AddMedicationsDropdown(){
    }
  }
 
-  const verifyBeforeReverseSearch = () => {
+  const verifyAndGo = (destination) => {
     if (MedicationListData.length==0){
       alert("The medication list contains no medications.");
       return;
     }
-    state.navigate('ReverseSearch',{MedicationListData});
+    state.navigate(destination,{MedicationListData});
   }
 
   return (
@@ -240,7 +241,7 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => verifyBeforeReverseSearch()}>
+         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => verifyAndGo('ReverseSearch')}>
              Reverse Search
          </Text>
        </TouchableOpacity>
@@ -248,7 +249,8 @@ function AddMedicationsDropdown(){
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
+         <Text style = {se2MainButton.innerButtonStyle}
+          onPress={() => verifyAndGo('Interactions')}>
              Interactions
          </Text>
        </TouchableOpacity>

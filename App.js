@@ -7,6 +7,7 @@ import { Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js'
 import ReverseSearchScreen from './components/ReverseSearch.js'
+import InteractionsScreen from './components/Interactions.js'
 import {se2MainButton} from './components/SE2Styles.js'
 
 const Stack = createStackNavigator();
@@ -35,6 +36,7 @@ function SideEffects2() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="EnterMedications" component={EnterMedicationsScreen} />
         <Stack.Screen name="ReverseSearch" component={ReverseSearchScreen} />
+        <Stack.Screen name="Interactions" component={InteractionsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
