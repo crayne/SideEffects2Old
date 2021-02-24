@@ -8,7 +8,6 @@ import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllSymptomNames from './ModelReverseSearchMenu.js';
 import MedicationHasSideEffect from './ModelReverseSearchResult.js';
-import GetInteractions from './ModelInteractions.js';
 import {se2MainButton} from './SE2Styles.js'
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -16,11 +15,18 @@ import { useFocusEffect } from '@react-navigation/native';
 
 var interactionsInterval;
 var filterIntervalMedications;
+const localHost =  "http://192.168.1.161:8888/sideEffectsNewRxnav";
+
+const serverHost = "http://www.oryxtech.net/sideEffectsNewRxnav";
+
+//const urlBase =  serverHost;
+const urlBase =  serverHost;
 
 state = {
   items: Array(),
   menuItems: Array(),
   navigate: null,
+  refreshFlatList: false
 }
 
 
@@ -52,6 +58,7 @@ function InteractionsScreen(props) {
 }
 
 function FindInteractions(){
+  const [searchQuery, setSearchQuery] = React.useState('');
   const renderMedicationListItem = ({ item }) => (
         <Item title={item.title} />
   );
@@ -63,8 +70,9 @@ function FindInteractions(){
       if (i != numMedications-1) concatMedications += ",";
   }
   global.interactionsList = "";
+
   GetInteractions(concatMedications);
-  interactionsInterval = setInterval(CheckInteractionsList, 1000);
+  //interactionsInterval = setInterval(CheckInteractionsList, 1000);
 
   const Item = ({ title }) => (
     <View style={styles.medicationListItem}>
@@ -72,6 +80,8 @@ function FindInteractions(){
     </View>
   );
 
+  /* TODO - put "Get Interactions" button on Interactions screen and call FindInteractions from the handler
+  tried -- doesn't work .  Try "onComponentLoaded" */
   function CheckInteractionsList(){
     if (global.interactionsList == ""){
       return;
@@ -83,8 +93,16 @@ function FindInteractions(){
     console.log("In CheckInteractionsList, global.interactionsList: " + global.interactionsList);
     var jsonInteractionsList = JSON.parse(global.interactionsList);
     console.log("In CheckInteractionsList, first item in jsonInteractionsList = " + jsonInteractionsList[0]);
-    InteractionData.push({title:"title1", id:"1"});
-    console.log("In CheckInteractionsList, push object to InteractionData");
+    InteractionData.push({title:"title2", id:"1"});
+    console.log("In CheckInteractionsList, pushed object to InteractionData, length = " + InteractionData.length);
+    state.refreshFlatList = !state.refreshFlatList;
+    console.log("In CheckInteractionsList, state.refreshFlatList = " + state.refreshFlatList);
+    InteractionData.push({title:"title3", id:"2"});
+    state.refreshFlatList = !state.refreshFlatList;
+    console.log("In CheckInteractionsList, after second push, state.refreshFlatList = " + state.refreshFlatList);
+
+    setSearchQuery("ab");
+
 
     /*
     var resultArray = global.interactionsList.split(",");
@@ -105,6 +123,36 @@ function FindInteractions(){
 
   }
 
+  function GetInteractions(medNames){
+    console.log("In New GetInteractions, medNames = " + medNames);
+    const searchUrl = urlBase + "/interactions.php?medNames=" + medNames;
+    SearchSideEffect(searchUrl);
+  }
+
+  function SearchSideEffect(searchUrl) {
+    console.log("In SearchSideEffect, searchUrl = " + searchUrl);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = (e) => {
+      if (request.readyState !== 4) {
+        return;
+      }
+
+      if (request.status === 200) {
+        console.log('In GetInteractions, success', request.responseText);
+        global.interactionsList = global.interactionsList + request.responseText + ",";
+        console.log ("In GetInteractions, global.interactionsList = " + global.interactionsList);
+        CheckInteractionsList();
+      } else {
+        console.warn('error');
+      }
+    }
+
+    request.open('GET', searchUrl);
+    request.send();
+
+  }
+
   const medicationListStyle = function(medicationListVisibility) {
    return {
      marginTop: 20,
@@ -112,7 +160,7 @@ function FindInteractions(){
      alignItems: 'flex-start',
      height: 200,
      flexGrow: 0,
-     opacity: medicationListVisibility,
+     opacity: 1,
      borderRadius: 4,
      backgroundColor: 'transparent',
      shadowColor: '#000',
@@ -127,6 +175,12 @@ function FindInteractions(){
  }
 
   return (
+  /*
+  The purpose of the searchbar is only to make updates to the interactions list display
+  The list will update only if I set the contents of the searchbar to a string.  The searchbar
+  is invisible.
+  This is terrible, and I will try to find some other way of solving this problem
+  */
 
   <View
     style = {{
@@ -155,6 +209,7 @@ function FindInteractions(){
          data={InteractionData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
+         extraData={state.refreshFlatList}
        />
      </SafeAreaView>
 
@@ -193,7 +248,9 @@ const styles = StyleSheet.create ({
 
    searchbar: {
      width: '100%',
-     marginBottom: 0
+     marginBottom: 0,
+     opacity: 0,
+     display: 'none'
    },
 
    enterText: {
