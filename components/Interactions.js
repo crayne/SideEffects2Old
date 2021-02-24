@@ -100,25 +100,8 @@ function FindInteractions(){
     InteractionData.push({title:"title3", id:"2"});
     state.refreshFlatList = !state.refreshFlatList;
     console.log("In CheckInteractionsList, after second push, state.refreshFlatList = " + state.refreshFlatList);
-
+    /*Do not delete -- allows Interaction List to update*/
     setSearchQuery("ab");
-
-
-    /*
-    var resultArray = global.interactionsList.split(",");
-    var newId;
-    for (var i=0; i<resultArray.length-1; i++) {
-      if (InteractionData.length == 0) newId = "1";
-      else {
-        var lastId = InteractionData[InteractionData.length-1].id;
-        newId = Number(lastId) + 1;
-      }
-      const medicationObject = {title:resultArray[i], id:newId};
-      console.log("pushing object to InteractionData: " + medicationObject.title + ", " + medicationObject.id);
-      InteractionData.push(medicationObject);
-
-    }
-    */
     global.interactionsList = "";
 
   }
@@ -126,11 +109,7 @@ function FindInteractions(){
   function GetInteractions(medNames){
     console.log("In New GetInteractions, medNames = " + medNames);
     const searchUrl = urlBase + "/interactions.php?medNames=" + medNames;
-    SearchSideEffect(searchUrl);
-  }
-
-  function SearchSideEffect(searchUrl) {
-    console.log("In SearchSideEffect, searchUrl = " + searchUrl);
+    console.log("In GetInteractions, searchUrl = " + searchUrl);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = (e) => {
