@@ -32,7 +32,6 @@ state = {
 
 var medicationListVisibility = 0;
 
-//List of medications which might cause this symptom
 const InteractionData = Array();
 //List of all user Medications
 var AllUserMedications = Array();
@@ -46,14 +45,8 @@ function InteractionsScreen(props) {
   });
   console.log("In InteractionsScreen, AllUserMedications length is: " + AllUserMedications.length);
   console.log("AllUserMedications first item is: " + AllUserMedications[0].title);
-
     return (
-      <PaperProvider>
-        <View style={styles.view}>
-          <Text style={styles.enterText}>Interactions</Text>
-          {FindInteractions()}
-        </View>
-      </PaperProvider>
+      FindInteractions()
     );
 }
 
@@ -100,8 +93,6 @@ function FindInteractions(){
     console.log("In CheckInteractionsList, pushed object to InteractionData, length = " + InteractionData.length);
     state.refreshFlatList = !state.refreshFlatList;
     console.log("In CheckInteractionsList, state.refreshFlatList = " + state.refreshFlatList);
-    InteractionData.push({title:"title3", id:"2"});
-    state.refreshFlatList = !state.refreshFlatList;
     console.log("In CheckInteractionsList, after second push, state.refreshFlatList = " + state.refreshFlatList);
     /*Do not delete -- allows Interaction List to update*/
     setSearchQuery("ab");
@@ -140,7 +131,7 @@ function FindInteractions(){
      marginTop: 20,
      fontSize: 24,
      alignItems: 'flex-start',
-     height: 200,
+     height: 400,
      flexGrow: 0,
      opacity: 1,
      borderRadius: 4,
@@ -167,14 +158,16 @@ function FindInteractions(){
   <View
     style = {{
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'center',
+      marginLeft: 20,
+      marginRight: 20
     }}>
 
     <Searchbar style={styles.searchbar}
       placeholder="Search"
     />
 
-    <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
+    <Text style={styles.listTitleText}>Interactions Between Your Medications</Text>
 
     <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
        <FlatList style={styles.medicationList}
@@ -232,12 +225,13 @@ const styles = StyleSheet.create ({
      width: '100%',
      marginBottom: 0,
      opacity: 0,
-     display: 'none'
+     display: 'none',
+     height: 10
    },
 
    enterText: {
       fontSize :26,
-      marginTop:80,
+      marginTop:20,
       marginBottom: 20
     },
 
