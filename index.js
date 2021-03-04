@@ -22,5 +22,6 @@ global.filteredReverseSearchMenuList;
 global.filteredReverseSearchResultList;
 global.interactionsList;
 
+console.disableYellowBox = true;
 
 AppRegistry.registerComponent(appName, () => App);
