@@ -27,20 +27,44 @@ state = {
 var medicationListVisibility = 0;
 
 
-const MedicationListData = Array();
 
 //Save medication list to persistent storage
 function saveMedicationData(){
-  SaveMedicationList(MedicationListData).then(
+  SaveMedicationList(global.MedicationListData).then(
     function(value) {console.log("SaveMedicationList succeeded");},
     function(error) {console.log("SaveMedicationList failed with error: " + error);}
   );
 }
 
+function getMedicationData(){
+  RetrieveMedicationList().then (
+    function(value) {
+      console.log("In AddMedications RetrieveMedicationList succeeded");
+      if (value == null) console.log("In AddMedications, RetrieveMedicationList returned null");
+      else {
+        console.log("In AddMedications RetrieveMedicationList, length of returned array is: " + value.length);
+        for (var i=0; i<value.length; value++){
+          console.log("In AddMedications RetrieveMedicationList, adding item to MedicationListDate, title = "
+            + value[i].title);
+          console.log("In AddMedications RetrieveMedicationList, adding item to MedicationListDate, id = "
+            + value[i].id);
+          value[i].id = '' + value[i].id;
+          if (global.MedicationListData.includes(value) == false) {
+            console.log("In getMedicationData, pushing value");
+            global.MedicationListData.push(value[i]);
+          }
+        }
+      }
+    },
+    function(error) {console.log("RetrieveMedicationList failed with error: " + error);}
+
+  );
+}
+
 // returns the index of the item in the list -- else returns -1
 function findItemInMedicationList(medName){
-  for (var i=0; i<MedicationListData.length; i++){
-    if (medName == MedicationListData[i].title){
+  for (var i=0; i<global.MedicationListData.length; i++){
+    if (medName == global.MedicationListData[i].title){
       return i;
     }
   }
@@ -59,7 +83,7 @@ function EnterMedicationsScreen(props) {
       <PaperProvider>
         <View style={styles.view}>
           <Text style={styles.enterText}>Enter your medications:</Text>
-          {AddMedicationsDropdown()}
+          { AddMedicationsDropdown()}
         </View>
       </PaperProvider>
     );
@@ -68,7 +92,6 @@ function EnterMedicationsScreen(props) {
 
 
 function AddMedicationsDropdown(){
-
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => displayText(query);
 
@@ -138,7 +161,7 @@ function AddMedicationsDropdown(){
     console.log("In handleMedicationListItemDelete, title = " + medName);
     var index = findItemInMedicationList(medName);
     if (index == -1) return;
-    MedicationListData.splice(index, 1);
+    global.MedicationListData.splice(index, 1);
     //This actually makes the medication list refresh!
     setSearchQuery("");
     saveMedicationData();
@@ -166,13 +189,15 @@ function AddMedicationsDropdown(){
       closeMenu();
       return;
     }
-    if (MedicationListData.length == 0) newId = "1";
+    if (global.MedicationListData.length == 0) newId = "1";
     else {
-      var lastId = MedicationListData[MedicationListData.length-1].id;
+      var lastId = global.MedicationListData[global.MedicationListData.length-1].id;
       newId = Number(lastId) + 1;
     }
     const medicationObject = {title:value, id:newId};
-    MedicationListData.push(medicationObject);
+    if (global.MedicationListData.includes(medicationObject) == false) {
+      global.MedicationListData.push(medicationObject);
+    }
     closeMenu();
     medicationListVisibility = 1;
     saveMedicationData();
@@ -200,11 +225,11 @@ function AddMedicationsDropdown(){
  }
 
   const verifyAndGo = (destination) => {
-    if (MedicationListData.length==0){
+    if (global.MedicationListData.length==0){
       alert("The medication list contains no medications.");
       return;
     }
-    state.navigate(destination,{MedicationListData});
+    state.navigate(destination);
   }
 
   return (
@@ -233,7 +258,7 @@ function AddMedicationsDropdown(){
            />
           ))
          }
-         data={MedicationListData}
+         data={global.MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
        />

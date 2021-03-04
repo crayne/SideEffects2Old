@@ -21,6 +21,7 @@ global.filteredMedicationList;
 global.filteredReverseSearchMenuList;
 global.filteredReverseSearchResultList;
 global.interactionsList;
+global.MedicationListData = Array();
 
 console.disableYellowBox = true;
 

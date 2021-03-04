@@ -56,7 +56,7 @@ function findItemInMedicationList(medName){
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
-  AllUserMedications = props.route.params.MedicationListData;
+  AllUserMedications =global.MedicationListData;
   const unsubscribe = navigation.addListener('beforeRemove', e => {
     MedicationsForSymptom.length = 0;
   });
