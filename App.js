@@ -30,7 +30,6 @@ function HomeScreen({navigation}) {
 }
 
 function SideEffects2() {
-  console.disableYellowBox = true;
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

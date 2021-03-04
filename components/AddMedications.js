@@ -291,7 +291,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -195
+     marginTop: -415
    },
 
    menuItem: {
