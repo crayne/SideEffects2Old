@@ -10,6 +10,7 @@ import GetAllMedicationNames from './ModelMeds.js';
 import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
 import InteractionsScreen from './Interactions.js'
+import {SaveMedicationList, RetrieveMedicationList, IsMedicationListNull} from './PersistMedicationList.js';
 
 
 
@@ -30,7 +31,10 @@ const MedicationListData = Array();
 
 //Save medication list to persistent storage
 function saveMedicationData(){
-
+  SaveMedicationList(MedicationListData).then(
+    function(value) {console.log("SaveMedicationList succeeded");},
+    function(error) {console.log("SaveMedicationList failed with error: " + error);}
+  );
 }
 
 // returns the index of the item in the list -- else returns -1
@@ -169,13 +173,9 @@ function AddMedicationsDropdown(){
     }
     const medicationObject = {title:value, id:newId};
     MedicationListData.push(medicationObject);
-    saveMedicationData();
-    for (var i=0; i<MedicationListData.length; i++){
-      const item = MedicationListData[i];
-      console.log("pushing to medication list, title and id: " + item.title + ", " + item.id);
-    }
     closeMenu();
     medicationListVisibility = 1;
+    saveMedicationData();
   };
 
   const medicationListStyle = function(medicationListVisibility) {
