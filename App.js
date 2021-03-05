@@ -9,8 +9,43 @@ import EnterMedicationsScreen from './components/AddMedications.js'
 import ReverseSearchScreen from './components/ReverseSearch.js'
 import InteractionsScreen from './components/Interactions.js'
 import {se2MainButton} from './components/SE2Styles.js'
+import {RetrieveMedicationList} from './components/PersistMedicationList.js';
+
 
 const Stack = createStackNavigator();
+
+
+function getMedicationData(){
+  RetrieveMedicationList().then (
+    function(value) {
+      console.log("In App RetrieveMedicationList succeeded");
+      if (value == null) console.log("In App, RetrieveMedicationList returned null");
+      else {
+        console.log("In App RetrieveMedicationList, length of returned array is: " + value.length);
+        global.MedicationListData.length = 0;
+        for (var i=0; i<value.length; i++){
+          console.log("In App RetrieveMedicationList, adding item to MedicationListDate, title = "
+            + value[i].title);
+          console.log("In App RetrieveMedicationList, adding item to MedicationListDate, id = "
+            + value[i].id);
+          value[i].id = '' + value[i].id;
+          if (global.MedicationListData.includes(value[i]) == false) {
+            console.log("In getMedicationData, pushing value");
+            global.MedicationListData.push(value[i]);
+          }
+        }
+      }
+    },
+    function(error) {console.log("RetrieveMedicationList failed with error: " + error);}
+
+  );
+}
+
+
+function getMedsAndNavigate(navigation){
+  getMedicationData();
+  navigation.navigate('EnterMedications');
+}
 
 function HomeScreen({navigation}) {
   return (
@@ -20,7 +55,7 @@ function HomeScreen({navigation}) {
       <Text style = {styles.explainText}>Is a medication causing your symptoms?</Text>
 
       <TouchableOpacity style={se2MainButton.buttonView}>
-      <Text style = {se2MainButton.homeButtonStyle}  onPress={() => navigation.navigate('EnterMedications')}>
+      <Text style = {se2MainButton.homeButtonStyle}  onPress={() => getMedsAndNavigate(navigation)}>
           Find Out!
       </Text>
       </TouchableOpacity>

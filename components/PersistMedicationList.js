@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { AsyncStorage } from 'react-native';
 
-const medListKey = "MEDLISTKEY1";
+const medListKey = "MEDLISTKEY5";
 
 async function SaveMedicationList(medListArray) {
   var strMedListArray = JSON.stringify(medListArray);

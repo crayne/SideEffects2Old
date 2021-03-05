@@ -10,7 +10,7 @@ import GetAllMedicationNames from './ModelMeds.js';
 import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
 import InteractionsScreen from './Interactions.js'
-import {SaveMedicationList, RetrieveMedicationList, IsMedicationListNull} from './PersistMedicationList.js';
+import {SaveMedicationList, IsMedicationListNull} from './PersistMedicationList.js';
 
 
 
@@ -33,31 +33,6 @@ function saveMedicationData(){
   SaveMedicationList(global.MedicationListData).then(
     function(value) {console.log("SaveMedicationList succeeded");},
     function(error) {console.log("SaveMedicationList failed with error: " + error);}
-  );
-}
-
-function getMedicationData(){
-  RetrieveMedicationList().then (
-    function(value) {
-      console.log("In AddMedications RetrieveMedicationList succeeded");
-      if (value == null) console.log("In AddMedications, RetrieveMedicationList returned null");
-      else {
-        console.log("In AddMedications RetrieveMedicationList, length of returned array is: " + value.length);
-        for (var i=0; i<value.length; value++){
-          console.log("In AddMedications RetrieveMedicationList, adding item to MedicationListDate, title = "
-            + value[i].title);
-          console.log("In AddMedications RetrieveMedicationList, adding item to MedicationListDate, id = "
-            + value[i].id);
-          value[i].id = '' + value[i].id;
-          if (global.MedicationListData.includes(value) == false) {
-            console.log("In getMedicationData, pushing value");
-            global.MedicationListData.push(value[i]);
-          }
-        }
-      }
-    },
-    function(error) {console.log("RetrieveMedicationList failed with error: " + error);}
-
   );
 }
 
@@ -196,6 +171,7 @@ function AddMedicationsDropdown(){
     }
     const medicationObject = {title:value, id:newId};
     if (global.MedicationListData.includes(medicationObject) == false) {
+      console.log("In onPressDropdownHandler, Pushing medication object with title = " + medicationObject.title);
       global.MedicationListData.push(medicationObject);
     }
     closeMenu();
