@@ -15,7 +15,7 @@ import {RetrieveMedicationList} from './components/PersistMedicationList.js';
 const Stack = createStackNavigator();
 
 
-function getMedicationData(){
+function getMedsAndNavigate(navigation){
   RetrieveMedicationList().then (
     function(value) {
       console.log("In App RetrieveMedicationList succeeded");
@@ -35,16 +35,12 @@ function getMedicationData(){
           }
         }
       }
+      navigation.navigate('EnterMedications');
+
     },
     function(error) {console.log("RetrieveMedicationList failed with error: " + error);}
 
   );
-}
-
-
-function getMedsAndNavigate(navigation){
-  getMedicationData();
-  navigation.navigate('EnterMedications');
 }
 
 function HomeScreen({navigation}) {
