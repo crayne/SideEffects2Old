@@ -213,7 +213,8 @@ function AddMedicationsDropdown(){
   <View
     style = {{
       flexDirection: 'column',
-      justifyContent: 'flex-start'
+      justifyContent: 'center',
+      alignItems: 'center'
     }}>
 
     <Searchbar style={styles.searchbar}
