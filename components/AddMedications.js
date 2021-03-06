@@ -197,7 +197,6 @@ function AddMedicationsDropdown(){
      shadowOpacity: 0.22,
      shadowRadius: 2.22,
      elevation: 3,
-     width: '80%'
    }
  }
 
@@ -215,7 +214,6 @@ function AddMedicationsDropdown(){
     style = {{
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
     }}>
 
     <Searchbar style={styles.searchbar}
@@ -294,7 +292,9 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     marginTop: -415
+     position: 'absolute',
+     top: 126,
+     left: 52
    },
 
    menuItem: {
