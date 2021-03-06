@@ -24,10 +24,6 @@ state = {
 }
 
 
-var medicationListVisibility = 0;
-
-
-
 //Save medication list to persistent storage
 function saveMedicationData(){
   SaveMedicationList(global.MedicationListData).then(
@@ -175,30 +171,8 @@ function AddMedicationsDropdown(){
       global.MedicationListData.push(medicationObject);
     }
     closeMenu();
-    medicationListVisibility = 1;
     saveMedicationData();
   };
-
-  const medicationListStyle = function(medicationListVisibility) {
-   return {
-     marginTop: 20,
-     fontSize: 24,
-     alignItems: 'flex-start',
-     height: 200,
-     flexGrow: 0,
-     opacity: medicationListVisibility,
-     borderRadius: 4,
-     backgroundColor: 'transparent',
-     shadowColor: '#000',
-     shadowOffset: {
-       width: 0,
-       height: 1,
-     },
-     shadowOpacity: 0.22,
-     shadowRadius: 2.22,
-     elevation: 3,
-   }
- }
 
   const verifyAndGo = (destination) => {
     if (global.MedicationListData.length==0){
@@ -222,7 +196,7 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
+    <SafeAreaView style={styles.medicationListStyle}>
        <FlatList style={styles.medicationList}
          ItemSeparatorComponent={
            (({ highlighted }) => (
@@ -310,6 +284,27 @@ const styles = StyleSheet.create ({
       marginTop:80,
       marginBottom: 20
     },
+
+
+   medicationListStyle: {
+     marginTop: 20,
+     fontSize: 24,
+     alignItems: 'flex-start',
+     height: 200,
+     flexGrow: 0,
+     opacity: 1,
+     borderRadius: 4,
+     backgroundColor: 'transparent',
+     shadowColor: '#000',
+     shadowOffset: {
+       width: 0,
+       height: 1,
+     },
+     shadowOpacity: 0.22,
+     shadowRadius: 2.22,
+     elevation: 3,
+   },
+
 
     medicationList: {
       width: '100%',
