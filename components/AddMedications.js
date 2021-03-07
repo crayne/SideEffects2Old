@@ -72,6 +72,7 @@ function AddMedicationsDropdown(){
   const renderMedicationListItem = ({ item }) => (
       <Item title={item.title} />
   );
+  var medListRefresh = false;
 
 
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
@@ -137,11 +138,11 @@ function AddMedicationsDropdown(){
     global.MedicationListData.splice(index, 1);
     console.log("In handleMedicationListItemDelete, size of MedicationListData after delete = " +
       global.MedicationListData.length);
-
-    //This actually makes the medication list refresh!
-    setSearchQuery("");
-    state.doMedListRefresh = !state.doMedListRefresh;
     saveMedicationData();
+    //This actually makes the medication list refresh!
+    setSearchQuery("a");
+    setSearchQuery("");
+    medListRefresh = !medListRefresh;
   }
 
   const Item = ({ title }) => (
@@ -217,7 +218,7 @@ function AddMedicationsDropdown(){
          data={global.MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
-         extraData={state.doMedListRefresh}
+         extraData={medListRefresh}
 
        />
      </SafeAreaView>
