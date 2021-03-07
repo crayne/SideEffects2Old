@@ -7,8 +7,6 @@ const medListKey = "MEDLISTKEY5";
 async function SaveMedicationList(medListArray) {
   var strMedListArray = JSON.stringify(medListArray);
   console.log("In SaveMedicationList, medListArray length = " + medListArray.length);
-  console.log("In SaveMedicationList, first medListArray titleColor = " + medListArray[0].title);
-  console.log("In SaveMedicationList, first medListArray id = " + medListArray[0].id);
 
   console.log("In SaveMedicationList stringified medListArray = " + JSON.stringify(medListArray));
   try {

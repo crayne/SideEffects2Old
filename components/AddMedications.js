@@ -129,12 +129,18 @@ function AddMedicationsDropdown(){
   }
 
   const handleMedicationListItemDelete = (medName) => {
+    console.log("In handleMedicationListItemDelete");
     console.log("In handleMedicationListItemDelete, title = " + medName);
     var index = findItemInMedicationList(medName);
+    console.log("In handleMedicationListItemDelete, index = " + index);
     if (index == -1) return;
     global.MedicationListData.splice(index, 1);
+    console.log("In handleMedicationListItemDelete, size of MedicationListData after delete = " +
+      global.MedicationListData.length);
+
     //This actually makes the medication list refresh!
     setSearchQuery("");
+    state.doMedListRefresh = !state.doMedListRefresh;
     saveMedicationData();
   }
 
@@ -211,6 +217,8 @@ function AddMedicationsDropdown(){
          data={global.MedicationListData}
          renderItem={renderMedicationListItem}
          keyExtractor={item => item.id.toString()}
+         extraData={state.doMedListRefresh}
+
        />
      </SafeAreaView>
 
