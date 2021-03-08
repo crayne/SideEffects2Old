@@ -75,6 +75,7 @@ function AddMedicationsDropdown(){
   var medListRefresh = false;
 
 
+
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query){
     setSearchQuery(query);
@@ -172,10 +173,16 @@ function AddMedicationsDropdown(){
       var lastId = global.MedicationListData[global.MedicationListData.length-1].id;
       newId = Number(lastId) + 1;
     }
+    if (global.MedicationListTotal == global.MAXMEDS){
+      alert("No more room");
+    }
     const medicationObject = {title:value, id:newId};
     if (global.MedicationListData.includes(medicationObject) == false) {
-      console.log("In onPressDropdownHandler, Pushing medication object with title = " + medicationObject.title);
-      global.MedicationListData.push(medicationObject);
+      console.log("In onPressDropdownHandler, adding medication object with title = " + medicationObject.title);
+      console.log("In onPressDropdownHandler, adding object # " + global.MedicationListDataTotal);
+      global.MedicationListData[global.MedicationListDataTotal] = medicationObject;
+      console.log("In onPressDropdownHandler, title 0 = " + global.MedicationListData[0].title);
+      global.MedicationListDataTotal += 1;
     }
     closeMenu();
     saveMedicationData();
@@ -204,23 +211,29 @@ function AddMedicationsDropdown(){
     />
 
     <SafeAreaView style={styles.medicationListStyle}>
-       <FlatList style={styles.medicationList}
-         ItemSeparatorComponent={
-           (({ highlighted }) => (
-           <View
-            style={[
-            styles.separator,
-            highlighted && { marginLeft: 0 }
-            ]}
-           />
-          ))
-         }
-         data={global.MedicationListData}
-         renderItem={renderMedicationListItem}
-         keyExtractor={item => item.id.toString()}
-         extraData={medListRefresh}
+       <ScrollView style={styles.medicationList}>
+          <Item title={global.MedicationListData[0].title} />
+          <Item title={global.MedicationListData[1].title} />
+          <Item title={global.MedicationListData[2].title} />
+          <Item title={global.MedicationListData[3].title} />
+          <Item title={global.MedicationListData[4].title} />
+          <Item title={global.MedicationListData[5].title} />
+          <Item title={global.MedicationListData[6].title} />
+          <Item title={global.MedicationListData[7].title} />
+          <Item title={global.MedicationListData[8].title} />
+          <Item title={global.MedicationListData[9].title} />
+          <Item title={global.MedicationListData[10].title} />
+          <Item title={global.MedicationListData[11].title} />
+          <Item title={global.MedicationListData[12].title} />
+          <Item title={global.MedicationListData[13].title} />
+          <Item title={global.MedicationListData[14].title} />
+          <Item title={global.MedicationListData[15].title} />
+          <Item title={global.MedicationListData[16].title} />
+          <Item title={global.MedicationListData[17].title} />
+          <Item title={global.MedicationListData[18].title} />
+          <Item title={global.MedicationListData[19].title} />
 
-       />
+       </ScrollView>
      </SafeAreaView>
 
      <View style={se2MainButton.buttonView} >

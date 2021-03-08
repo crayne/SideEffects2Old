@@ -21,7 +21,10 @@ global.filteredMedicationList;
 global.filteredReverseSearchMenuList;
 global.filteredReverseSearchResultList;
 global.interactionsList;
-global.MedicationListData = Array();
+global.MAXMEDS = 20;
+global.MedicationListData = ["","","","","","","","","","","","","","","","","","","",""];
+//The actual number of medications chosen
+global.MedicationListDataTotal = 0;
 
 console.disableYellowBox = true;
 

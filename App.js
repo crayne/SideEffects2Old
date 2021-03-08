@@ -16,25 +16,38 @@ const Stack = createStackNavigator();
 
 
 function getMedsAndNavigate(navigation){
+  //skip retrieval for now
+  //navigation.navigate('EnterMedications');
+  //return;
+
   RetrieveMedicationList().then (
     function(value) {
       console.log("In App RetrieveMedicationList succeeded");
       if (value == null) console.log("In App, RetrieveMedicationList returned null");
       else {
         console.log("In App RetrieveMedicationList, length of returned array is: " + value.length);
-        global.MedicationListData.length = 0;
+        global.MedicationListDataTotal = 0;
+        for (var i=0; i<global.MAXMEDS; i++) global.MedicationListData[i] = "";
         for (var i=0; i<value.length; i++){
+          if (value[i] == "") {
+              global.MedicationListDataTotal = i;
+              break;
+          }
           console.log("In App RetrieveMedicationList, adding item to MedicationListDate, title = "
             + value[i].title);
           console.log("In App RetrieveMedicationList, adding item to MedicationListDate, id = "
             + value[i].id);
           value[i].id = '' + value[i].id;
           if (global.MedicationListData.includes(value[i]) == false) {
-            console.log("In getMedicationData, pushing value");
-            global.MedicationListData.push(value[i]);
+            console.log("In App RetrieveMedicationList, assigning value");
+            global.MedicationListData[i] = value[i];
           }
         }
+        console.log("In App RetrieveMedicationList, number of items retrieved = " + global.MedicationListDataTotal);
+
       }
+      /* createStackNavigator */
+      console.log("In App getNavigationData, navigating");
       navigation.navigate('EnterMedications');
 
     },
