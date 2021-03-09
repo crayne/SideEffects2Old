@@ -128,6 +128,13 @@ function AddMedicationsDropdown(){
     }
     global.filteredMedicationList = "";
   }
+  /*
+  TODO:
+  Visual list does not update correctly, although the underlying data does update correctly
+  Try using a ScrollView again, but this time eliminate the id in each element of the array, so
+  that the array is no longer an array of objects
+  Also try using left swipe for delete instead of trashcan
+  */
 
   const handleMedicationListItemDelete = (medName) => {
     console.log("In handleMedicationListItemDelete");
