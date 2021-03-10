@@ -5,18 +5,18 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 
- const localHost =  "http://192.168.1.161:8888/sideEffectsNewRxnav";
+ const localHost =  "http://192.168.1.161:8888/sideEffectsNewData";
 
  const serverHost = "http://www.oryxtech.net/sideEffectsNewRxnav";
- const nuiUrl =  "http://rxnav.nlm.nih.gov/REST/search?conceptName=";
- const getInteractionsPhpUrl = "/interactions.php";
 
  //const urlBase =  serverHost;
- const urlBase =  serverHost;
+ const urlBase =  localHost;
  var outsideResponse;
 
 function MedicationHasSideEffect(medication, symptom){
   console.log("In MedicationHasSideEffect, symptom = " + symptom);
+  console.log("In MedicationHasSideEffect, medication = " + medication);
+
   const searchUrl = urlBase + "/searchSideEffectVerbal.php?symptom=" + symptom + "&medication=" + medication;
   SearchSideEffect(searchUrl);
 }
