@@ -37,22 +37,6 @@ function saveMedicationData(){
 
 }
 
-// returns the index of the item in the list -- else returns -1
-function findItemInMedicationList(medName){
-  for (var i=0; i<MedicationsForSymptom.length; i++){
-    if (medName == MedicationsForSymptom[i].title){
-      return i;
-    }
-  }
-  return -1;
-}
-
-
-
-
-
-
-
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
   const { navigation } = props;
@@ -186,6 +170,8 @@ function AddMedicationsDropdown(){
         newId = Number(lastId) + 1;
       }
       const medicationObject = {title:resultArray[i], id:newId};
+      if (medicationObject.title == "") continue;
+      console.log("Returned for reverse search, value returned = " + resultArray[i]);
       console.log("pushing object to MedicationsForSymptom: " + medicationObject.title + ", " + medicationObject.id);
       MedicationsForSymptom.push(medicationObject);
 
