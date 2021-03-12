@@ -146,10 +146,10 @@ function AddMedicationsDropdown(){
     console.log("In handleMedicationListItemDelete, size of MedicationListData after delete = " +
       global.MedicationListData.length);
     saveMedicationData();
-    //This actually makes the medication list refresh!
-    setSearchQuery("a");
-    setSearchQuery("");
     medListRefresh = !medListRefresh;
+    //This weird code makes the medication list update visually correctly
+    state.navigate("Home");
+    state.navigate("EnterMedications");
   }
 
   const Item = ({ title }) => (
@@ -185,6 +185,7 @@ function AddMedicationsDropdown(){
       global.MedicationListData.push(medicationObject);
     }
     closeMenu();
+
     saveMedicationData();
   };
 
