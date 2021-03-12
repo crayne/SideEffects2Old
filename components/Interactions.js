@@ -15,12 +15,11 @@ import { useFocusEffect } from '@react-navigation/native';
 
 var interactionsInterval;
 var filterIntervalMedications;
-const localHost =  "http://192.168.1.161:8888/sideEffectsNewRxnav";
+const localHost =  "http://192.168.1.161:8888/sideEffectsNewData";
 
-const serverHost = "http://www.oryxtech.net/sideEffectsNewRxnav";
+const serverHost = "http://www.oryxtech.net/sideEffectsNewData";
 
-//const urlBase =  serverHost;
-const urlBase =  serverHost;
+const urlBase =  localHost;
 
 state = {
   items: Array(),
