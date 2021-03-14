@@ -89,13 +89,11 @@ function FindInteractions(){
       var descriptionText = jsonInteractionsList[i].descriptiontext[0];
 
       console.log("In CheckInteractionsList, first description in jsonInteractionsList = " + descriptionText);
-      InteractionData.push({title:descriptionText, id:"1"});
+      InteractionData.push({title:descriptionText, id:"1"+i});
 
 
       console.log("In CheckInteractionsList, pushed object to InteractionData, length = " + InteractionData.length);
       state.refreshFlatList = !state.refreshFlatList;
-      console.log("In CheckInteractionsList, state.refreshFlatList = " + state.refreshFlatList);
-      console.log("In CheckInteractionsList, after second push, state.refreshFlatList = " + state.refreshFlatList);
       /*Do not delete -- allows Interaction List to update*/
       setSearchQuery("ab");
     }
