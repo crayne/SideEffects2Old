@@ -87,9 +87,10 @@ function FindInteractions(){
     console.log("In CheckInteractionsList, number of JSON object = " + jsonInteractionsList.length);
     for (var i=0; i<jsonInteractionsList.length; i++){
       var descriptionText = jsonInteractionsList[i].descriptiontext[0];
-
+      var listText = "Intraction between " + jsonInteractionsList[i].originalDrugName1 + " and " +
+        jsonInteractionsList[i].originalDrugName2 + ": " + descriptionText;
       console.log("In CheckInteractionsList, first description in jsonInteractionsList = " + descriptionText);
-      InteractionData.push({title:descriptionText, id:"1"+i});
+      InteractionData.push({title:listText, id:"1"+i});
 
 
       console.log("In CheckInteractionsList, pushed object to InteractionData, length = " + InteractionData.length);
