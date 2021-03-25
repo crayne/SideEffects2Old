@@ -85,6 +85,7 @@ function AddMedicationsDropdown(){
     //Show menu with all medications that start with the letters in "query"
     if (query.length < 3){
       closeMenu();
+      hideMenuItems();
       return;
     }
     //TODO: if query.length == 3, get all medications from database that start with the 3 letters of the query, and
@@ -177,6 +178,10 @@ function AddMedicationsDropdown(){
     </View>
   );
 
+  const hideMenuItems = () => {
+    state.items.length = 0;
+  }
+
   const onPressDropdownItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
     console.log("In onPressDropdownItemHandler, value = " + value);
@@ -199,6 +204,7 @@ function AddMedicationsDropdown(){
       global.MedicationListData.push(medicationObject);
     }
     closeMenu();
+    hideMenuItems();
 
     saveMedicationData();
   };
