@@ -72,6 +72,9 @@ function AddMedicationsDropdown(){
   const renderMedicationListItem = ({ item }) => (
       <Item title={item.title} />
   );
+  const renderMenuListItem = ({ item }) => (
+      <MedMenuItem title={item} />
+  );
   var medListRefresh = false;
 
 
@@ -163,6 +166,17 @@ function AddMedicationsDropdown(){
     </View>
   );
 
+  const MedMenuItem = ({ title }) => (
+    <View style={styles.medicationListItem}>
+      <TouchableHighlight>
+        <Text style={styles.medicationListItemText}
+          onPress={() => onPressDropdownItemHandler(title)}>
+          {title}
+        </Text>
+      </TouchableHighlight>
+    </View>
+  );
+
   const onPressDropdownItemHandler = (value) => {
     //Put the value chosen from the medication menu into the medication list
     console.log("In onPressDropdownItemHandler, value = " + value);
@@ -211,6 +225,27 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
+  <SafeAreaView style={styles.medicationListStyle}>
+     <FlatList style={styles.medicationList}
+       ItemSeparatorComponent={
+         (({ highlighted }) => (
+         <View
+          style={[
+          styles.separator,
+          highlighted && { marginLeft: 0 }
+          ]}
+         />
+        ))
+       }
+       data={state.items}
+       renderItem={renderMenuListItem}
+       keyExtractor={(item, index) => index.toString()}
+       extraData={medListRefresh}
+
+     />
+   </SafeAreaView>
+
+
     <SafeAreaView style={styles.medicationListStyle}>
        <FlatList style={styles.medicationList}
          ItemSeparatorComponent={
@@ -248,21 +283,6 @@ function AddMedicationsDropdown(){
        </TouchableOpacity>
      </View>
 
-    <ScrollView>
-      <Menu style={styles.menu}
-        visible={visible}
-        onDismiss={closeMenu}
-        anchor={<Button style={{height: 1, color: "white"}}></Button>}>
-        {state.items.map((row, index) => (
-            <Menu.Item style={styles.menuItem}
-            key={index}
-            title={row}
-            onPress={() => onPressDropdownItemHandler(row)}
-          />
-        ))}
-
-      </Menu>
-    </ScrollView>
 
 
   </View>
@@ -283,9 +303,7 @@ const styles = StyleSheet.create ({
    },
 
    menu: {
-     position: 'absolute',
-     top: 126,
-     left: 52
+
    },
 
    menuItem: {
