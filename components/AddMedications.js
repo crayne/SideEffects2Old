@@ -231,7 +231,7 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-  <SafeAreaView style={styles.medicationListStyle}>
+  <SafeAreaView style={styles.menuListStyle}>
      <FlatList style={styles.medicationList}
        ItemSeparatorComponent={
          (({ highlighted }) => (
@@ -302,10 +302,9 @@ const styles = StyleSheet.create ({
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: 20,
+      paddingTop: 40,
       marginLeft: 16,
-      marginRight: 16,
-      marginBottom: 100,
+      marginRight: 16
    },
 
    menu: {
@@ -322,10 +321,29 @@ const styles = StyleSheet.create ({
 
    enterText: {
       fontSize :26,
-      marginTop:80,
+      marginTop:20,
       marginBottom: 20
     },
 
+
+   menuListStyle: {
+     marginTop: 20,
+     fontSize: 24,
+     alignItems: 'flex-start',
+     height: 100,
+     flexGrow: 0,
+     opacity: 1,
+     borderRadius: 4,
+     backgroundColor: 'transparent',
+     shadowColor: '#000',
+     shadowOffset: {
+       width: 0,
+       height: 1,
+     },
+     shadowOpacity: 0.22,
+     shadowRadius: 2.22,
+     elevation: 3,
+   },
 
    medicationListStyle: {
      marginTop: 20,
