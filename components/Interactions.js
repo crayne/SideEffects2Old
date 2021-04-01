@@ -84,12 +84,15 @@ function FindInteractions(){
 
     console.log("In CheckInteractionsList, global.interactionsList: " + global.interactionsList);
     var jsonInteractionsList = JSON.parse(global.interactionsList);
-    console.log("In CheckInteractionsList, number of JSON object = " + jsonInteractionsList.length);
+    console.log("In CheckInteractionsList, number of JSON objects = " + jsonInteractionsList.length);
+
     for (var i=0; i<jsonInteractionsList.length; i++){
+      if (jsonInteractionsList[i].originaldrugname1 == jsonInteractionsList[i].originaldrugname2){
+        continue;
+      }
       var descriptionText = jsonInteractionsList[i].descriptiontext[0];
-      var listText = "Intraction between " + jsonInteractionsList[i].originalDrugName1 + " and " +
-        jsonInteractionsList[i].originalDrugName2 + ": " + descriptionText;
-      console.log("In CheckInteractionsList, first description in jsonInteractionsList = " + descriptionText);
+      var listText = "Interaction between " + jsonInteractionsList[i].originaldrugname1 + " and " +
+        jsonInteractionsList[i].originaldrugname2 + ": " + descriptionText;
       InteractionData.push({title:listText, id:"1"+i});
 
 
