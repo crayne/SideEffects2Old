@@ -88,6 +88,7 @@ function AddMedicationsDropdown(){
     if (query.length < 3){
       closeMenu();
       hideMenuItems();
+      setShouldShow(false);
       return;
     }
     //TODO: if query.length == 3, get all medications from database that start with the 3 letters of the query, and
