@@ -242,16 +242,6 @@ function AddMedicationsDropdown(){
 
       <SafeAreaView style={styles.menuListStyle}>
        <FlatList style={styles.medicationList}
-         ItemSeparatorComponent={
-           (({ highlighted }) => (
-           <View
-            style={[
-            styles.separator,
-            highlighted && { marginLeft: 0 }
-            ]}
-           />
-          ))
-         }
          data={state.items}
          renderItem={renderMenuListItem}
          keyExtractor={(item, index) => index.toString()}
