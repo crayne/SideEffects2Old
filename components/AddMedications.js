@@ -67,6 +67,8 @@ function AddMedicationsDropdown(){
   const onChangeSearch = query => displayText(query);
 
   const [visible, setVisible] = React.useState(false);
+  const [shouldShow, setShouldShow] = React.useState(false);
+
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({ item }) => (
@@ -111,6 +113,7 @@ function AddMedicationsDropdown(){
     if (state.menuItems.length != 0){
       closeMenu();
       openMenu();
+      setShouldShow(true);
     }
     return query;
   }
@@ -205,6 +208,7 @@ function AddMedicationsDropdown(){
     }
     closeMenu();
     hideMenuItems();
+    setShouldShow(false);
 
     saveMedicationData();
   };
@@ -220,7 +224,6 @@ function AddMedicationsDropdown(){
     }
     state.navigate(destination);
   }
-
   return (
 
   <View
@@ -234,26 +237,28 @@ function AddMedicationsDropdown(){
       onChangeText={onChangeSearch}
       value={searchQuery}
     />
+    {shouldShow ? (
 
-  <SafeAreaView style={styles.menuListStyle}>
-     <FlatList style={styles.medicationList}
-       ItemSeparatorComponent={
-         (({ highlighted }) => (
-         <View
-          style={[
-          styles.separator,
-          highlighted && { marginLeft: 0 }
-          ]}
-         />
-        ))
-       }
-       data={state.items}
-       renderItem={renderMenuListItem}
-       keyExtractor={(item, index) => index.toString()}
-       extraData={medListRefresh}
+      <SafeAreaView style={styles.menuListStyle}>
+       <FlatList style={styles.medicationList}
+         ItemSeparatorComponent={
+           (({ highlighted }) => (
+           <View
+            style={[
+            styles.separator,
+            highlighted && { marginLeft: 0 }
+            ]}
+           />
+          ))
+         }
+         data={state.items}
+         renderItem={renderMenuListItem}
+         keyExtractor={(item, index) => index.toString()}
 
-     />
-   </SafeAreaView>
+       />
+      </SafeAreaView>
+
+    ) : null}
 
 
     <SafeAreaView style={styles.medicationListStyle}>
