@@ -325,7 +325,7 @@ const styles = StyleSheet.create ({
    },
 
    searchbar: {
-     width: '80%',
+     width: '100%',
      marginBottom: 0
    },
 
@@ -337,10 +337,11 @@ const styles = StyleSheet.create ({
 
 
    menuListStyle: {
-     marginTop: 20,
+     marginTop: 0,
      fontSize: 24,
      alignItems: 'flex-start',
      height: 100,
+     width: '90%',
      flexGrow: 0,
      opacity: 1,
      borderRadius: 4,
