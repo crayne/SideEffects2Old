@@ -214,6 +214,10 @@ function AddMedicationsDropdown(){
       alert("The medication list contains no medications.");
       return;
     }
+    if (global.MedicationListData.length==1){
+      alert("The interaction check requires two or more medications.");
+      return;
+    }
     state.navigate(destination);
   }
 
