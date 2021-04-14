@@ -335,6 +335,10 @@ const styles = StyleSheet.create ({
      flexGrow: 0,
      opacity: 1,
      borderRadius: 4,
+     borderLeftWidth: 2,
+     borderRightWidth: 2,
+     borderBottomWidth: 2,
+     borderColor: 'purple',
      backgroundColor: 'transparent',
      shadowColor: '#000',
      shadowOffset: {
