@@ -344,6 +344,10 @@ const styles = StyleSheet.create ({
      shadowOpacity: 0.22,
      shadowRadius: 2.22,
      elevation: 3,
+     position: 'absolute',
+     top: 52,
+     left: 20,
+     bottom: 0
    },
 
    medicationListStyle: {
@@ -362,7 +366,7 @@ const styles = StyleSheet.create ({
      },
      shadowOpacity: 0.22,
      shadowRadius: 2.22,
-     elevation: 3,
+     elevation: 1,
    },
 
 
