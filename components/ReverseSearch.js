@@ -64,10 +64,15 @@ function AddMedicationsDropdown(){
   const onChangeSearch = query => displayText(query);
 
   const [visible, setVisible] = React.useState(false);
+  const [shouldShow, setShouldShow] = React.useState(false);
+
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({ item }) => (
       <Item title={item.title} />
+  );
+  const renderMenuListItem = ({ item }) => (
+      <SymptomMenuItem title={item} />
   );
 
 
@@ -77,6 +82,7 @@ function AddMedicationsDropdown(){
     //Show menu with all symptoms that start with the letters in "query"
     if (query.length < 3){
       closeMenu();
+      setShouldShow(false);
       return;
     }
     //TODO: if query.length == 3, get all medications from database that start with the 3 letters of the query, and
@@ -102,6 +108,7 @@ function AddMedicationsDropdown(){
     if (state.menuItems.length != 0){
       closeMenu();
       openMenu();
+      setShouldShow(true);
     }
     return query;
   }
@@ -130,6 +137,17 @@ function AddMedicationsDropdown(){
     </View>
   );
 
+    const SymptomMenuItem = ({ title }) => (
+      <View style={styles.medicationListItem}>
+        <TouchableHighlight>
+          <Text style={styles.medicationListItemText}
+            onPress={() => onPressDropdownItemHandlerReverse(title)}>
+            {title}
+          </Text>
+        </TouchableHighlight>
+      </View>
+    );
+
   const onPressDropdownItemHandlerReverse = (value) => {
     console.log("In ReverseSearch onPressDropdownItemHandlerReverse, symptom = " + value);
 
@@ -151,6 +169,7 @@ function AddMedicationsDropdown(){
 
     /* console.log("MedicationHasSideEffect returned: " + global.filteredReverseSearchResultList); */
     closeMenu();
+    setShouldShow(false);
     medicationListVisibility = 1;
   };
 
@@ -216,6 +235,19 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
+    {shouldShow ? (
+
+      <SafeAreaView style={styles.menuListStyle}>
+       <FlatList style={styles.medicationList}
+         data={state.items}
+         renderItem={renderMenuListItem}
+         keyExtractor={(item, index) => index.toString()}
+
+       />
+      </SafeAreaView>
+
+    ) : null}
+
     <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
 
     <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
@@ -243,25 +275,6 @@ function AddMedicationsDropdown(){
          </Text>
        </TouchableOpacity>
      </View>
-
-
-
-    <ScrollView>
-      <Menu style={styles.menu}
-        visible={visible}
-        onDismiss={closeMenu}
-        anchor={<Button style={{height: 1, color: "white"}}></Button>}>
-        {state.items.map((row, index) => (
-            <Menu.Item style={styles.menuItem}
-            key={index}
-            title={row}
-            onPress={() => onPressDropdownItemHandlerReverse(row)}
-          />
-        ))}
-
-      </Menu>
-    </ScrollView>
-
 
   </View>
 
@@ -303,6 +316,35 @@ const styles = StyleSheet.create ({
        marginTop:20,
        textAlign: 'center'
      },
+
+
+    menuListStyle: {
+      marginTop: 0,
+      fontSize: 24,
+      alignItems: 'flex-start',
+      height: 100,
+      width: '90%',
+      flexGrow: 0,
+      opacity: 1,
+      borderRadius: 4,
+      borderLeftWidth: 2,
+      borderRightWidth: 2,
+      borderBottomWidth: 2,
+      borderColor: 'purple',
+      backgroundColor: 'transparent',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      elevation: 3,
+      position: 'absolute',
+      top: 52,
+      left: 20,
+      bottom: 0
+},
 
     medicationList: {
       width: '100%',
