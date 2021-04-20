@@ -5,7 +5,7 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 
- const localHost =  "http://192.168.1.161:8888/sideEffectsNewData";
+ const localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
 
  const serverHost = "http://www.oryxtech.net/sideEffectsNewRxnav";
 
