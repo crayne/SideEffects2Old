@@ -5,18 +5,13 @@ import { View, StyleSheet, SafeAreaView, Text} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu } from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 
- const localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
-
- const serverHost = "http://www.oryxtech.net/sideEffectsNewData";
  const nuiUrl =  "http://rxnav.nlm.nih.gov/REST/search?conceptName=";
  const getInteractionsPhpUrl = "/interactions.php";
 
- //const urlBase =  serverHost;
- const urlBase =  localHost;
  var outsideResponse;
 
 function GetAllSymptomNames(query) {
-  const searchUrl = urlBase + "/autoCompleteSymptoms.php?searchValue=" + query;
+  const searchUrl = global.urlBase + "/autoCompleteSymptoms.php?searchValue=" + query;
   console.log("In GetAllSymptomNames, searchUrl = " + searchUrl);
 
   var request = new XMLHttpRequest();

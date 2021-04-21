@@ -23,6 +23,12 @@ global.filteredReverseSearchResultList;
 global.interactionsList;
 global.MedicationListData = Array();
 
+global.localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
+global.serverHost = "http://www.oryxtech.net/sideEffectsNewData";
+global.urlBase = global.localHost;
+
+
+
 console.disableYellowBox = true;
 
 AppRegistry.registerComponent(appName, () => App);
