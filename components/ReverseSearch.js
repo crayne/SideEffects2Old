@@ -93,27 +93,12 @@ function AddMedicationsDropdown(){
       console.log("Search string is = " + query);
       global.filteredReverseSearchMenuList = "";
       GetAllSymptomNames(query);
-      filterIntervalSymptoms = setInterval(CheckFilteredSymptomList, 1000);
-
-    }
-    var i = 0;
-    console.log("Putting items from server into menu, number of items = " + state.items.length);
-    state.menuItems.length = 0;
-    for (i=0; i<state.items.length; i++){
-        var itemName = state.items[i];
-        if (itemName.indexOf(query) != -1){
-          state.menuItems.push(itemName);
-        }
-    }
-    if (state.menuItems.length != 0){
-      closeMenu();
-      openMenu();
-      setShouldShow(true);
+      filterIntervalSymptoms = setInterval(function(){ CheckFilteredSymptomList(query) }, 1000);
     }
     return query;
   }
 
-  function CheckFilteredSymptomList(){
+  function CheckFilteredSymptomList(query){
     if (global.filteredReverseSearchMenuList == ""){
       return;
     }
@@ -122,13 +107,24 @@ function AddMedicationsDropdown(){
     console.log("Filtered Symptom List =  " + global.filteredReverseSearchMenuList);
     state.items = global.filteredReverseSearchMenuList.split(",");
     console.log("last item is: " + state.items[state.items.length - 1]);
-    if (state.items.length != 0){
-      state.items.pop();
-      closeMenu();
-      openMenu();
-
+    if (state.items.length == 0){
+        global.filteredReverseSearchMenuList = "";
     }
-    global.filteredReverseSearchMenuList = "";
+      var i = 0;
+      console.log("Putting items from server into menu, number of items = " + state.items.length);
+      state.menuItems.length = 0;
+      for (i=0; i<state.items.length; i++){
+          var itemName = state.items[i];
+          if (itemName.indexOf(query) != -1){
+            state.menuItems.push(itemName);
+          }
+      }
+      if (state.menuItems.length != 0){
+        closeMenu();
+        openMenu();
+        setShouldShow(true);
+      }
+
   }
 
   const Item = ({ title }) => (
