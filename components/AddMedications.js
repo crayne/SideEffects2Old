@@ -83,7 +83,7 @@ function AddMedicationsDropdown(){
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query){
     setSearchQuery(query);
-    //alert("text = " + query);
+    console.log("In AddMedication.displayText, query length = " + query.length);
     //Show menu with all medications that start with the letters in "query"
     if (query.length < 3){
       closeMenu();
@@ -99,11 +99,26 @@ function AddMedicationsDropdown(){
       console.log("Search string is = " + query);
       global.filteredMedicationList = "";
       GetAllMedicationNames(query);
-      filterInterval = setInterval(CheckFilteredMedicationList, 1000);
+      filterInterval = setInterval(function(){ CheckFilteredMedicationList(query) }, 1000);
+    }
 
+    return query;
+  }
+
+  function CheckFilteredMedicationList(query){
+    if (global.filteredMedicationList == ""){
+      return;
+    }
+    clearInterval(filterInterval);
+    global.filteredMedicationList = global.filteredMedicationList.toLowerCase();
+    console.log("In CheckFilteredMedicationList, Filtered Medication List =  " + global.filteredMedicationList);
+    state.items = global.filteredMedicationList.split(",");
+    console.log("In CheckFilteredMedicationList, split global.filteredMedicationList length = " + state.items.length);
+    if (state.items.length == 0){
+          global.filteredMedicationList = "";
     }
     var i = 0;
-    console.log("Putting items from server into menu");
+    console.log("Putting items from server into menu, state.items.length = " + state.items.length);
     state.menuItems.length = 0;
     for (i=0; i<state.items.length; i++){
         var itemName = state.items[i];
@@ -111,30 +126,10 @@ function AddMedicationsDropdown(){
           state.menuItems.push(itemName);
         }
     }
-    if (state.menuItems.length != 0){
-      closeMenu();
-      openMenu();
-      setShouldShow(true);
-    }
-    return query;
-  }
-
-  function CheckFilteredMedicationList(){
-    if (global.filteredMedicationList == ""){
-      return;
-    }
-    clearInterval(filterInterval);
-    global.filteredMedicationList = global.filteredMedicationList.toLowerCase();
-    console.log("Filtered Medication List =  " + global.filteredMedicationList);
-    state.items = global.filteredMedicationList.split(",");
-    console.log("last item is: " + state.items[state.items.length - 1]);
-    if (state.items.length != 0){
-      state.items.pop();
-      closeMenu();
-      openMenu();
-
-    }
-    global.filteredMedicationList = "";
+    state.items.pop();
+    closeMenu();
+    openMenu();
+    setShouldShow(true);
   }
   /*
   TODO:
