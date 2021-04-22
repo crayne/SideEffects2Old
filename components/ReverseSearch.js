@@ -231,19 +231,6 @@ function AddMedicationsDropdown(){
       value={searchQuery}
     />
 
-    {shouldShow ? (
-
-      <SafeAreaView style={styles.menuListStyle}>
-       <FlatList style={styles.medicationList}
-         data={state.items}
-         renderItem={renderMenuListItem}
-         keyExtractor={(item, index) => index.toString()}
-
-       />
-      </SafeAreaView>
-
-    ) : null}
-
     <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
 
     <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
@@ -263,6 +250,19 @@ function AddMedicationsDropdown(){
          keyExtractor={item => item.id.toString()}
        />
      </SafeAreaView>
+     
+         {shouldShow ? (
+
+           <SafeAreaView style={styles.menuListStyle}>
+            <FlatList style={styles.medicationList}
+              data={state.items}
+              renderItem={renderMenuListItem}
+              keyExtractor={(item, index) => index.toString()}
+
+            />
+           </SafeAreaView>
+
+         ) : null}
 
      <View style={se2MainButton.buttonView} >
        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
