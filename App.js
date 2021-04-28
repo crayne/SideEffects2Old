@@ -87,12 +87,13 @@ const styles = StyleSheet.create ({
    title: {
       fontSize : 30,
       marginBottom: 10,
+      textAlign: "center",
       fontWeight: 'bold'
    },
    explainText: {
       fontSize : 26,
       marginTop: 40,
-      marginBottom: 160,
+      marginBottom: 100,
       textAlign: "center",
       fontWeight: 'bold'
     },
