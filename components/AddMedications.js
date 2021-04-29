@@ -162,12 +162,15 @@ function AddMedicationsDropdown(){
 
   const MedMenuItem = ({ title }) => (
     <View style={styles.medicationListItem}>
-      <TouchableHighlight>
-        <Text style={styles.medicationListItemText}
-          onPress={() => onPressDropdownItemHandler(title)}>
-          {title}
-        </Text>
-      </TouchableHighlight>
+      <ScrollView horizontal>
+        <TouchableHighlight>
+          <Text numberOfLines={1} style={styles.menuListItemText}
+            onPress={() => onPressDropdownItemHandler(title)}>
+            {title}
+          </Text>
+        </TouchableHighlight>
+      </ScrollView>
+
     </View>
   );
 
@@ -381,12 +384,19 @@ const styles = StyleSheet.create ({
     medicationListItemText: {
       fontSize: 24,
       marginLeft: 5,
-      marginRight: 40
+      marginRight: 40,
     },
 
     medicationListItemIcon: {
       marginRight: 5,
       marginTop: 2
+    },
+
+    menuListItemText: {
+      fontSize: 24,
+      marginLeft: 5,
+      marginRight: 40,
+      textAlign: "right"
     },
 
     separator: {
