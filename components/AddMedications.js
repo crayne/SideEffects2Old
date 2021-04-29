@@ -11,7 +11,6 @@ import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
 import InteractionsScreen from './Interactions.js'
 import {SaveMedicationList, IsMedicationListNull} from './PersistMedicationList.js';
-import {Swipeable} from 'react-native-gesture-handler';
 
 
 
@@ -133,13 +132,6 @@ function AddMedicationsDropdown(){
     openMenu();
     setShouldShow(true);
   }
-  /*
-  TODO:
-  Visual list does not update correctly, although the underlying data does update correctly
-  Try using a ScrollView again, but this time eliminate the id in each element of the array, so
-  that the array is no longer an array of objects
-  Also try using left swipe for delete instead of trashcan
-  */
 
   const handleMedicationListItemDelete = (medName) => {
     console.log("In handleMedicationListItemDelete");
@@ -157,28 +149,15 @@ function AddMedicationsDropdown(){
     state.navigate("EnterMedications");
   }
 
-  const LeftAction = (title) => {
-    console.log("swiped left on " + title);
-    <View>
-    <Text>Completed</Text>
-    </View>
-  }
-
   const Item = ({ title }) => (
-    <Swipeable
-      onSwipeStart={() => this.setState({isSwiping: true})}
-      onSwipeRelease={() => this.setState({isSwiping: false})}
-      renderLeftActions={LeftAction(title)}
-      onSwipeableLeftOpen={() => console.log("Left swipeable open")}>
-      <View style={styles.medicationListItem}>
-          <Text style={styles.medicationListItemText}>{title}</Text>
-        <TouchableHighlight>
-          <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
-            onPress={() => handleMedicationListItemDelete(title)}
-          />
-        </TouchableHighlight>
-      </View>
-    </Swipeable>
+    <View style={styles.medicationListItem}>
+        <Text style={styles.medicationListItemText}>{title}</Text>
+      <TouchableHighlight>
+        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+          onPress={() => handleMedicationListItemDelete(title)}
+        />
+      </TouchableHighlight>
+    </View>
   );
 
   const MedMenuItem = ({ title }) => (
