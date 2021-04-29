@@ -11,6 +11,7 @@ import {se2MainButton} from './SE2Styles.js'
 import ReverseSearchScreen from './ReverseSearch.js'
 import InteractionsScreen from './Interactions.js'
 import {SaveMedicationList, IsMedicationListNull} from './PersistMedicationList.js';
+import {Swipeable} from 'react-native-gesture-handler';
 
 
 
@@ -155,15 +156,26 @@ function AddMedicationsDropdown(){
     state.navigate("EnterMedications");
   }
 
-  const Item = ({ title }) => (
-    <View style={styles.medicationListItem}>
-      <Text style={styles.medicationListItemText}>{title}</Text>
-      <TouchableHighlight>
-        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
-          onPress={() => handleMedicationListItemDelete(title)}
-        />
-      </TouchableHighlight>
+  const LeftAction = () => {
+    console.log("swiped left");
+    <View>
+    <Text>Completed</Text>
     </View>
+  }
+
+  const Item = ({ title }) => (
+    <Swipeable
+      renderLeftActions={LeftAction}
+      onSwipeableLeftOpen={() => console.log("Left swipeable open")}>
+      <View style={styles.medicationListItem}>
+          <Text style={styles.medicationListItemText}>{title}</Text>
+        <TouchableHighlight>
+          <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+            onPress={() => handleMedicationListItemDelete(title)}
+          />
+        </TouchableHighlight>
+      </View>
+    </Swipeable>
   );
 
   const MedMenuItem = ({ title }) => (

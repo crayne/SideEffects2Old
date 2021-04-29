@@ -24,9 +24,9 @@ global.interactionsList;
 global.MedicationListData = Array();
 
 //This is for an emulator
-global.localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
+//global.localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
 //This is for a connected Android phone
-//global.localHost =  "http://localhost:8888/sideEffectsNewData";
+global.localHost =  "http://localhost:8888/sideEffectsNewData";
 
 global.serverHost = "http://www.oryxtech.net/sideEffectsNewData";
 global.urlBase = global.localHost;
