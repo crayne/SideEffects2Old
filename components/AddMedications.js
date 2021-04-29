@@ -207,11 +207,12 @@ function AddMedicationsDropdown(){
   };
 
   const verifyAndGo = (destination) => {
+    console.log("In verifyAndGo, destination = " + destination);
     if (global.MedicationListData.length==0){
       alert("The medication list contains no medications.");
       return;
     }
-    if (global.MedicationListData.length==1){
+    if (global.MedicationListData.length==1 && destination == "Interactions") {
       alert("The interaction check requires two or more medications.");
       return;
     }
