@@ -106,7 +106,7 @@ function AddMedicationsDropdown(){
     }
     global.filteredReverseSearchMenuList = global.filteredReverseSearchMenuList.toLowerCase();
     console.log("Filtered Symptom List =  " + global.filteredReverseSearchMenuList);
-    state.items = global.filteredReverseSearchMenuList.split(",");
+    state.items = global.filteredReverseSearchMenuList.split("+");
     console.log("last item is: " + state.items[state.items.length - 1]);
     if (state.items.length == 0){
         global.filteredReverseSearchMenuList = "";
@@ -143,7 +143,7 @@ function AddMedicationsDropdown(){
               {title}
             </Text>
           </TouchableHighlight>
-        </ScrollView>    
+        </ScrollView>
       </View>
     );
 
@@ -173,10 +173,11 @@ function AddMedicationsDropdown(){
   };
 
   function CheckFilteredMedicationList(){
+    clearInterval(filterIntervalMedications);
+
     if (global.filteredReverseSearchResultList == ""){
       return;
     }
-    clearInterval(filterIntervalMedications);
     global.filteredReverseSearchResultList = global.filteredReverseSearchResultList.toLowerCase();
     console.log("Filtered Medication List =  " + global.filteredReverseSearchResultList);
     var resultArray = global.filteredReverseSearchResultList.split(",");
