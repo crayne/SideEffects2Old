@@ -402,6 +402,7 @@ const styles = StyleSheet.create ({
     medicationListItemText: {
       fontSize: 24,
       marginLeft: 5,
+      marginRight: 40
     },
 
     medicationListItemIcon: {
