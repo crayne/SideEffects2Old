@@ -21,7 +21,8 @@ state = {
   items: Array(),
   menuItems: Array(),
   doMedListRefresh: false,
-  navigate: null
+  navigate: null,
+  isSwiping: false
 }
 
 
@@ -165,6 +166,8 @@ function AddMedicationsDropdown(){
 
   const Item = ({ title }) => (
     <Swipeable
+      onSwipeStart={() => this.setState({isSwiping: true})}
+      onSwipeRelease={() => this.setState({isSwiping: false})}
       renderLeftActions={LeftAction}
       onSwipeableLeftOpen={() => console.log("Left swipeable open")}>
       <View style={styles.medicationListItem}>
