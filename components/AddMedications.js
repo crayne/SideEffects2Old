@@ -157,8 +157,8 @@ function AddMedicationsDropdown(){
     state.navigate("EnterMedications");
   }
 
-  const LeftAction = () => {
-    console.log("swiped left");
+  const LeftAction = (title) => {
+    console.log("swiped left on " + title);
     <View>
     <Text>Completed</Text>
     </View>
@@ -168,7 +168,7 @@ function AddMedicationsDropdown(){
     <Swipeable
       onSwipeStart={() => this.setState({isSwiping: true})}
       onSwipeRelease={() => this.setState({isSwiping: false})}
-      renderLeftActions={LeftAction}
+      renderLeftActions={LeftAction(title)}
       onSwipeableLeftOpen={() => console.log("Left swipeable open")}>
       <View style={styles.medicationListItem}>
           <Text style={styles.medicationListItemText}>{title}</Text>
