@@ -99,10 +99,11 @@ function AddMedicationsDropdown(){
   }
 
   function CheckFilteredSymptomList(query){
+    clearInterval(filterIntervalSymptoms);
+
     if (global.filteredReverseSearchMenuList == ""){
       return;
     }
-    clearInterval(filterIntervalSymptoms);
     global.filteredReverseSearchMenuList = global.filteredReverseSearchMenuList.toLowerCase();
     console.log("Filtered Symptom List =  " + global.filteredReverseSearchMenuList);
     state.items = global.filteredReverseSearchMenuList.split(",");
@@ -250,7 +251,7 @@ function AddMedicationsDropdown(){
          keyExtractor={item => item.id.toString()}
        />
      </SafeAreaView>
-     
+
          {shouldShow ? (
 
            <SafeAreaView style={styles.menuListStyle}>
