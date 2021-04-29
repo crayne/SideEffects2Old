@@ -107,13 +107,13 @@ function AddMedicationsDropdown(){
   }
 
   function CheckFilteredMedicationList(query){
+    clearInterval(filterInterval);
     if (global.filteredMedicationList == ""){
       return;
     }
-    clearInterval(filterInterval);
     global.filteredMedicationList = global.filteredMedicationList.toLowerCase();
     console.log("In CheckFilteredMedicationList, Filtered Medication List =  " + global.filteredMedicationList);
-    state.items = global.filteredMedicationList.split(",");
+    state.items = global.filteredMedicationList.split(":");
     console.log("In CheckFilteredMedicationList, split global.filteredMedicationList length = " + state.items.length);
     if (state.items.length == 0){
           global.filteredMedicationList = "";
