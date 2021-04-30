@@ -64,11 +64,11 @@ function EnterMedicationsScreen(props) {
 
 
 function AddMedicationsDropdown(){
+  const [shouldShow, setShouldShow] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => displayText(query);
 
   const [visible, setVisible] = React.useState(false);
-  const [shouldShow, setShouldShow] = React.useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
@@ -207,6 +207,7 @@ function AddMedicationsDropdown(){
   };
 
   const verifyAndGo = (destination) => {
+    setShouldShow(false);
     console.log("In verifyAndGo, destination = " + destination);
     if (global.MedicationListData.length==0){
       alert("The medication list contains no medications.");
