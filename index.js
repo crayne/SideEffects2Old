@@ -29,7 +29,7 @@ global.MedicationListData = Array();
 global.localHost =  "http://localhost:8888/sideEffectsNewData";
 
 global.serverHost = "http://www.oryxtech.net/sideEffectsNewData";
-global.urlBase = global.localHost;
+global.urlBase = global.serverHost;
 
 
 
