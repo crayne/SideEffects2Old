@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
-import {TouchableHighlight} from 'react-native';
+import {TouchableHighlight, TouchableWithoutFeedback} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -52,12 +52,11 @@ function findItemInMedicationList(medName){
 function EnterMedicationsScreen(props) {
   state.navigate = props.navigation.navigate;
     return (
-      <PaperProvider>
-        <View style={styles.view}>
-          <Text style={styles.enterText}>Enter your medications:</Text>
-          { AddMedicationsDropdown()}
+        <View
+          style={styles.view}>
+            <Text style={styles.enterText}>Enter your medications:</Text>
+            { AddMedicationsDropdown()}
         </View>
-      </PaperProvider>
     );
 }
 
@@ -220,7 +219,9 @@ function AddMedicationsDropdown(){
     state.navigate(destination);
   }
   return (
-
+  <TouchableWithoutFeedback
+    onPress={() => setShouldShow(false)}
+  >
   <View
     style = {{
       flexDirection: 'column',
@@ -288,6 +289,7 @@ function AddMedicationsDropdown(){
 
 
   </View>
+  </TouchableWithoutFeedback>
 
   );
 
