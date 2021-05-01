@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React, { useState, Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, SafeAreaView, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
-import {TouchableHighlight} from 'react-native';
+import {TouchableHighlight, TouchableWithoutFeedback} from 'react-native';
 import { Button, TextInput, Provider as PaperProvider, Menu, List} from 'react-native-paper';
 import { Searchbar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -222,62 +222,64 @@ function AddMedicationsDropdown(){
  }
 
   return (
+  <TouchableWithoutFeedback
+    onPress={() => setShouldShow(false)}
+  >
+    <View
+      style = {{
+        flexDirection: 'column',
+        justifyContent: 'flex-start'
+      }}>
 
-  <View
-    style = {{
-      flexDirection: 'column',
-      justifyContent: 'flex-start'
-    }}>
+      <Searchbar style={styles.searchbar}
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
 
-    <Searchbar style={styles.searchbar}
-      placeholder="Search"
-      onChangeText={onChangeSearch}
-      value={searchQuery}
-    />
+      <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
 
-    <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
+      <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
+         <FlatList style={styles.medicationList}
+           ItemSeparatorComponent={
+             (({ highlighted }) => (
+             <View
+              style={[
+              styles.separator,
+              highlighted && { marginLeft: 0 }
+              ]}
+             />
+            ))
+           }
+           data={MedicationsForSymptom}
+           renderItem={renderMedicationListItem}
+           keyExtractor={item => item.id.toString()}
+         />
+       </SafeAreaView>
 
-    <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
-       <FlatList style={styles.medicationList}
-         ItemSeparatorComponent={
-           (({ highlighted }) => (
-           <View
-            style={[
-            styles.separator,
-            highlighted && { marginLeft: 0 }
-            ]}
-           />
-          ))
-         }
-         data={MedicationsForSymptom}
-         renderItem={renderMedicationListItem}
-         keyExtractor={item => item.id.toString()}
-       />
-     </SafeAreaView>
+           {shouldShow ? (
 
-         {shouldShow ? (
+             <SafeAreaView style={styles.menuListStyle}>
+              <FlatList style={styles.medicationList}
+                data={state.items}
+                renderItem={renderMenuListItem}
+                keyExtractor={(item, index) => index.toString()}
 
-           <SafeAreaView style={styles.menuListStyle}>
-            <FlatList style={styles.medicationList}
-              data={state.items}
-              renderItem={renderMenuListItem}
-              keyExtractor={(item, index) => index.toString()}
+              />
+             </SafeAreaView>
 
-            />
-           </SafeAreaView>
+           ) : null}
 
-         ) : null}
-
-     <View style={se2MainButton.buttonView} >
-       <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
-             Home
-         </Text>
-       </TouchableOpacity>
-     </View>
+       <View style={se2MainButton.buttonView} >
+         <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+           <Text style = {se2MainButton.innerButtonStyle}  onPress={() => state.navigate('Home')}>
+               Home
+           </Text>
+         </TouchableOpacity>
+       </View>
 
   </View>
-
+  </TouchableWithoutFeedback>
   );
 
 }

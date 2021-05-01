@@ -222,73 +222,73 @@ function AddMedicationsDropdown(){
   <TouchableWithoutFeedback
     onPress={() => setShouldShow(false)}
   >
-  <View
-    style = {{
-      flexDirection: 'column',
-      justifyContent: 'center',
-    }}>
+    <View
+      style = {{
+        flexDirection: 'column',
+        justifyContent: 'center',
+      }}>
 
-    <Searchbar style={styles.searchbar}
-      placeholder="Search"
-      onChangeText={onChangeSearch}
-      value={searchQuery}
-    />
-
-
-    <SafeAreaView style={styles.medicationListStyle}>
-       <FlatList style={styles.medicationList}
-         ItemSeparatorComponent={
-           (({ highlighted }) => (
-           <View
-            style={[
-            styles.separator,
-            highlighted && { marginLeft: 0 }
-            ]}
-           />
-          ))
-         }
-         data={global.MedicationListData}
-         renderItem={renderMedicationListItem}
-         keyExtractor={item => item.id.toString()}
-         extraData={medListRefresh}
-
-       />
-     </SafeAreaView>
-
-         {shouldShow ? (
-
-           <SafeAreaView style={styles.menuListStyle}>
-            <FlatList style={styles.medicationList}
-              data={state.items}
-              renderItem={renderMenuListItem}
-              keyExtractor={(item, index) => index.toString()}
-
-            />
-           </SafeAreaView>
-
-         ) : null}
+      <Searchbar style={styles.searchbar}
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
 
 
-     <View style={se2MainButton.buttonView} >
-       <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}  onPress={() => verifyAndGo('ReverseSearch')}>
-             Reverse Search
-         </Text>
-       </TouchableOpacity>
-     </View>
+      <SafeAreaView style={styles.medicationListStyle}>
+         <FlatList style={styles.medicationList}
+           ItemSeparatorComponent={
+             (({ highlighted }) => (
+             <View
+              style={[
+              styles.separator,
+              highlighted && { marginLeft: 0 }
+              ]}
+             />
+            ))
+           }
+           data={global.MedicationListData}
+           renderItem={renderMedicationListItem}
+           keyExtractor={item => item.id.toString()}
+           extraData={medListRefresh}
 
-     <View style={se2MainButton.buttonView} >
-       <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-         <Text style = {se2MainButton.innerButtonStyle}
-          onPress={() => verifyAndGo('Interactions')}>
-             Interactions
-         </Text>
-       </TouchableOpacity>
-     </View>
+         />
+       </SafeAreaView>
+
+           {shouldShow ? (
+
+             <SafeAreaView style={styles.menuListStyle}>
+              <FlatList style={styles.medicationList}
+                data={state.items}
+                renderItem={renderMenuListItem}
+                keyExtractor={(item, index) => index.toString()}
+
+              />
+             </SafeAreaView>
+
+           ) : null}
+
+
+       <View style={se2MainButton.buttonView} >
+         <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+           <Text style = {se2MainButton.innerButtonStyle}  onPress={() => verifyAndGo('ReverseSearch')}>
+               Reverse Search
+           </Text>
+         </TouchableOpacity>
+       </View>
+
+       <View style={se2MainButton.buttonView} >
+         <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+           <Text style = {se2MainButton.innerButtonStyle}
+            onPress={() => verifyAndGo('Interactions')}>
+               Interactions
+           </Text>
+         </TouchableOpacity>
+       </View>
 
 
 
-  </View>
+    </View>
   </TouchableWithoutFeedback>
 
   );
