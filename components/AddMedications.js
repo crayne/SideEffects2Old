@@ -219,9 +219,7 @@ function AddMedicationsDropdown(){
     state.navigate(destination);
   }
   return (
-  <TouchableWithoutFeedback
-    onPress={() => setShouldShow(false)}
-  >
+
     <View
       style = {{
         flexDirection: 'column',
@@ -256,7 +254,9 @@ function AddMedicationsDropdown(){
        </SafeAreaView>
 
            {shouldShow ? (
-
+<TouchableWithoutFeedback
+  onPress={() => setShouldShow(false)}
+>
              <SafeAreaView style={styles.menuListStyle}>
               <FlatList style={styles.medicationList}
                 data={state.items}
@@ -265,7 +265,7 @@ function AddMedicationsDropdown(){
 
               />
              </SafeAreaView>
-
+</TouchableWithoutFeedback>
            ) : null}
 
 
@@ -289,7 +289,6 @@ function AddMedicationsDropdown(){
 
 
     </View>
-  </TouchableWithoutFeedback>
 
   );
 
