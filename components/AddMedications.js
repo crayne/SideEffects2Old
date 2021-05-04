@@ -235,6 +235,7 @@ function AddMedicationsDropdown(){
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
+        autoCapitalize="none"
       />
 
 
