@@ -14,14 +14,14 @@ import {SaveMedicationList, IsMedicationListNull} from './PersistMedicationList.
 
 
 
-var filterInterval;
 
 state = {
   items: Array(),
   menuItems: Array(),
   doMedListRefresh: false,
   navigate: null,
-  isSwiping: false
+  isSwiping: false,
+  filterInterval: 0
 }
 
 
@@ -99,14 +99,19 @@ function AddMedicationsDropdown(){
       console.log("Search string is = " + query);
       global.filteredMedicationList = "";
       GetAllMedicationNames(query);
-      filterInterval = setInterval(function(){ CheckFilteredMedicationList(query) }, 1000);
+      clearInterval(state.filterInterval);
+      state.filterInterval = setInterval(function(){ CheckFilteredMedicationList(query) }, 1000);
+      console.log("After setInterval, state.filterInterval = " + state.filterInterval);
     }
 
     return query;
   }
 
   function CheckFilteredMedicationList(query){
-    clearInterval(filterInterval);
+    clearInterval(state.filterInterval);
+
+    console.log("After clearInterval, state.filterInterval = " + state.filterInterval);
+
     if (global.filteredMedicationList == ""){
       return;
     }
