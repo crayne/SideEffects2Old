@@ -234,6 +234,7 @@ function AddMedicationsDropdown(){
         placeholder="Search"
         onChangeText={onChangeSearch}
         value={searchQuery}
+        theme={{colors: {text: "black"}}}
       />
 
       <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
@@ -304,7 +305,8 @@ const styles = StyleSheet.create ({
 
    searchbar: {
      width: '100%',
-     marginBottom: 0
+     marginBottom: 0,
+     backgroundColor: "white"
    },
 
    enterText: {
