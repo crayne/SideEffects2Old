@@ -90,17 +90,16 @@ function AddMedicationsDropdown(){
     //TODO: include ids - make menuItems an array of objects
     if (query.length >= 3){
       //Get all medications that start with the characters in 'query' and store them in 'items'
-      var lowerQuery = query.toLowerCase();
-      console.log("Search string is = " + lowerQuery);
+      console.log("Search string is = " + query);
       global.filteredReverseSearchMenuList = "";
-      GetAllSymptomNames(lowerQuery);
+      GetAllSymptomNames(query);
       clearInterval(filterIntervalSymptoms);
-      filterIntervalSymptoms = setInterval(function(){ CheckFilteredSymptomList(lowerQuery) }, 1000);
+      filterIntervalSymptoms = setInterval(function(){ CheckFilteredSymptomList(query) }, 1000);
     }
-    return lowerQuery;
+    return query;
   }
 
-  function CheckFilteredSymptomList(lowerQuery){
+  function CheckFilteredSymptomList(query){
     clearInterval(filterIntervalSymptoms);
 
     if (global.filteredReverseSearchMenuList == ""){
@@ -118,7 +117,7 @@ function AddMedicationsDropdown(){
       state.menuItems.length = 0;
       for (i=0; i<state.items.length; i++){
           var itemName = state.items[i];
-          if (itemName.indexOf(lowerQuery) != -1){
+          if (itemName.indexOf(query) != -1){
             state.menuItems.push(itemName);
           }
       }
@@ -235,6 +234,7 @@ function AddMedicationsDropdown(){
         onChangeText={onChangeSearch}
         value={searchQuery}
         theme={{colors: {text: "black"}}}
+        autoCapitalize="none"
       />
 
       <Text style={styles.listTitleText}>Medications which could cause the symptom:</Text>
