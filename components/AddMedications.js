@@ -157,7 +157,7 @@ function AddMedicationsDropdown(){
     <View style={styles.medicationListItem}>
         <Text style={styles.medicationListItemText}>{title}</Text>
       <TouchableHighlight>
-        <Icon style={styles.deleteIcon} name="trash-can-outline" size={30} color="#000"
+        <Icon style={styles.deleteIcon} name="trash-can-outline" size={20} color="#000"
           onPress={() => handleMedicationListItemDelete(title)}
         />
       </TouchableHighlight>
@@ -413,6 +413,10 @@ const styles = StyleSheet.create ({
       borderWidth: 1,
       backgroundColor: 'blue'
     },
+
+    deleteIcon: {
+      marginTop: 5
+    }
 
 })
 
