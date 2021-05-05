@@ -108,8 +108,7 @@ function AddMedicationsDropdown(){
     global.filteredReverseSearchMenuList = global.filteredReverseSearchMenuList.toLowerCase();
     console.log("Filtered Symptom List =  " + global.filteredReverseSearchMenuList);
     state.items = global.filteredReverseSearchMenuList.split("+");
-    console.log("last item is: " + state.items[state.items.length - 1]);
-    if (state.items.length == 0){
+    if (state.items.length == 0 || state.items[0] == null){
         global.filteredReverseSearchMenuList = "";
     }
       var i = 0;
@@ -183,6 +182,11 @@ function AddMedicationsDropdown(){
     console.log("Filtered Medication List =  " + global.filteredReverseSearchResultList);
     var resultArray = global.filteredReverseSearchResultList.split(",");
     var newId;
+    console.log("In CheckFilteredMedicationList, resultArray length = " + resultArray.length);
+    if (resultArray.length == 0 || resultArray[0] == "" || resultArray[0] == null){
+      const mObject = {title:"None of your medications have this side effect", id:"1"};
+      MedicationsForSymptom.push(mObject);
+    }
     for (var i=0; i<resultArray.length-1; i++) {
       if (MedicationsForSymptom.length == 0) newId = "1";
       else {
