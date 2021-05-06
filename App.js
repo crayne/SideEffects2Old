@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 100,
     marginLeft: 16,
-    marginRight: 16,
+    marginRight: 16
   },
   title: {
     fontSize: 30,

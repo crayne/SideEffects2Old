@@ -285,7 +285,7 @@ function AddMedicationsDropdown() {
         <TouchableWithoutFeedback onPress={() => setShouldShow(false)}>
           <SafeAreaView style={styles.menuListStyle}>
             <FlatList
-              style={styles.medicationList}
+              style={styles.menuList}
               data={state.items}
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
@@ -390,6 +390,13 @@ const styles = StyleSheet.create({
   },
 
   medicationList: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 4,
+  },
+
+  
+  menuList: {
     width: '100%',
     backgroundColor: 'white',
     borderRadius: 4,
