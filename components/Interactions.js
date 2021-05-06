@@ -27,11 +27,8 @@ import {useFocusEffect} from '@react-navigation/native';
 
 var interactionsInterval;
 var filterIntervalMedications;
-const localHost = 'http://192.168.1.228:8888/sideEffectsNewData';
 
-const serverHost = 'http://www.oryxtech.net/sideEffectsNewData';
-
-const urlBase = localHost;
+const urlBase = global.localHost;
 
 state = {
   items: Array(),
