@@ -1,16 +1,15 @@
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
-
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
 const se2MainButton = StyleSheet.create({
   buttonView: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20
+    marginTop: 20,
   },
 
   homeButtonStyle: {
     backgroundColor: 'purple',
-    color: "white",
+    color: 'white',
     fontSize: 24,
     textAlign: 'center',
     textAlignVertical: 'center',
@@ -18,12 +17,12 @@ const se2MainButton = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 15,
     paddingRight: 15,
-    borderRadius: 5
+    borderRadius: 5,
   },
 
   innerButtonStyle: {
     backgroundColor: 'purple',
-    color: "white",
+    color: 'white',
     fontSize: 24,
     textAlign: 'center',
     textAlignVertical: 'center',
@@ -31,9 +30,8 @@ const se2MainButton = StyleSheet.create({
     paddingBottom: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 5
-  }
+    borderRadius: 5,
+  },
+});
 
-})
-
-export {se2MainButton}
+export {se2MainButton};

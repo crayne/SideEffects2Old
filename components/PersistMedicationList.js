@@ -1,57 +1,59 @@
 import 'react-native-gesture-handler';
-import React, { useState, Component } from 'react';
-import { AsyncStorage } from 'react-native';
+import React, {useState, Component} from 'react';
+import {AsyncStorage} from 'react-native';
 
-const medListKey = "MEDLISTKEY5";
+const medListKey = 'MEDLISTKEY5';
 
 async function SaveMedicationList(medListArray) {
   var strMedListArray = JSON.stringify(medListArray);
-  console.log("In SaveMedicationList, medListArray length = " + medListArray.length);
+  console.log(
+    'In SaveMedicationList, medListArray length = ' + medListArray.length,
+  );
 
-  console.log("In SaveMedicationList stringified medListArray = " + JSON.stringify(medListArray));
+  console.log(
+    'In SaveMedicationList stringified medListArray = ' +
+      JSON.stringify(medListArray),
+  );
   try {
     await AsyncStorage.setItem(medListKey, JSON.stringify(medListArray));
   } catch (error) {
-    console.log("Error saving medication list: " + error + ", " + medListArray);
+    console.log('Error saving medication list: ' + error + ', ' + medListArray);
   }
-
 }
 
 //Retrieves MedicationListArray
-async function RetrieveMedicationList(){
+async function RetrieveMedicationList() {
   try {
     const myArray = await AsyncStorage.getItem(medListKey);
     if (myArray !== null) {
       // We have data!!
       var parsedArray = JSON.parse(myArray);
       return parsedArray;
-    }
-    else {
+    } else {
       return null;
     }
   } catch (error) {
-        console.log("Error retrieving medication list: " + medListArray);
-        return;
+    console.log('Error retrieving medication list: ' + medListArray);
+    return;
   }
 }
 
-async function IsMedicationListNull(){
+async function IsMedicationListNull() {
   try {
     const myArray = await AsyncStorage.getItem(medListKey);
     if (myArray !== null) {
       // We have data!!
       return false;
-    }
-    else {
+    } else {
       return true;
     }
   } catch (error) {
-        return true;
+    return true;
   }
 }
 
-
-
-
-
-module.exports = {SaveMedicationList, RetrieveMedicationList, IsMedicationListNull};
+module.exports = {
+  SaveMedicationList,
+  RetrieveMedicationList,
+  IsMedicationListNull,
+};
