@@ -196,6 +196,13 @@ function AddMedicationsDropdown() {
     clearInterval(filterIntervalMedications);
 
     if (global.filteredReverseSearchResultList == '') {
+      console.log('In CheckFilteredMedicationList, returning because of null list');
+      const mObject = {
+        title: 'None of your medications have this side effect',
+        id: '1',
+      };
+      MedicationsForSymptom.push(mObject);
+      setSearchQuery('');
       return;
     }
     global.filteredReverseSearchResultList = global.filteredReverseSearchResultList.toLowerCase();
@@ -208,18 +215,7 @@ function AddMedicationsDropdown() {
       'In CheckFilteredMedicationList, resultArray length = ' +
         resultArray.length,
     );
-    if (
-      resultArray.length == 0 ||
-      resultArray[0] == '' ||
-      resultArray[0] == null
-    ) {
-      const mObject = {
-        title: 'None of your medications have this side effect',
-        id: '1',
-      };
-      MedicationsForSymptom.push(mObject);
-    }
-    for (var i = 0; i < resultArray.length - 1; i++) {
+    for (var i = 0; i < resultArray.length; i++) {
       if (MedicationsForSymptom.length == 0) newId = '1';
       else {
         var lastId = MedicationsForSymptom[MedicationsForSymptom.length - 1].id;

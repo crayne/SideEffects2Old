@@ -36,12 +36,14 @@ function SearchSideEffect(searchUrl) {
 
     if (request.status === 200) {
       console.log('success', request.responseText);
-      global.filteredReverseSearchResultList =
-        global.filteredReverseSearchResultList + request.responseText + ',';
-      console.log(
-        'global.filteredReverseSearchResultList = ' +
-          global.filteredReverseSearchResultList,
-      );
+      if (request.responseText != "") {
+        global.filteredReverseSearchResultList =
+          global.filteredReverseSearchResultList + request.responseText + ",";
+        console.log(
+          'global.filteredReverseSearchResultList = ' +
+            global.filteredReverseSearchResultList,
+        );
+      }
     } else {
       console.warn('error');
     }
