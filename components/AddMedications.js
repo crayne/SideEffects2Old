@@ -289,6 +289,7 @@ function AddMedicationsDropdown() {
               data={state.items}
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
+              contentContainerStyle={styles.menuContentContainer}
             />
           </SafeAreaView>
         </TouchableWithoutFeedback>
@@ -345,7 +346,6 @@ const styles = StyleSheet.create({
   menuListStyle: {
     marginTop: 0,
     fontSize: 24,
-    alignItems: 'flex-start',
     height: 100,
     width: '90%',
     flexGrow: 0,
@@ -370,6 +370,16 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
 
+  menuList: {
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius: 4,
+  },
+
+  menuContentContainer: {
+    alignItems: 'flex-start'
+  },
+
   medicationListStyle: {
     marginTop: 20,
     fontSize: 24,
@@ -390,13 +400,6 @@ const styles = StyleSheet.create({
   },
 
   medicationList: {
-    width: '100%',
-    backgroundColor: 'white',
-    borderRadius: 4,
-  },
-
-  
-  menuList: {
     width: '100%',
     backgroundColor: 'white',
     borderRadius: 4,
