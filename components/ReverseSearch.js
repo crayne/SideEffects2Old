@@ -147,7 +147,7 @@ function AddMedicationsDropdown() {
 
   const SymptomMenuItem = ({title}) => (
     <View style={styles.medicationListItem}>
-      <ScrollView horizontal>
+      <ScrollView horizontal keyboardShouldPersistTaps="handled">
         <TouchableHighlight>
           <Text
             numberOfLines={1}
@@ -291,7 +291,7 @@ function AddMedicationsDropdown() {
       </SafeAreaView>
 
       {shouldShow ? (
-        <ScrollView style={styles.menuListStyle}>
+        <ScrollView style={styles.menuListStyle} keyboardShouldPersistTaps="handled">
 
         <TouchableWithoutFeedback onPress={() => setShouldShow(false)}>
             <FlatList
@@ -300,6 +300,7 @@ function AddMedicationsDropdown() {
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
               contentContainerStyle={styles.menuContentContainer}
+              keyboardShouldPersistTaps="handled"
             />
         </TouchableWithoutFeedback>
         </ScrollView>
