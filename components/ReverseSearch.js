@@ -291,16 +291,19 @@ function AddMedicationsDropdown() {
       </SafeAreaView>
 
       {shouldShow ? (
+        <ScrollView style={styles.menuListStyle}>
+
         <TouchableWithoutFeedback onPress={() => setShouldShow(false)}>
-          <SafeAreaView style={styles.menuListStyle}>
             <FlatList
-              style={styles.medicationList}
+              style={styles.menuList}
               data={state.items}
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
+              contentContainerStyle={styles.menuContentContainer}
             />
-          </SafeAreaView>
         </TouchableWithoutFeedback>
+        </ScrollView>
+
       ) : null}
 
       <View style={se2MainButton.buttonView}>
@@ -354,30 +357,43 @@ const styles = StyleSheet.create({
   menuListStyle: {
     marginTop: 0,
     fontSize: 24,
-    alignItems: 'flex-start',
-    height: 100,
+    height: 200,
     width: '90%',
     flexGrow: 0,
-    opacity: 1,
-    borderRadius: 4,
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomWidth: 2,
-    borderColor: 'purple',
     backgroundColor: 'transparent',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
+    opacity: 1,
     elevation: 3,
     position: 'absolute',
     top: 52,
     left: 20,
     bottom: 0,
   },
+
+
+    menuList: {
+      width: '100%',
+      backgroundColor: 'white',
+      borderRadius: 4,
+      minHeight: 0,
+      maxHeight: 200,
+      borderRadius: 4,
+      borderLeftWidth: 2,
+      borderRightWidth: 2,
+      borderBottomWidth: 2,
+      borderColor: 'purple',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+      paddingTop: 15,
+    },
+
+    menuContentContainer: {
+      alignItems: 'flex-start'
+    },
 
   menuListItemText: {
     fontSize: 24,
