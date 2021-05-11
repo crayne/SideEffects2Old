@@ -268,7 +268,7 @@ function AddMedicationsDropdown() {
         autoCapitalize="none"
       />
 
-      <SafeAreaView style={styles.medicationListStyle}>
+      <ScrollView style={styles.medicationListStyle}>
         <FlatList
           style={styles.medicationList}
           ItemSeparatorComponent={({highlighted}) => (
@@ -279,7 +279,7 @@ function AddMedicationsDropdown() {
           keyExtractor={(item) => item.id.toString()}
           extraData={medListRefresh}
         />
-      </SafeAreaView>
+      </ScrollView>
 
       {shouldShow ? (
         <ScrollView style={styles.menuListStyle} keyboardShouldPersistTaps="handled">
@@ -386,26 +386,29 @@ const styles = StyleSheet.create({
   medicationListStyle: {
     marginTop: 20,
     fontSize: 24,
-    alignItems: 'flex-start',
     height: 200,
     flexGrow: 0,
     opacity: 1,
     borderRadius: 4,
+    elevation: 1,
     backgroundColor: 'transparent',
+
+  },
+
+  medicationList: {
+    width: '100%',
+    height: 200,
+    backgroundColor: 'white',
+    borderRadius: 4,
+    backgroundColor: 'white',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 1,
-  },
+    shadowRadius: 2.22
 
-  medicationList: {
-    width: '100%',
-    backgroundColor: 'white',
-    borderRadius: 4,
   },
 
   medicationListItem: {
