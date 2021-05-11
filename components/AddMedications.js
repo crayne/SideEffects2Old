@@ -62,10 +62,12 @@ function findItemInMedicationList(medName) {
 function EnterMedicationsScreen(props) {
   state.navigate = props.navigation.navigate;
   return (
-    <View style={styles.view}>
-      <Text style={styles.enterText}>Enter your medications:</Text>
-      {AddMedicationsDropdown()}
-    </View>
+    <SafeAreaView style={styles.safeAreaView}>
+      <View style={styles.view}>
+        <Text style={styles.enterText}>Enter your medications:</Text>
+        {AddMedicationsDropdown()}
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -445,6 +447,10 @@ const styles = StyleSheet.create({
   deleteIcon: {
     marginTop: 5,
   },
+
+  safeAreaView: {
+    flex: 1
+  }
 });
 
 module.exports = EnterMedicationsScreen;
