@@ -51,6 +51,7 @@ function getMedsAndNavigate(navigation) {
 
 function HomeScreen({navigation}) {
   return (
+    <View style={styles.mainView}>
     <View style={styles.view}>
       <Text style={styles.title}>Welcome to SideEffects2</Text>
 
@@ -66,6 +67,8 @@ function HomeScreen({navigation}) {
         </Text>
       </TouchableOpacity>
     </View>
+    </View>
+
   );
 }
 
@@ -94,13 +97,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 100,
     marginLeft: 16,
-    marginRight: 16
+    marginRight: 16,
+    backgroundColor: "#0d47a1"
   },
+
+  mainView: {
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#0d47a1"
+  },
+
   title: {
     fontSize: 30,
     marginBottom: 10,
     textAlign: 'center',
     fontWeight: 'bold',
+    color: "white"
   },
   explainText: {
     fontSize: 26,
@@ -108,5 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     textAlign: 'center',
     fontWeight: 'bold',
+    color: "white"
   },
 });

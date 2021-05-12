@@ -8,9 +8,10 @@ const se2MainButton = StyleSheet.create({
   },
 
   homeButtonStyle: {
-    backgroundColor: 'purple',
+    backgroundColor: '#2196f3',
     color: 'white',
-    fontSize: 24,
+    fontSize: 30,
+    fontWeight: 'bold',
     textAlign: 'center',
     textAlignVertical: 'center',
     paddingTop: 10,
