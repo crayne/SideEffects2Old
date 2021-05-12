@@ -60,12 +60,12 @@ function ReverseSearchScreen(props) {
   console.log('AllUserMedications item is: ' + AllUserMedications[0].title);
 
   return (
-    <PaperProvider>
+    <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.view}>
         <Text style={styles.enterText}>Enter a symptom:</Text>
         {AddMedicationsDropdown()}
       </View>
-    </PaperProvider>
+    </SafeAreaView>
   );
 }
 
@@ -242,20 +242,11 @@ function AddMedicationsDropdown() {
     return {
       marginTop: 20,
       fontSize: 24,
-      alignItems: 'flex-start',
       height: 200,
       flexGrow: 0,
       opacity: medicationListVisibility,
-      borderRadius: 4,
       backgroundColor: 'transparent',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2.22,
-      elevation: 3,
+     elevation: 3,
     };
   };
 
@@ -278,7 +269,7 @@ function AddMedicationsDropdown() {
         Medications which could cause the symptom:
       </Text>
 
-      <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
+      <ScrollView style={medicationListStyle(medicationListVisibility)}>
         <FlatList
           style={styles.medicationList}
           ItemSeparatorComponent={({highlighted}) => (
@@ -287,8 +278,9 @@ function AddMedicationsDropdown() {
           data={MedicationsForSymptom}
           renderItem={renderMedicationListItem}
           keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.contentContainer}
         />
-      </SafeAreaView>
+      </ScrollView>
 
       {shouldShow ? (
         <ScrollView style={styles.menuListStyle} keyboardShouldPersistTaps="handled">
@@ -299,7 +291,7 @@ function AddMedicationsDropdown() {
               data={state.items}
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
-              contentContainerStyle={styles.menuContentContainer}
+              contentContainerStyle={styles.contentContainer}
               keyboardShouldPersistTaps="handled"
             />
         </TouchableWithoutFeedback>
@@ -392,7 +384,7 @@ const styles = StyleSheet.create({
       paddingTop: 15,
     },
 
-    menuContentContainer: {
+    contentContainer: {
       alignItems: 'flex-start'
     },
 
@@ -407,6 +399,13 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'white',
     borderRadius: 4,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22
   },
 
   medicationListItem: {
@@ -427,10 +426,16 @@ const styles = StyleSheet.create({
   },
 
   separator: {
-    color: 'red',
-    borderWidth: 1,
-    backgroundColor: 'blue',
+    borderWidth: 2,
+    borderColor: "transparent"
   },
+
+  safeAreaView: {
+    flex: 1
+  }
+
 });
+
+
 
 module.exports = ReverseSearchScreen;
