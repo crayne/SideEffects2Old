@@ -31,6 +31,8 @@ global.localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
 global.serverHost = "http://www.oryxtech.net/sideEffectsNewData";
 global.urlBase = global.localHost;
 
+global.backgroundColor = '#0d47a1';
+
 
 
 console.disableYellowBox = true;

@@ -12,6 +12,8 @@ import {se2MainButton} from './components/SE2Styles.js';
 import {RetrieveMedicationList} from './components/PersistMedicationList.js';
 
 const Stack = createStackNavigator();
+const BackgroundColor = '#0d47a1';
+const SecondTextColor = '#90caf9';
 
 function getMedsAndNavigate(navigation) {
   RetrieveMedicationList().then(
@@ -50,6 +52,22 @@ function getMedsAndNavigate(navigation) {
 }
 
 function HomeScreen({navigation}) {
+
+  React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerTitle: (props) => (
+          <Text
+            {...props}
+            style={{color: SecondTextColor, fontSize: 24}}>
+              Home
+          </Text>
+        ),
+        headerStyle: {
+          backgroundColor: BackgroundColor, //Set Header color
+        },
+      });
+    }, [navigation]);
+
   return (
     <View style={styles.mainView}>
     <View style={styles.view}>
@@ -71,6 +89,8 @@ function HomeScreen({navigation}) {
 
   );
 }
+
+
 
 function SideEffects2() {
   return (
@@ -98,13 +118,13 @@ const styles = StyleSheet.create({
     paddingTop: 100,
     marginLeft: 16,
     marginRight: 16,
-    backgroundColor: "#0d47a1"
+    backgroundColor: BackgroundColor
   },
 
   mainView: {
     height: "100%",
     width: "100%",
-    backgroundColor: "#0d47a1"
+    backgroundColor: BackgroundColor
   },
 
   title: {
