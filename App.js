@@ -9,11 +9,11 @@ import EnterMedicationsScreen from './components/AddMedications.js';
 import ReverseSearchScreen from './components/ReverseSearch.js';
 import InteractionsScreen from './components/Interactions.js';
 import {se2MainButton} from './components/SE2Styles.js';
+import {StyleHeader} from './components/SE2Styles.js';
+import {BackgroundColor} from './components/SE2Styles.js';
 import {RetrieveMedicationList} from './components/PersistMedicationList.js';
 
 const Stack = createStackNavigator();
-const BackgroundColor = '#0d47a1';
-const SecondTextColor = '#90caf9';
 
 function getMedsAndNavigate(navigation) {
   RetrieveMedicationList().then(
@@ -53,20 +53,7 @@ function getMedsAndNavigate(navigation) {
 
 function HomeScreen({navigation}) {
 
-  React.useLayoutEffect(() => {
-      navigation.setOptions({
-        headerTitle: (props) => (
-          <Text
-            {...props}
-            style={{color: SecondTextColor, fontSize: 24}}>
-              Home
-          </Text>
-        ),
-        headerStyle: {
-          backgroundColor: BackgroundColor, //Set Header color
-        },
-      });
-    }, [navigation]);
+  StyleHeader(navigation, "Home");
 
   return (
     <View style={styles.mainView}>

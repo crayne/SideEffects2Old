@@ -1,4 +1,30 @@
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {StyleSheet, Text} from 'react-native';
+
+const BackgroundColor = '#0d47a1';
+const SecondTextColor = '#90caf9';
+
+
+function StyleHeader(navigation) {
+  React.useLayoutEffect(() => {
+      navigation.setOptions({
+        headerTitle: (props) => (
+          <Text
+            {...props}
+            style={{color: SecondTextColor, fontSize: 24}}>
+              Home
+          </Text>
+        ),
+        headerStyle: {
+          backgroundColor: BackgroundColor, //Set Header color
+        },
+      });
+    }, [navigation]);
+
+
+}
 
 const se2MainButton = StyleSheet.create({
   buttonView: {
@@ -36,3 +62,5 @@ const se2MainButton = StyleSheet.create({
 });
 
 export {se2MainButton};
+export {StyleHeader};
+export {BackgroundColor};
