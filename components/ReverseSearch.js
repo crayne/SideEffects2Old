@@ -23,6 +23,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllSymptomNames from './ModelReverseSearchMenu.js';
 import MedicationHasSideEffect from './ModelReverseSearchResult.js';
 import {se2MainButton} from './SE2Styles.js';
+import {StyleHeader} from './SE2Styles.js';
+import {BackgroundColor} from './SE2Styles.js';
 import {useFocusEffect} from '@react-navigation/native';
 
 var filterIntervalSymptoms;
@@ -48,6 +50,8 @@ function saveMedicationData() {}
 
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
+  StyleHeader(props.navigation, "Enter Medications");
+
   const {navigation} = props;
   AllUserMedications = global.MedicationListData;
   const unsubscribe = navigation.addListener('beforeRemove', (e) => {
@@ -339,12 +343,14 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginTop: 80,
     marginBottom: 20,
+    color: "white"
   },
 
   listTitleText: {
     fontSize: 26,
     marginTop: 20,
     textAlign: 'center',
+    color: "white"
   },
 
   menuListStyle: {
@@ -431,7 +437,8 @@ const styles = StyleSheet.create({
   },
 
   safeAreaView: {
-    flex: 1
+    flex: 1,
+    backgroundColor: BackgroundColor
   }
 
 });
