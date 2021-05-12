@@ -5,18 +5,22 @@ import {StyleSheet, Text} from 'react-native';
 
 const BackgroundColor = '#0d47a1';
 const SecondTextColor = '#90caf9';
+const ButtonBackground = '#2196f3';
 
 
-function StyleHeader(navigation) {
+function StyleHeader(navigation, title) {
   React.useLayoutEffect(() => {
       navigation.setOptions({
+        /*
         headerTitle: (props) => (
           <Text
             {...props}
             style={{color: SecondTextColor, fontSize: 24}}>
-              Home
+              {title}
           </Text>
         ),
+        */
+        headerTintColor: SecondTextColor,
         headerStyle: {
           backgroundColor: BackgroundColor, //Set Header color
         },
@@ -34,7 +38,7 @@ const se2MainButton = StyleSheet.create({
   },
 
   homeButtonStyle: {
-    backgroundColor: '#2196f3',
+    backgroundColor: ButtonBackground,
     color: 'white',
     fontSize: 30,
     fontWeight: 'bold',
@@ -48,7 +52,7 @@ const se2MainButton = StyleSheet.create({
   },
 
   innerButtonStyle: {
-    backgroundColor: 'purple',
+    backgroundColor: ButtonBackground,
     color: 'white',
     fontSize: 24,
     textAlign: 'center',

@@ -27,6 +27,9 @@ import {
   SaveMedicationList,
   IsMedicationListNull,
 } from './PersistMedicationList.js';
+import {StyleHeader} from './SE2Styles.js';
+import {BackgroundColor} from './SE2Styles.js';
+
 
 state = {
   items: Array(),
@@ -61,6 +64,8 @@ function findItemInMedicationList(medName) {
 
 function EnterMedicationsScreen(props) {
   state.navigate = props.navigation.navigate;
+  StyleHeader(props.navigation, "Enter Medications");
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.view}>
@@ -344,6 +349,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginTop: 20,
     marginBottom: 20,
+    color: "white"
   },
 
   menuListStyle: {
@@ -449,7 +455,8 @@ const styles = StyleSheet.create({
   },
 
   safeAreaView: {
-    flex: 1
+    flex: 1,
+    backgroundColor: BackgroundColor
   }
 });
 
