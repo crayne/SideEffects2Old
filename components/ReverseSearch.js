@@ -50,7 +50,7 @@ function saveMedicationData() {}
 
 function ReverseSearchScreen(props) {
   state.navigate = props.navigation.navigate;
-  StyleHeader(props.navigation, "Enter Medications");
+  StyleHeader(props.navigation, "Reverse Search");
 
   const {navigation} = props;
   AllUserMedications = global.MedicationListData;

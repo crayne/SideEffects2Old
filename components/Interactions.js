@@ -23,12 +23,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import GetAllSymptomNames from './ModelReverseSearchMenu.js';
 import MedicationHasSideEffect from './ModelReverseSearchResult.js';
 import {se2MainButton} from './SE2Styles.js';
+import {StyleHeader} from './SE2Styles.js';
+import {BackgroundColor} from './SE2Styles.js';
 import {useFocusEffect} from '@react-navigation/native';
 
 var interactionsInterval;
 var filterIntervalMedications;
-
-const urlBase = global.localHost;
 
 state = {
   items: Array(),
@@ -45,6 +45,7 @@ var AllUserMedications = Array();
 
 function InteractionsScreen(props) {
   state.navigate = props.navigation.navigate;
+  StyleHeader(props.navigation, "Interactions");
   const {navigation} = props;
   AllUserMedications = global.MedicationListData;
   const unsubscribe = navigation.addListener('beforeRemove', (e) => {
@@ -134,7 +135,7 @@ function FindInteractions() {
 
   function GetInteractions(medNames) {
     console.log('In New GetInteractions, medNames = ' + medNames);
-    const searchUrl = urlBase + '/interactions.php?medNames=' + medNames;
+    const searchUrl = global.urlBase + '/interactions.php?medNames=' + medNames;
     console.log('In GetInteractions, searchUrl = ' + searchUrl);
 
     var request = new XMLHttpRequest();
@@ -190,42 +191,45 @@ function FindInteractions() {
   This is terrible, and I will try to find some other way of solving this problem
   */
 
-    <View
-      style={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        marginLeft: 20,
-        marginRight: 20,
-      }}>
-      <Searchbar style={styles.searchbar} placeholder="Search" />
+  <SafeAreaView style={styles.safeAreaView}>
+      <View
+        style={{
+          flexDirection: 'column',
+          justifyContent: 'center',
+          marginLeft: 20,
+          marginRight: 20,
+          backgroundColor: BackgroundColor
+        }}>
+        <Searchbar style={styles.searchbar} placeholder="Search" />
 
-      <Text style={styles.listTitleText}>
-        Interactions Between Your Medications
-      </Text>
+        <Text style={styles.listTitleText}>
+          Interactions Between Your Medications
+        </Text>
 
-      <SafeAreaView style={medicationListStyle(medicationListVisibility)}>
-        <FlatList
-          style={styles.medicationList}
-          ItemSeparatorComponent={({highlighted}) => (
-            <View style={[styles.separator, highlighted && {marginLeft: 0}]} />
-          )}
-          data={InteractionData}
-          renderItem={renderMedicationListItem}
-          keyExtractor={(item) => item.id.toString()}
-          extraData={state.refreshFlatList}
-        />
-      </SafeAreaView>
+        <View style={medicationListStyle(medicationListVisibility)}>
+          <FlatList
+            style={styles.medicationList}
+            ItemSeparatorComponent={({highlighted}) => (
+              <View style={[styles.separator, highlighted && {marginLeft: 0}]} />
+            )}
+            data={InteractionData}
+            renderItem={renderMedicationListItem}
+            keyExtractor={(item) => item.id.toString()}
+            extraData={state.refreshFlatList}
+          />
+        </View>
 
-      <View style={se2MainButton.buttonView}>
-        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-          <Text
-            style={se2MainButton.innerButtonStyle}
-            onPress={() => state.navigate('Home')}>
-            Home
-          </Text>
-        </TouchableOpacity>
+        <View style={se2MainButton.buttonView}>
+          <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+            <Text
+              style={se2MainButton.innerButtonStyle}
+              onPress={() => state.navigate('Home')}>
+              Home
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -264,6 +268,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginTop: 20,
     textAlign: 'center',
+    color: "white"
   },
 
   medicationList: {
@@ -294,6 +299,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'blue',
   },
+
+  safeAreaView: {
+    flex: 1,
+    backgroundColor: BackgroundColor
+  }
+
 });
 
 module.exports = InteractionsScreen;
