@@ -8,6 +8,7 @@ const SecondTextColor = '#90caf9';
 const ButtonBackground = '#2196f3';
 
 
+
 function StyleHeader(navigation, title) {
   React.useLayoutEffect(() => {
       navigation.setOptions({
