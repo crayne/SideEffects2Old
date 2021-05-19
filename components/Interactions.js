@@ -37,6 +37,9 @@ state = {
   refreshFlatList: false,
 };
 
+//This is used to keep the interaction search from happening more than once
+var firstPass = false;
+
 var medicationListVisibility = 0;
 
 const InteractionData = Array();
@@ -44,20 +47,22 @@ const InteractionData = Array();
 var AllUserMedications = Array();
 
 function InteractionsScreen(props) {
+  console.log("firstPass = " + firstPass);
   state.navigate = props.navigation.navigate;
   StyleHeader(props.navigation, "Interactions");
   const {navigation} = props;
+
   AllUserMedications = global.MedicationListData;
+
   const unsubscribe = navigation.addListener('beforeRemove', (e) => {
     InteractionData.length = 0;
+    firstPass = false;
   });
   console.log(
     'In InteractionsScreen, AllUserMedications length is: ' +
       AllUserMedications.length,
   );
-  console.log(
-    'AllUserMedications first item is: ' + AllUserMedications[0].title,
-  );
+
   return FindInteractions();
 }
 
@@ -73,7 +78,10 @@ function FindInteractions() {
   }
   global.interactionsList = '';
 
-  GetInteractions(concatMedications);
+  if (firstPass != true){
+    GetInteractions(concatMedications);
+    firstPass = true;
+  }
   //interactionsInterval = setInterval(CheckInteractionsList, 1000);
 
   const Item = ({title}) => (
@@ -85,10 +93,10 @@ function FindInteractions() {
   /* TODO - put "Get Interactions" button on Interactions screen and call FindInteractions from the handler
   tried -- doesn't work .  Try "onComponentLoaded" */
   function CheckInteractionsList() {
+    clearInterval(interactionsInterval);
     if (global.interactionsList == '') {
       return;
     }
-    clearInterval(interactionsInterval);
     global.interactionsList = global.interactionsList.toLowerCase();
     global.interactionsList = global.interactionsList.substr(
       0,
@@ -121,14 +129,13 @@ function FindInteractions() {
         ': ' +
         descriptionText;
       InteractionData.push({title: listText, id: '1' + i});
-
       console.log(
         'In CheckInteractionsList, pushed object to InteractionData, length = ' +
           InteractionData.length,
       );
       state.refreshFlatList = !state.refreshFlatList;
       /*Do not delete -- allows Interaction List to update*/
-      setSearchQuery('ab');
+      setSearchQuery('a');
     }
     global.interactionsList = '';
   }
