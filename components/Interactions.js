@@ -64,7 +64,6 @@ function InteractionsScreen(props) {
 }
 
 function FindInteractions() {
-  const [searchQuery, setSearchQuery] = React.useState('');
   const [refreshData, setRefreshData] = React.useState(false);
 
   const renderMedicationListItem = ({item}) => <Item title={item.title} />;
@@ -167,12 +166,6 @@ function FindInteractions() {
   }
 
   return (
-    /*
-  The purpose of the searchbar is only to make updates to the interactions list display
-  The list will update only if I set the contents of the searchbar to a string.  The searchbar
-  is invisible.
-  This is terrible, and I will try to find some other way of solving this problem
-  */
 
   <SafeAreaView style={styles.safeAreaView}>
       <View
@@ -183,7 +176,6 @@ function FindInteractions() {
           marginRight: 20,
           backgroundColor: BackgroundColor
         }}>
-        <Searchbar style={styles.searchbar} placeholder="Search" />
 
         <Text style={styles.listTitleText}>
           Interactions Between Your Medications
@@ -232,14 +224,6 @@ const styles = StyleSheet.create({
   },
 
   menuItem: {},
-
-  searchbar: {
-    width: '100%',
-    marginBottom: 0,
-    opacity: 0,
-    display: 'none',
-    height: 10,
-  },
 
   enterText: {
     fontSize: 26,
