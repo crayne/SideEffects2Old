@@ -34,7 +34,6 @@ state = {
   items: Array(),
   menuItems: Array(),
   navigate: null,
-  refreshFlatList: false,
 };
 
 //This is used to keep the interaction search from happening more than once
@@ -66,6 +65,8 @@ function InteractionsScreen(props) {
 
 function FindInteractions() {
   const [searchQuery, setSearchQuery] = React.useState('');
+  const [refreshData, setRefreshData] = React.useState(false);
+
   const renderMedicationListItem = ({item}) => <Item title={item.title} />;
   //fgetI the medication names
   var concatMedications = '';
@@ -131,11 +132,9 @@ function FindInteractions() {
         'In CheckInteractionsList, pushed object to InteractionData, length = ' +
           InteractionData.length,
       );
-      state.refreshFlatList = !state.refreshFlatList;
-      /*Do not delete -- allows Interaction List to update*/
-      setSearchQuery('a');
     }
     global.interactionsList = '';
+    setRefreshData(!refreshData);
   }
 
   function GetInteractions(medNames) {
@@ -199,7 +198,7 @@ function FindInteractions() {
             data={InteractionData}
             renderItem={renderMedicationListItem}
             keyExtractor={(item) => item.id.toString()}
-            extraData={state.refreshFlatList}
+            extraData={refreshData}
           />
         </View>
 
