@@ -40,8 +40,6 @@ state = {
 //This is used to keep the interaction search from happening more than once
 var firstPass = false;
 
-var medicationListVisibility = 0;
-
 const InteractionData = Array();
 //List of all user Medications
 var AllUserMedications = Array();
@@ -169,27 +167,6 @@ function FindInteractions() {
     request.send();
   }
 
-  const medicationListStyle = function (medicationListVisibility) {
-    return {
-      marginTop: 20,
-      fontSize: 24,
-      alignItems: 'flex-start',
-      height: 400,
-      flexGrow: 0,
-      opacity: 1,
-      borderRadius: 4,
-      backgroundColor: 'transparent',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 1,
-      },
-      shadowOpacity: 0.22,
-      shadowRadius: 2.22,
-      elevation: 3,
-    };
-  };
-
   return (
     /*
   The purpose of the searchbar is only to make updates to the interactions list display
@@ -213,7 +190,7 @@ function FindInteractions() {
           Interactions Between Your Medications
         </Text>
 
-        <View style={medicationListStyle(medicationListVisibility)}>
+        <View style={styles.medicationListStyle}>
           <FlatList
             style={styles.medicationList}
             ItemSeparatorComponent={({highlighted}) => (
@@ -299,6 +276,26 @@ const styles = StyleSheet.create({
   medicationListItemIcon: {
     marginRight: 5,
     marginTop: 2,
+  },
+
+
+  medicationListStyle: {
+    marginTop: 20,
+    fontSize: 24,
+    alignItems: 'flex-start',
+    height: 400,
+    flexGrow: 0,
+    opacity: 1,
+    borderRadius: 4,
+    backgroundColor: 'transparent',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
 
   separator: {
