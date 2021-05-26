@@ -34,7 +34,6 @@ import {BackgroundColor} from './SE2Styles.js';
 state = {
   items: Array(),
   menuItems: Array(),
-  doMedListRefresh: false,
   navigate: null,
   isSwiping: false,
   filterInterval: 0,
@@ -82,12 +81,13 @@ function AddMedicationsDropdown() {
   const onChangeSearch = (query) => displayText(query);
 
   const [visible, setVisible] = React.useState(false);
+  const [refreshData, setRefreshData] = React.useState(false);
+
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   const renderMedicationListItem = ({item}) => <Item title={item.title} />;
   const renderMenuListItem = ({item}) => <MedMenuItem title={item} />;
-  var medListRefresh = false;
 
   //Hijacked setSearchQuery -- called displayText instead and called setSearchQuery within it
   function displayText(query) {
@@ -173,10 +173,10 @@ function AddMedicationsDropdown() {
         global.MedicationListData.length,
     );
     saveMedicationData();
-    medListRefresh = !medListRefresh;
+    setRefreshData(!refreshData);
     //This weird code makes the medication list update visually correctly
-    state.navigate('Home');
-    state.navigate('EnterMedications');
+    //state.navigate('Home');
+    //state.navigate('EnterMedications');
   };
 
   const Item = ({title}) => (
@@ -284,7 +284,7 @@ function AddMedicationsDropdown() {
           data={global.MedicationListData}
           renderItem={renderMedicationListItem}
           keyExtractor={(item) => item.id.toString()}
-          extraData={medListRefresh}
+          extraData={refreshData}
         />
       </ScrollView>
 
