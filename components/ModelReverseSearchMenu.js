@@ -9,15 +9,18 @@ import {
   Menu,
 } from 'react-native-paper';
 import {Searchbar} from 'react-native-paper';
+import {GetHost} from './SetHost.js'
+
 
 const nuiUrl = 'http://rxnav.nlm.nih.gov/REST/search?conceptName=';
 const getInteractionsPhpUrl = '/interactions.php';
+
 
 var outsideResponse;
 
 function GetAllSymptomNames(query) {
   const searchUrl =
-    global.urlBase + '/autoCompleteSymptoms.php?searchValue=' + query;
+    GetHost() + '/autoCompleteSymptoms.php?searchValue=' + query;
   console.log('In GetAllSymptomNames, searchUrl = ' + searchUrl);
 
   var request = new XMLHttpRequest();

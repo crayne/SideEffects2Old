@@ -9,6 +9,7 @@ import {
   Menu,
 } from 'react-native-paper';
 import {Searchbar} from 'react-native-paper';
+import {GetHost} from './SetHost.js'
 
 var outsideResponse;
 
@@ -17,7 +18,7 @@ function MedicationHasSideEffect(medication, symptom) {
   console.log('In MedicationHasSideEffect, medication = ' + medication);
 
   const searchUrl =
-    global.urlBase +
+    GetHost() +
     '/searchSideEffectVerbal.php?symptom=' +
     symptom +
     '&medication=' +

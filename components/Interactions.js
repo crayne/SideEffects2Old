@@ -26,6 +26,8 @@ import {se2MainButton} from './SE2Styles.js';
 import {StyleHeader} from './SE2Styles.js';
 import {BackgroundColor} from './SE2Styles.js';
 import {useFocusEffect} from '@react-navigation/native';
+import {GetHost} from './SetHost.js'
+
 
 var interactionsInterval;
 var filterIntervalMedications;
@@ -138,7 +140,7 @@ function FindInteractions() {
 
   function GetInteractions(medNames) {
     console.log('In New GetInteractions, medNames = ' + medNames);
-    const searchUrl = global.urlBase + '/interactions.php?medNames=' + medNames;
+    const searchUrl = GetHost() + '/interactions.php?medNames=' + medNames;
     console.log('In GetInteractions, searchUrl = ' + searchUrl);
 
     var request = new XMLHttpRequest();
