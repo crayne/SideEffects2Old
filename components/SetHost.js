@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 //This is for an emulator
 var localHost =  "http://192.168.1.228:8888/sideEffectsNewData";
+
 //This is for a connected Android phone
 //localHost =  "http://localhost:8888/sideEffectsNewData";
 

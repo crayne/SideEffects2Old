@@ -427,12 +427,13 @@ const styles = StyleSheet.create({
   },
 
   medicationListItemText: {
+    width: "90%",
     fontSize: 24,
     marginLeft: 5,
-    marginRight: 40,
   },
 
   medicationListItemIcon: {
+    width: "10%",
     marginRight: 5,
     marginTop: 2,
   },
