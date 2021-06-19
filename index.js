@@ -22,6 +22,7 @@ global.filteredReverseSearchMenuList;
 global.filteredReverseSearchResultList;
 global.interactionsList;
 global.MedicationListData = Array();
+global.sideEffectsList;
 
 
 global.backgroundColor = '#0d47a1';
