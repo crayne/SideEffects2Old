@@ -19,7 +19,7 @@ import {
 } from 'react-native-paper';
 import {Searchbar} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-mimport {se2MainButton} from './SE2Styles.js';
+import {se2MainButton} from './SE2Styles.js';
 import {StyleHeader} from './SE2Styles.js';
 import {BackgroundColor} from './SE2Styles.js';
 import {useFocusEffect} from '@react-navigation/native';
@@ -42,12 +42,13 @@ const SideEffectsData = Array();
 //List of all side effects for a given medication
 var AllSideEffects = Array();
 
-function SideEffectsListScreenScreen(props) {
-  console.log("firstPass = " + firstPass);
+function SideEffectsListScreen(props) {
+  console.log("In SideEffectsListScreen, firstPass = " + firstPass);
   state.navigate = props.navigation.navigate;
-  state.medicationName = this.props.navigation.state.params.medicationName;
+  state.medicationName = props.route.params.medicationName;
+  console.log("In SideEffectsListScreen, medication name is " + state.medicationName);
 
-  StyleHeader(props.navigation, "Side Effects");
+  StyleHeader(props.navigation, "SideEffectsList");
   const {navigation} = props;
 
   AllSideEffects = global.sideEffectsList;
@@ -56,11 +57,9 @@ function SideEffectsListScreenScreen(props) {
     SideEffectsData.length = 0;
     firstPass = false;
   });
-  console.log(
-    'In SideEffectsListScreen, AllSideEffects length is: ' +
-      AllSideEffects.length,
-  );
-
+  if (typeof AllSideEffects != "undefined"){
+    console.log("AllSideEffects length = " + AllSideEffects.length);
+  }
   return FindSideEffects();
 }
 
@@ -68,8 +67,7 @@ function FindSideEffects() {
   const [refreshData, setRefreshData] = React.useState(false);
 
   const renderSideEffectItem = ({item}) => <Item title={item.title} />;
-  //fget the side effect names
-  var numSideEffects = AllSideEffects.length;
+  //get the side effect names
 
   global.sideEffectsList = '';
 

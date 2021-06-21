@@ -8,6 +8,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import EnterMedicationsScreen from './components/AddMedications.js';
 import ReverseSearchScreen from './components/ReverseSearch.js';
 import InteractionsScreen from './components/Interactions.js';
+import SideEffectsListScreen from './components/SideEffectList.js';
 import {se2MainButton} from './components/SE2Styles.js';
 import {StyleHeader} from './components/SE2Styles.js';
 import {BackgroundColor} from './components/SE2Styles.js';
@@ -90,6 +91,7 @@ function SideEffects2() {
         />
         <Stack.Screen name="ReverseSearch" component={ReverseSearchScreen} />
         <Stack.Screen name="Interactions" component={InteractionsScreen} />
+        <Stack.Screen name="SideEffectsList" component={SideEffectsListScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

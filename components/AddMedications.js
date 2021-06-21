@@ -259,7 +259,12 @@ function AddMedicationsDropdown() {
       alert('The interaction check requires two or more medications.');
       return;
     }
-    state.navigate(destination);
+    if (destination == "SideEffectsList"){
+      state.navigate(destination, { medicationName: "diltiazem" });
+    }
+    else {
+      state.navigate(destination);
+    }
   };
   return (
     <View
@@ -322,7 +327,17 @@ function AddMedicationsDropdown() {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+
+      <View style={se2MainButton.buttonView}>
+        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+          <Text
+            style={se2MainButton.innerButtonStyle}
+            onPress={() => verifyAndGo('SideEffectsList')}>
+            Side Effects List
+          </Text>
+        </TouchableOpacity>
+      </View>
+  </View>
   );
 }
 
