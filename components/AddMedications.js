@@ -144,7 +144,6 @@ function AddMedicationsDropdown() {
       global.filteredMedicationList = '';
     }
     var i = 0;
-    
     console.log(
       'Putting items from server into menu, state.items.length = ' +
         state.items.length,
@@ -260,12 +259,7 @@ function AddMedicationsDropdown() {
       alert('The interaction check requires two or more medications.');
       return;
     }
-    if (destination == "SideEffectsList"){
-      state.navigate(destination, { medicationName: "diltiazem" });
-    }
-    else {
-      state.navigate(destination);
-    }
+    state.navigate(destination);
   };
   return (
     <View
@@ -328,17 +322,7 @@ function AddMedicationsDropdown() {
           </Text>
         </TouchableOpacity>
       </View>
-
-      <View style={se2MainButton.buttonView}>
-        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-          <Text
-            style={se2MainButton.innerButtonStyle}
-            onPress={() => verifyAndGo('SideEffectsList')}>
-            Side Effects List
-          </Text>
-        </TouchableOpacity>
-      </View>
-  </View>
+    </View>
   );
 }
 
