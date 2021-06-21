@@ -259,7 +259,12 @@ function AddMedicationsDropdown() {
       alert('The interaction check requires two or more medications.');
       return;
     }
-    state.navigate(destination);
+    if (destination == 'SideEffectsList'){
+      state.navigate(destination,{medicationName: 'escitalopram'});
+    }
+    else {
+      state.navigate(destination);
+    }
   };
   return (
     <View
@@ -322,6 +327,16 @@ function AddMedicationsDropdown() {
           </Text>
         </TouchableOpacity>
       </View>
+      <View style={se2MainButton.buttonView}>
+        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
+          <Text
+            style={se2MainButton.innerButtonStyle}
+            onPress={() => verifyAndGo('SideEffectsList')}>
+            Medication Side Effects
+          </Text>
+        </TouchableOpacity>
+      </View>
+
     </View>
   );
 }

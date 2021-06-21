@@ -29,8 +29,10 @@ import {GetHost} from './SetHost.js'
 var sideEffectsInterval;
 var filterIntervalMedications;
 
+//menuItems must be in here
 state = {
   items: Array(),
+  menuItems: Array(),
   navigate: null,
   medicationName: null
 };
