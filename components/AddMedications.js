@@ -144,6 +144,7 @@ function AddMedicationsDropdown() {
       global.filteredMedicationList = '';
     }
     var i = 0;
+    
     console.log(
       'Putting items from server into menu, state.items.length = ' +
         state.items.length,
