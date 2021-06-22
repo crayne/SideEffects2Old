@@ -31,7 +31,7 @@ import {StyleHeader} from './SE2Styles.js';
 import {BackgroundColor} from './SE2Styles.js';
 
 
-state = {
+mystate = {
   items: Array(),
   menuItems: Array(),
   navigate: null,
@@ -62,7 +62,7 @@ function findItemInMedicationList(medName) {
 }
 
 function EnterMedicationsScreen(props) {
-  state.navigate = props.navigation.navigate;
+  mystate.navigate = props.navigation.navigate;
   StyleHeader(props.navigation, "Enter Medications");
 
   return (
@@ -108,12 +108,12 @@ function AddMedicationsDropdown() {
       console.log('Search string is = ' + query);
       global.filteredMedicationList = '';
       GetAllMedicationNames(query);
-      clearInterval(state.filterInterval);
-      state.filterInterval = setInterval(function () {
+      clearInterval(mystate.filterInterval);
+      mystate.filterInterval = setInterval(function () {
         CheckFilteredMedicationList(query);
       }, 1000);
       console.log(
-        'After setInterval, state.filterInterval = ' + state.filterInterval,
+        'After setInterval, mystate.filterInterval = ' + mystate.filterInterval,
       );
     }
 
@@ -121,10 +121,10 @@ function AddMedicationsDropdown() {
   }
 
   function CheckFilteredMedicationList(query) {
-    clearInterval(state.filterInterval);
+    clearInterval(mystate.filterInterval);
 
     console.log(
-      'After clearInterval, state.filterInterval = ' + state.filterInterval,
+      'After clearInterval, mystate.filterInterval = ' + mystate.filterInterval,
     );
 
     if (global.filteredMedicationList == '') {
@@ -135,27 +135,27 @@ function AddMedicationsDropdown() {
       'In CheckFilteredMedicationList, Filtered Medication List =  ' +
         global.filteredMedicationList,
     );
-    state.items = global.filteredMedicationList.split(':');
+    mystate.items = global.filteredMedicationList.split(':');
     console.log(
       'In CheckFilteredMedicationList, split global.filteredMedicationList length = ' +
-        state.items.length,
+        mystate.items.length,
     );
-    if (state.items.length == 0) {
+    if (mystate.items.length == 0) {
       global.filteredMedicationList = '';
     }
     var i = 0;
     console.log(
-      'Putting items from server into menu, state.items.length = ' +
-        state.items.length,
+      'Putting items from server into menu, mystate.items.length = ' +
+        mystate.items.length,
     );
-    state.menuItems.length = 0;
-    for (i = 0; i < state.items.length; i++) {
-      var itemName = state.items[i];
+    mystate.menuItems.length = 0;
+    for (i = 0; i < mystate.items.length; i++) {
+      var itemName = mystate.items[i];
       if (itemName.indexOf(query) != -1) {
-        state.menuItems.push(itemName);
+        mystate.menuItems.push(itemName);
       }
     }
-    state.items.pop();
+    mystate.items.pop();
     closeMenu();
     openMenu();
     setShouldShow(true);
@@ -175,8 +175,8 @@ function AddMedicationsDropdown() {
     saveMedicationData();
     setRefreshData(!refreshData);
     //This weird code makes the medication list update visually correctly
-    //state.navigate('Home');
-    //state.navigate('EnterMedications');
+    //mystate.navigate('Home');
+    //mystate.navigate('EnterMedications');
   };
 
   const medicationNamePressed = (medicationName) => {
@@ -214,7 +214,7 @@ function AddMedicationsDropdown() {
   );
 
   const hideMenuItems = () => {
-    state.items.length = 0;
+    mystate.items.length = 0;
   };
 
   const onPressDropdownItemHandler = (value) => {
@@ -264,10 +264,10 @@ function AddMedicationsDropdown() {
       return;
     }
     if (destination == 'SideEffectsList'){
-      state.navigate(destination,{medicationName: 'diltiazem'});
+      mystate.navigate(destination,{medicationName: 'diltiazem'});
     }
     else {
-      state.navigate(destination);
+      mystate.navigate(destination);
     }
   };
   return (
@@ -302,7 +302,7 @@ function AddMedicationsDropdown() {
           <TouchableWithoutFeedback onPress={() => setShouldShow(false)}>
             <FlatList
               style={styles.menuList}
-              data={state.items}
+              data={mystate.items}
               renderItem={renderMenuListItem}
               keyExtractor={(item, index) => index.toString()}
               contentContainerStyle={styles.menuContentContainer}
