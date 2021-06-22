@@ -48,6 +48,7 @@ function SideEffectsListScreen(props) {
   console.log("In SideEffectsListScreen, firstPass = " + firstPass);
   state.navigate = props.navigation.navigate;
   state.medicationName = props.route.params.medicationName;
+  state.medicationName = state.medicationName.charAt(0).toUpperCase() + state.medicationName.slice(1);
   console.log("In SideEffectsListScreen, medication name is " + state.medicationName);
 
   StyleHeader(props.navigation, "SideEffectsList");
@@ -162,7 +163,7 @@ function FindSideEffects() {
         }}>
 
         <Text style={styles.listTitleText}>
-          Side Effects of {state.medName}
+          Side Effects of {state.medicationName}
         </Text>
 
         <View style={styles.sideEffectsListStyle}>
