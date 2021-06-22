@@ -75,7 +75,7 @@ function FindSideEffects() {
   global.sideEffectsList = '';
 
   if (firstPass != true){
-    //GetSideEffects();
+    GetSideEffects();
     firstPass = true;
   }
   //sideEffectsInterval = setInterval(CheckSideEffectsList, 1000);
@@ -101,16 +101,16 @@ function FindSideEffects() {
       'In CheckSideEffectsList, global.sideEffectsList: ' +
         global.sideEffectsList,
     );
-    var jsonSideEffectsList = JSON.parse(global.sideEffectsList);
+    var sideEffectsList = global.sideEffectsList.split(",");
     console.log(
       'In CheckSideEffectsList, number of JSON objects = ' +
-        jsonSideEffectsList.length,
+      sideEffectsList.length,
     );
 
-    for (var i = 0; i < jsonSideEffectsList.length; i++) {
+    for (var i = 0; i < sideEffectsList.length; i++) {
 
-      var descriptionText = jsonSideEffectsList[i].descriptiontext[0];
-      SideEffectsData.push({title: jsonSideEffectsList[i], id: '1' + i});
+      SideEffectsData.push({title: sideEffectsList[i], id: '1' + i});
+      
       console.log(
         'In CheckSideEffectsList, pushed object to SideEffectsData, length = ' +
           SideEffectsData.length,
@@ -121,9 +121,9 @@ function FindSideEffects() {
   }
 
   function GetSideEffects() {
-    console.log('In New GetSideEffects, medName = ' + state.medName);
+    console.log('In New GetSideEffects, medicationName = ' + state.medicationName);
     //Need to create getSideEffectsFromMedName.php
-    const searchUrl = GetHost() + '/getSideEffectsFromMedName.php?medName=' + state.medName;
+    const searchUrl = GetHost() + '/getSideEffectsFromMedName.php?medName=' + state.medicationName;
     console.log('In GetSideEffects, searchUrl = ' + searchUrl);
 
     var request = new XMLHttpRequest();

@@ -13,7 +13,7 @@ var serverHost = "http://www.oryxtech.net/sideEffectsNewData";
 //var currentHost = global.serverHost;
 
 function GetHost(){
-  return serverHost;
+  return localHost;
 }
 
 

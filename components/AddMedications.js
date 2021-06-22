@@ -260,7 +260,7 @@ function AddMedicationsDropdown() {
       return;
     }
     if (destination == 'SideEffectsList'){
-      state.navigate(destination,{medicationName: 'escitalopram'});
+      state.navigate(destination,{medicationName: 'diltiazem'});
     }
     else {
       state.navigate(destination);
