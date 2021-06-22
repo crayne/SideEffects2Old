@@ -179,10 +179,15 @@ function AddMedicationsDropdown() {
     //state.navigate('EnterMedications');
   };
 
+  const medicationNamePressed = (medicationName) => {
+    alert("Medication name pressed");
+  }
+
   const Item = ({title}) => (
-    <View style={styles.medicationListItem}>
-      <Text style={styles.medicationListItemText}>{title}</Text>
-      <TouchableHighlight>
+      <View style={styles.medicationListItem}>
+        <Text style={styles.medicationListItemText}
+          onPress={() => medicationNamePressed(title)}
+        >{title}</Text>
         <Icon
           style={styles.deleteIcon}
           name="trash-can-outline"
@@ -190,8 +195,7 @@ function AddMedicationsDropdown() {
           color="#000"
           onPress={() => handleMedicationListItemDelete(title)}
         />
-      </TouchableHighlight>
-    </View>
+   </View>
   );
 
   const MedMenuItem = ({title}) => (
