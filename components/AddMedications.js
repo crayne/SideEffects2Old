@@ -179,15 +179,22 @@ function AddMedicationsDropdown() {
     //mystate.navigate('EnterMedications');
   };
 
-  const medicationNamePressed = (medicationName) => {
-    alert("Medication name pressed");
+  const medicationNamePressed = (medication) => {
+    console.log("In medicationNamePressed, medicationName = " + medication);
+    verifyAndGo('SideEffectsList', medication);
   }
 
   const Item = ({title}) => (
       <View style={styles.medicationListItem}>
-        <Text style={styles.medicationListItemText}
-          onPress={() => medicationNamePressed(title)}
-        >{title}</Text>
+        <TouchableHighlight
+          style={styles.medicationListItem}
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={() => medicationNamePressed(title)}>
+          <Text style={styles.medicationListItemText}>
+            {title}
+          </Text>
+        </TouchableHighlight>
         <Icon
           style={styles.deleteIcon}
           name="trash-can-outline"
@@ -249,9 +256,11 @@ function AddMedicationsDropdown() {
     saveMedicationData();
   };
 
-  const verifyAndGo = (destination) => {
+  const verifyAndGo = (destination, medication) => {
     setShouldShow(false);
     console.log('In verifyAndGo, destination = ' + destination);
+    console.log('In verifyAndGo, medication = ' + medication);
+
     if (global.MedicationListData.length == 0) {
       alert('The medication list contains no medications.');
       return;
@@ -264,7 +273,7 @@ function AddMedicationsDropdown() {
       return;
     }
     if (destination == 'SideEffectsList'){
-      mystate.navigate(destination,{medicationName: 'diltiazem'});
+      mystate.navigate(destination,{medicationName: medication});
     }
     else {
       mystate.navigate(destination);
