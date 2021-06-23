@@ -110,7 +110,7 @@ function FindSideEffects() {
     for (var i = 0; i < sideEffectsList.length; i++) {
 
       SideEffectsData.push({title: sideEffectsList[i], id: '1' + i});
-      
+
       console.log(
         'In CheckSideEffectsList, pushed object to SideEffectsData, length = ' +
           SideEffectsData.length,
@@ -220,8 +220,7 @@ const styles = StyleSheet.create({
   sideEffectsListItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 5,
-    marginRight: 5,
+    margin: 10
   },
 
   sideEffectsListItemText: {
