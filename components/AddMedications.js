@@ -320,7 +320,7 @@ function AddMedicationsDropdown() {
           </TouchableWithoutFeedback>
         </ScrollView>
       ) : null}
-
+      <Text style={styles.enterText}>Click on medication to see side effects</Text>
       <View style={se2MainButton.buttonView}>
         <TouchableOpacity style={se2MainButton.innerButtonStyle}>
           <Text
@@ -340,16 +340,6 @@ function AddMedicationsDropdown() {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={se2MainButton.buttonView}>
-        <TouchableOpacity style={se2MainButton.innerButtonStyle}>
-          <Text
-            style={se2MainButton.innerButtonStyle}
-            onPress={() => verifyAndGo('SideEffectsList')}>
-            Medication Side Effects
-          </Text>
-        </TouchableOpacity>
-      </View>
-
     </View>
   );
 }
