@@ -29,6 +29,8 @@ import {
 } from './PersistMedicationList.js';
 import {StyleHeader} from './SE2Styles.js';
 import {BackgroundColor} from './SE2Styles.js';
+import {ButtonBackground} from './SE2Styles.js';
+
 
 
 mystate = {
@@ -320,7 +322,7 @@ function AddMedicationsDropdown() {
           </TouchableWithoutFeedback>
         </ScrollView>
       ) : null}
-      <Text style={styles.enterText}>Click on medication to see side effects</Text>
+      <Text style={styles.clickOn}>Click on medication to see side effects</Text>
       <View style={se2MainButton.buttonView}>
         <TouchableOpacity style={se2MainButton.innerButtonStyle}>
           <Text
@@ -368,6 +370,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     color: "white"
+  },
+
+  clickOn: {
+    fontSize: 22,
+    marginTop: 20,
+    marginBottom: 20,
+    color: "#88c1f2",
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
 
   menuListStyle: {
