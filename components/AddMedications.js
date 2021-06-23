@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 40,
+    paddingTop: 10,
     marginLeft: 16,
     marginRight: 16,
   },
@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
   clickOn: {
     fontSize: 22,
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
     color: "#88c1f2",
     textAlign: 'center',
     fontWeight: 'bold'
