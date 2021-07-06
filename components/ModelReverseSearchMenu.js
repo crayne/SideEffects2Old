@@ -12,7 +12,6 @@ import {Searchbar} from 'react-native-paper';
 import {GetHost} from './SetHost.js'
 
 
-const nuiUrl = 'http://rxnav.nlm.nih.gov/REST/search?conceptName=';
 const getInteractionsPhpUrl = '/interactions.php';
 
 
